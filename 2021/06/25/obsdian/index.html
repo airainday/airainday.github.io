@@ -16,21 +16,27 @@
   <meta name="author" content="airainday">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+    <meta name="description" content="obsdian git 设置自动pull，每次重启obsdian会自动从远程仓库pull文件 设置自动备份时间间隔，每隔指定时间就是copmmit和push本地修改到远程仓库 你也可以手动进行commit+push推送本地修改到远端；或者手动pull远端文件到本地。这只需要在快捷键中进行设置，我的commit命令是ctrl+shift+c，push命令是ctrl+shift+p，pull命令是ct">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://example.com/2024/06/25/hello-world/index.html">
+<meta property="og:title" content="obsdian使用教程">
+<meta property="og:url" content="http://example.com/2021/06/25/obsdian/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="obsdian git 设置自动pull，每次重启obsdian会自动从远程仓库pull文件 设置自动备份时间间隔，每隔指定时间就是copmmit和push本地修改到远程仓库 你也可以手动进行commit+push推送本地修改到远端；或者手动pull远端文件到本地。这只需要在快捷键中进行设置，我的commit命令是ctrl+shift+c，push命令是ctrl+shift+p，pull命令是ct">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-06-25T10:51:50.339Z">
-<meta property="article:modified_time" content="2024-06-25T10:51:50.339Z">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/20240217214128.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/20240217214255.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/20240217214407.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/20240217214547.png">
+<meta property="article:published_time" content="2021-06-25T11:42:20.000Z">
+<meta property="article:modified_time" content="2024-06-25T11:42:21.904Z">
 <meta property="article:author" content="airainday">
+<meta property="article:tag" content="obsdian">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/20240217214128.png">
   
   
   
-  <title>Hello World - Hexo</title>
+  <title>obsdian使用教程 - Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -196,7 +202,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Hello World"></span>
+            <span id="subtitle" data-typed-text="obsdian使用教程"></span>
           
         </div>
 
@@ -207,8 +213,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-06-25 18:51" pubdate>
-          2024年6月25日 晚上
+        <time datetime="2021-06-25 19:42" pubdate>
+          2021年6月25日 晚上
         </time>
       </span>
     
@@ -219,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          18 字
+          517 字
         
       </span>
     
@@ -230,7 +236,7 @@
         
         
         
-          1 分钟
+          5 分钟
         
       </span>
     
@@ -267,24 +273,30 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Hello World</h1>
+            <h1 id="seo-header">obsdian使用教程</h1>
             
             
               <div class="markdown-body">
                 
-                <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo new <span class="hljs-string">&quot;My New Post&quot;</span><br></code></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo server<br></code></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo generate<br></code></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo deploy<br></code></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+                <h2 id="obsdian-git"><a href="#obsdian-git" class="headerlink" title="obsdian git"></a>obsdian git</h2><ol>
+<li>设置自动pull，每次重启obsdian会自动从远程仓库pull文件</li>
+<li>设置自动备份时间间隔，每隔指定时间就是copmmit和push本地修改到远程仓库</li>
+<li>你也可以手动进行commit+push推送本地修改到远端；或者手动pull远端文件到本地。这只需要在快捷键中进行设置，我的commit命令是ctrl+shift+c，push命令是ctrl+shift+p，pull命令是ctrl+shift+l。**需要注意的是同步本地修改到远端需要先commit后push，push根据你的网速和修改内容会需要一定的时间。</li>
+<li>前提是你需要将一个文件夹（obsdian仓库文件夹）变成git文件夹，然后链接你的远程github仓库。用<code>git init</code>和&#96;git remote add origin respository_name</li>
+<li>关于自动备份：自动备份不如手动备份安全，关闭开启obsdian自动pull和每隔一段时间自动commit和push。每次修改完毕后记得commit和push即可。</li>
+</ol>
+<h2 id="image-manage"><a href="#image-manage" class="headerlink" title="image manage"></a>image manage</h2><p>在设置中的文件与链接中修改附件存储的文件夹路径即可</p>
+<h2 id="vscode代码复制到Obsdian出现空行"><a href="#vscode代码复制到Obsdian出现空行" class="headerlink" title="vscode代码复制到Obsdian出现空行"></a>vscode代码复制到Obsdian出现空行</h2><p>复制时用ctrl+shift+v即可</p>
+<h2 id="obsdian配合picgo"><a href="#obsdian配合picgo" class="headerlink" title="obsdian配合picgo"></a>obsdian配合picgo</h2><p>由于obsdian插入图片是以附件形式进行的，因此在网络上无法访问到图片，因此借助picgo获取图片在网络上的链接。我们采用的图床是github。<br>1、创建github仓库，用于储存上传的图片<br>2、生成一个token，使picgo可以访问github：设置里面找到Developer settings，生成一个token将repo勾上，有效期可以选择无限，然后点击生成，将token复制一下，后面会用到。<br><img src="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/20240217214128.png" srcset="/img/loading.gif" lazyload alt="image.png|400"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/20240217214255.png" srcset="/img/loading.gif" lazyload alt="image.png|950"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/20240217214407.png" srcset="/img/loading.gif" lazyload alt="image.png|525"></p>
+<p>3、下载picgo，进行github图床设置，如下所示，修改对应的github用户名和仓库名即可<br>启用加速：<a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/[github%E7%94%A8%E6%88%B7%E5%90%8D]/[%E4%BB%93%E5%BA%93%E5%90%8D]@main">https://cdn.jsdelivr.net/gh/[github用户名]/[仓库名]@main</a><br><img src="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/20240217214547.png" srcset="/img/loading.gif" lazyload alt="image.png|750"></p>
+<p>4、osbdian中下载picgo上传图片的插件：image auto upload plugin，启用即可，采取默认设置就行</p>
+<p>参考链接：</p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/514517568">Obsidian+腾讯云图床(COS)+PicGo 搭建图床(202302) - 知乎 (zhihu.com)</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/489236769">使用Github+picGo搭建图床，保姆级教程来了 - 知乎 (zhihu.com)</a></li>
+</ol>
 
                 
               </div>
@@ -293,6 +305,34 @@
             <div>
               <div class="post-metas my-3">
   
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Tools/" class="category-chain-item">Tools</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/obsdian/" class="print-no-link">#obsdian</a>
+      
+    </div>
   
 </div>
 
@@ -302,8 +342,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Hello World</div>
-      <div>http://example.com/2024/06/25/hello-world/</div>
+      <div>obsdian使用教程</div>
+      <div>http://example.com/2021/06/25/obsdian/</div>
     </div>
     <div class="license-meta">
       
@@ -315,7 +355,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年6月25日</div>
+          <div>2021年6月25日</div>
         </div>
       
       
@@ -347,15 +387,15 @@
                   <article class="post-prev col-6">
                     
                     
+                      <a href="/2024/06/25/hello-world/" title="Hello World">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Hello World</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
                   </article>
                   <article class="post-next col-6">
                     
-                    
-                      <a href="/2021/06/25/obsdian/" title="obsdian使用教程">
-                        <span class="hidden-mobile">obsdian使用教程</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
                     
                   </article>
                 </div>
