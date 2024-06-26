@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  
+  
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="/2024/06/26/hello-world/"/>
+    <url>/2024/06/26/hello-world/</url>
+    
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo new <span class="hljs-string">&quot;My New Post&quot;</span><br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo server<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo generate<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo deploy<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>obsdian使用教程</title>
+    <link href="/2021/06/25/obsdian/"/>
+    <url>/2021/06/25/obsdian/</url>
+    
+    <content type="html"><![CDATA[<h2 id="obsdian-git"><a href="#obsdian-git" class="headerlink" title="obsdian git"></a>obsdian git</h2><ol><li>设置自动pull，每次重启obsdian会自动从远程仓库pull文件</li><li>设置自动备份时间间隔，每隔指定时间就是copmmit和push本地修改到远程仓库</li><li>你也可以手动进行commit+push推送本地修改到远端；或者手动pull远端文件到本地。这只需要在快捷键中进行设置，我的commit命令是ctrl+shift+c，push命令是ctrl+shift+p，pull命令是ctrl+shift+l。**需要注意的是同步本地修改到远端需要先commit后push，push根据你的网速和修改内容会需要一定的时间。</li><li>前提是你需要将一个文件夹（obsdian仓库文件夹）变成git文件夹，然后链接你的远程github仓库。用<code>git init</code>和&#96;git remote add origin respository_name</li><li>关于自动备份：自动备份不如手动备份安全，关闭开启obsdian自动pull和每隔一段时间自动commit和push。每次修改完毕后记得commit和push即可。</li></ol><h2 id="image-manage"><a href="#image-manage" class="headerlink" title="image manage"></a>image manage</h2><p>在设置中的文件与链接中修改附件存储的文件夹路径即可</p><h2 id="vscode代码复制到Obsdian出现空行"><a href="#vscode代码复制到Obsdian出现空行" class="headerlink" title="vscode代码复制到Obsdian出现空行"></a>vscode代码复制到Obsdian出现空行</h2><p>复制时用ctrl+shift+v即可</p><h2 id="obsdian配合picgo"><a href="#obsdian配合picgo" class="headerlink" title="obsdian配合picgo"></a>obsdian配合picgo</h2><p>由于obsdian插入图片是以附件形式进行的，因此在网络上无法访问到图片，因此借助picgo获取图片在网络上的链接。我们采用的图床是github。<br>1、创建github仓库，用于储存上传的图片<br>2、生成一个token，使picgo可以访问github：设置里面找到Developer settings，生成一个token将repo勾上，有效期可以选择无限，然后点击生成，将token复制一下，后面会用到。<br><img src="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/20240217214128.png" alt="image.png|400"></p><p><img src="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/20240217214255.png" alt="image.png|950"></p><p><img src="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/20240217214407.png" alt="image.png|525"></p><p>3、下载picgo，进行github图床设置，如下所示，修改对应的github用户名和仓库名即可<br>启用加速：<a href="https://cdn.jsdelivr.net/gh/[github%E7%94%A8%E6%88%B7%E5%90%8D]/[%E4%BB%93%E5%BA%93%E5%90%8D]@main">https://cdn.jsdelivr.net/gh/[github用户名]/[仓库名]@main</a><br><img src="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/20240217214547.png" alt="image.png|750"></p><p>4、osbdian中下载picgo上传图片的插件：image auto upload plugin，启用即可，采取默认设置就行</p><p>参考链接：</p><ol><li><a href="https://zhuanlan.zhihu.com/p/514517568">Obsidian+腾讯云图床(COS)+PicGo 搭建图床(202302) - 知乎 (zhihu.com)</a></li><li><a href="https://zhuanlan.zhihu.com/p/489236769">使用Github+picGo搭建图床，保姆级教程来了 - 知乎 (zhihu.com)</a></li></ol>]]></content>
+    
+    
+    <categories>
+      
+      <category>Tools</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>obsdian</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  
+</search>
