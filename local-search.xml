@@ -4,13 +4,27 @@
   
   
   <entry>
-    <title>test</title>
-    <link href="/2024/06/26/test/"/>
-    <url>/2024/06/26/test/</url>
+    <title>多模态综述</title>
+    <link href="/2024/06/27/%E5%A4%9A%E6%A8%A1%E6%80%81%E7%BB%BC%E8%BF%B0/"/>
+    <url>/2024/06/27/%E5%A4%9A%E6%A8%A1%E6%80%81%E7%BB%BC%E8%BF%B0/</url>
     
-    <content type="html"><![CDATA[<h1 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h1><p>我是一个测试文章</p>]]></content>
+    <content type="html"><![CDATA[<p>本文将集中于语言-视觉多模态方面的综述。</p>]]></content>
     
     
+    <categories>
+      
+      <category>AI</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>CLIP</tag>
+      
+      <tag>Beit3</tag>
+      
+    </tags>
     
   </entry>
   
