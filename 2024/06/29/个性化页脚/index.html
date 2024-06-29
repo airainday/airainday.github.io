@@ -24,8 +24,10 @@
 <meta property="og:description" content="本篇文章主要介绍如何个性化备案、网站运行时长、添加访问量和访客数。以下教程基于Fluid主题，主题安装方式是直接用npm安装，安装方式参考：开始使用 | Hexo Fluid 用户手册 (fluid-dev.com)。 运行时长和个性化备案效果如下  参考链接：我的 Fluid 主题折腾记录 - Huanlan233’s Texts (htext.top) 这里利用Fluid的注入代码的方式来完成">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240629211459247.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240629220535866.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240629220643606.png">
 <meta property="article:published_time" content="2024-06-29T13:08:56.000Z">
-<meta property="article:modified_time" content="2024-06-29T14:04:25.861Z">
+<meta property="article:modified_time" content="2024-06-29T14:06:47.529Z">
 <meta property="article:author" content="AIrainday">
 <meta property="article:tag" content="hexo">
 <meta property="article:tag" content="fluid">
@@ -381,10 +383,13 @@
 <p>找到footer下的statistics配置，修改以下配置：</p>
 <figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">statistics:</span><br>  <span class="hljs-attr">enable:</span> <span class="hljs-literal">true</span><br>  <span class="hljs-attr">source:</span> <span class="hljs-string">&quot;leancloud&quot;</span><br>  <span class="hljs-attr">pv_format:</span> <span class="hljs-string">&quot;总访问量 &#123;&#125; 次&quot;</span><br>  <span class="hljs-attr">uv_format:</span> <span class="hljs-string">&quot;总访客数 &#123;&#125; 人&quot;</span>  <br></code></pre></td></tr></table></figure>
 
+<p>效果如下：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240629220535866.png" srcset="/img/loading.gif" lazyload alt="image-20240629220535866"></p>
 <p>找到post的meta的views，修改以下配置，成功后会在每个文章中展示该文章浏览人数。</p>
 <figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">post:</span><br>	<span class="hljs-attr">meta:</span><br>        <span class="hljs-attr">views:</span><br>          <span class="hljs-attr">enable:</span> <span class="hljs-literal">true</span><br>          <span class="hljs-comment"># 统计数据来源</span><br>          <span class="hljs-comment"># Data Source</span><br>          <span class="hljs-comment"># Options: busuanzi | leancloud</span><br>          <span class="hljs-attr">source:</span> <span class="hljs-string">&quot;leancloud&quot;</span><br></code></pre></td></tr></table></figure>
 
-<p>成功后效果如下：</p>
+<p>效果如下：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240629220643606.png" srcset="/img/loading.gif" lazyload alt="image-20240629220643606"></p>
 
                 
               </div>
