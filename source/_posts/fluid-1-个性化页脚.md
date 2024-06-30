@@ -25,9 +25,13 @@ DNS配置没问题后，等待部署证书
 
 ![image-20240630100853360](https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240630100853360.png)
 
-说绑定失败，“查询A和AAA记录时DNSSEC: DNSKEY Missing”。并且VERCEL绑定域名时，验证SSl也失败。==最终发现是绑定的国内域名airianday.top没有备案，最终换了一个备案过的域名rainblog.run，才成功，如下图所示。==
+说绑定失败，“查询A和AAA记录时DNSSEC: DNSKEY Missing”。并且VERCEL绑定域名时，验证SSl也失败。**最终发现是绑定的国内域名airianday.top没有备案，最终换了一个备案过的域名rainblog.run，才成功，如下图所示。**
 
-![image-20240630143839632](https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240630143839632.png)
+![image-20240630152520662](https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240630152520662.png)
+
+绑定成功后要修改之前的服务地址为该域名，比如下面添加网站访问量和访客数，文章浏览数时要添加：
+
+`server_url: https://shuoshuo.rainblog.run`,本来用国际版不写也是可以的，但是国际版的国内要用魔法上网才行，因此国际版绑定备案了的域名后，也要补充server_url的值。
 
 ---
 

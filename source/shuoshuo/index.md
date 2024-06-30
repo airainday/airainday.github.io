@@ -16,7 +16,7 @@ comments: true
 <div id="artitalk_main"></div>
 <script>
 new Artitalk({
-    // serverURL: 'https://shuoshuo.zywvvd.com',
+    serverURL: 'https://shuoshuo.rainblog.run',
     appId: 'whA7rfxiLejveyKSnTVJcE67-MdYXbMMI',
     appKey: 'yXRvXVt4CzAiXMxTL0XK9qES'
 })
