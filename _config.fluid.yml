@@ -232,6 +232,7 @@ font:
 # 指定自定义 .js 文件路径，支持列表；路径是相对 source 目录，如 /js/custom.js 对应存放目录 source/js/custom.js
 # Specify the path of your custom js file, support list. The path is relative to the source directory, such as `/js/custom.js` corresponding to the directory `source/js/custom.js`
 custom_js:
+- /js/runtime.js
 
 # 指定自定义 .css 文件路径，用法和 custom_js 相同
 # The usage is the same as custom_js
@@ -278,8 +279,8 @@ web_analytics:  # 网页访问统计
   # LeanCloud 计数统计，可用于 PV UV 展示，如果 `web_analytics: enable` 没有开启，PV UV 展示只会查询不会增加
   # LeanCloud count statistics, which can be used for PV UV display. If `web_analytics: enable` is false, PV UV display will only query and not increase
   leancloud:
-    app_id: tXOQgxy5KsihAbYMERGYvNvZ-gzGzoHsz
-    app_key: bBMerBtMpLOyBKQt2FXC93fY
+    app_id: whA7rfxiLejveyKSnTVJcE67-MdYXbMMI
+    app_key: yXRvXVt4CzAiXMxTL0XK9qES
     # REST API 服务器地址，国际版不填
     # Only the Chinese mainland users need to set
     server_url:
@@ -288,7 +289,7 @@ web_analytics:  # 网页访问统计
     path: window.location.pathname
     # 开启后不统计本地路径( localhost 与 127.0.0.1 )
     # If true, ignore localhost & 127.0.0.1
-    ignore_local: false
+    ignore_local: true
 
 # 对页面中的图片和评论插件进行懒加载处理，可见范围外的元素不会提前加载
 # Lazy loading of images and comment plugin on the page
@@ -440,7 +441,7 @@ footer:
     # 统计数据来源，使用 leancloud 需要设置 `web_analytics: leancloud` 中的参数；使用 busuanzi 不需要额外设置，但是有时不稳定，另外本地运行时 busuanzi 显示统计数据很大属于正常现象，部署后会正常
     # Data source. If use leancloud, you need to set the parameter in `web_analytics: leancloud`
     # Options: busuanzi | leancloud
-    source: "busuanzi"
+    source: "leancloud"
     pv_format: "总访问量 {} 次"
     uv_format: "总访客数 {} 人"    
 
@@ -456,6 +457,14 @@ footer:
     police_code: 12345678
     # 公安备案的图片. 为空时不显示备案图片
     police_icon: /img/police_beian.png
+
+  # 好玩的备案
+  moe_beian:
+    enable: true
+    icp_text: 
+    moe_text: 萌ICP备20240531号
+    moe_code: 20240531
+    moe_icon: /img/moe_beian.png
 
 
 #---------------------------
@@ -489,11 +498,11 @@ index:
     # 通过 API 接口作为首页副标题的内容，必须返回的是 JSON 格式，如果请求失败则按 text 字段显示，该功能必须先开启 typing 打字机功能
     # Subtitle of the homepage through the API, must be returned a JSON. If the request fails, it will be displayed in `text` value. This feature must first enable the typing animation
     api:
-      enable: false
+      enable: true
 
       # 请求地址
       # Request url
-      url: ""
+      url: "https://v1.hitokoto.cn/?c=i"
 
       # 请求方法
       # Request method
@@ -506,7 +515,7 @@ index:
 
       # 从请求结果获取字符串的取值字段，最终必须是一个字符串，例如返回结果为 {"data": {"author": "fluid", "content": "An elegant theme"}}, 则取值字段为 ['data', 'content']；如果返回是列表则自动选择第一项
       # The value field of the string obtained from the response. For example, the response content is {"data": {"author": "fluid", "content": "An elegant theme"}}, the expected `keys: ['data','content']`; if the return is a list, the first item is automatically selected
-      keys: []
+      keys: ['hitokoto']
 
   # 自动截取文章摘要
   # Auto extract post
@@ -585,7 +594,7 @@ post:
       # 统计数据来源
       # Data Source
       # Options: busuanzi | leancloud
-      source: "busuanzi"
+      source: "leancloud"
 
   # 在文章开头显示文章更新时间，该时间默认是 md 文件更新时间，可通过 front-matter 中 `updated` 手动指定（和 date 一样格式）
   # Update date is displayed at the beginning of the post. The default date is the update date of the md file, which can be manually specified by `updated` in front-matter (same format as date)
@@ -599,7 +608,7 @@ post:
 
     # 是否使用相对时间表示，比如："3 天前"
     # If true, it will be a relative time, such as: "3 days ago"
-    relative: true
+    relative: false
 
     # 提示标签类型
     # Note class
@@ -733,7 +742,7 @@ post:
     # 指定的插件，需要同时设置对应插件的必要参数
     # The specified plugin needs to set the necessary parameters at the same time
     # Options: utterances | disqus | gitalk | valine | waline | changyan | livere | remark42 | twikoo | cusdis | giscus | discuss
-    type: utterances
+    type: waline
 
 
 #---------------------------
@@ -794,8 +803,8 @@ gitalk:
 # Based on LeanCloud
 # See: https://valine.js.org/
 valine:
-  app_id: tXOQgxy5KsihAbYMERGYvNvZ-gzGzoHsz
-  app_key: bBMerBtMpLOyBKQt2FXC93fY
+  app_id: whA7rfxiLejveyKSnTVJcE67-MdYXbMMI
+  app_key: yXRvXVt4CzAiXMxTL0XK9qES
   path: window.location.pathname
   placeholder:
   avatar: 'retro'
@@ -815,7 +824,7 @@ valine:
 # Derived from Valine, with self-hosted service and new features
 # See: https://waline.js.org/
 waline:
-  serverURL: ''
+  serverURL: 'waline.rainblog.run'
   path: window.location.pathname
   meta: ['nick', 'mail', 'link']
   requiredMeta: ['nick']
@@ -824,6 +833,8 @@ waline:
   dark: 'html[data-user-color-scheme="dark"]'
   wordLimit: 0
   pageSize: 10
+  locale: 
+    placeholder: '哈，快找个位置随便坐~'
 
 # 畅言 Changyan
 # 基于第三方的服务

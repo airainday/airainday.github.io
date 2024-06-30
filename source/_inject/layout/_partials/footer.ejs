@@ -1,0 +1,37 @@
+<% let dir = process.cwd() %>
+
+<div class="footer-inner">
+  <% if (theme.footer.content) { %>
+    <div class="footer-content">
+      <%- theme.footer.content %>
+    </div>
+  <% } %>
+  <% if (theme.footer.statistics.enable) { %>
+    <%- partial('_partials/footer/statistics.ejs') %>
+  <% } %>
+
+  <div class="runtime">
+    <!-- 网站已运行时间 -->
+    <span id="runtime_span">加载中...</span>
+  </div>
+
+  <!-- 页脚的一言 -->
+  <!-- <div class="statistics">
+    <a href="https://developer.hitokoto.cn/" id="hitokoto_text"><span style="color: #DDD;"  id="hitokoto"></span></a>
+    <script src="https://v1.hitokoto.cn/?encode=js&select=%23hitokoto" defer></script>
+  </div>   -->
+
+  <% if(theme.footer.beian.enable) { %>
+    <!-- 备案信息 ICP for China -->
+    <%- partial('_partials/footer/beian.ejs') %>
+  <% } %>
+  <% if(theme.web_analytics.cnzz) { %>
+    <!-- cnzz Analytics Icon -->
+    <span id="cnzz_stat_icon_<%= theme.web_analytics.cnzz %>" style="display: none"></span>
+  <% } %>
+
+  <% if(theme.footer.moe_beian.enable) { %>
+    <!-- 备案信息 ICP for Moe -->
+    <%- include(dir + '/source/_inject/layout/_partials/footer/moe_beian.ejs') %>
+  <% } %>
+</div>

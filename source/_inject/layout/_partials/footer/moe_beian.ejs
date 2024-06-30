@@ -1,0 +1,33 @@
+<div class="moe_beian">
+    <span>
+      <a href="https://icp.gov.moe/" target="_blank" rel="nofollow noopener">
+        <%- theme.footer.moe_beian.icp_text %>
+      </a>
+    </span>
+    <% if(theme.footer.moe_beian.moe_text) { %>
+      <% if(theme.footer.moe_beian.moe_code) { %>
+        <span title="233333">
+          <a
+            href="https://icp.gov.moe/?keyword=<%= theme.footer.moe_beian.moe_code %>"
+            rel="nofollow noopener"
+            class="beian-moe"
+            target="_blank"
+          >
+            <% if(theme.footer.moe_beian.moe_icon) { %>
+              <span style="visibility: hidden; width: 0">|</span>
+              <img src="<%= url_for(theme.footer.moe_beian.moe_icon) %>" alt="moe-icon"/>
+            <% } %>
+            <span><%- theme.footer.moe_beian.moe_text %></span>
+          </a>
+        </span>
+      <% } else { %>
+        <span class="beian-moe">
+          <% if(theme.footer.moe_beian.moe_icon) { %>
+            <span style="visibility: hidden; width: 0">|</span>
+            <img src="<%= url_for(theme.footer.moe_beian.moe_icon) %>" alt="moe-icon"/>
+          <% } %>
+          <span class="beian-moe"><%- theme.footer.moe_beian.moe_text %></span>
+        </span>
+      <% } %>
+    <% } %>
+  </div>
