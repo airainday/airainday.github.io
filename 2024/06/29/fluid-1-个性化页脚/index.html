@@ -16,23 +16,28 @@
   <meta name="author" content="AIrainday">
   <meta name="keywords" content="博客 AI 好用工具 个人成长 AIrainday">
   
-    <meta name="description" content="本篇文章主要介绍如何个性化备案、网站运行时长、添加访问量和访客数。以下教程基于Fluid主题，主题安装方式是直接用npm安装，安装方式参考：开始使用 | Hexo Fluid 用户手册 (fluid-dev.com)。 运行时长和个性化备案效果如下  参考链接：我的 Fluid 主题折腾记录 - Huanlan233’s Texts (htext.top) 这里利用Fluid的注入代码的方式来完成">
+    <meta name="description" content="问题补充Leancloud应用绑定域名无法通过SSL之前创建的LeanCloud国际版应用由于没有绑定国内域名，国内环境无法访问，导致依赖该应用的功能无法使用，比如网站访客量和访客数，文章浏览数等。 leancloud应用中绑定域名  会让你配置DNS，记下CNAME后面的值  域名提供商里添加解析  DNS配置没问题后，等待部署证书  说绑定失败，“查询A和AAA记录时DNSSEC: DNSKE">
 <meta property="og:type" content="article">
 <meta property="og:title" content="fluid -1- 个性化页脚">
 <meta property="og:url" content="http://example.com/2024/06/29/fluid-1-%E4%B8%AA%E6%80%A7%E5%8C%96%E9%A1%B5%E8%84%9A/index.html">
 <meta property="og:site_name" content="AIrainday">
-<meta property="og:description" content="本篇文章主要介绍如何个性化备案、网站运行时长、添加访问量和访客数。以下教程基于Fluid主题，主题安装方式是直接用npm安装，安装方式参考：开始使用 | Hexo Fluid 用户手册 (fluid-dev.com)。 运行时长和个性化备案效果如下  参考链接：我的 Fluid 主题折腾记录 - Huanlan233’s Texts (htext.top) 这里利用Fluid的注入代码的方式来完成">
+<meta property="og:description" content="问题补充Leancloud应用绑定域名无法通过SSL之前创建的LeanCloud国际版应用由于没有绑定国内域名，国内环境无法访问，导致依赖该应用的功能无法使用，比如网站访客量和访客数，文章浏览数等。 leancloud应用中绑定域名  会让你配置DNS，记下CNAME后面的值  域名提供商里添加解析  DNS配置没问题后，等待部署证书  说绑定失败，“查询A和AAA记录时DNSSEC: DNSKE">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240630100116929.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240630100327033.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240630100257964.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240630100853360.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240630143839632.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240629211459247.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240629220535866.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240629220643606.png">
 <meta property="article:published_time" content="2024-06-29T13:08:56.000Z">
-<meta property="article:modified_time" content="2024-06-29T23:43:02.940Z">
+<meta property="article:modified_time" content="2024-06-30T06:58:06.494Z">
 <meta property="article:author" content="AIrainday">
 <meta property="article:tag" content="hexo">
 <meta property="article:tag" content="fluid">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240629211459247.png">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240630100116929.png">
   
   
   
@@ -270,7 +275,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.6k 字
+          1.8k 字
         
       </span>
     
@@ -281,7 +286,7 @@
         
         
         
-          14 分钟
+          15 分钟
         
       </span>
     
@@ -335,7 +340,7 @@
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2024年6月30日 早上
+                    本文最后更新于 2024年6月30日 下午
                   
                 
               </p>
@@ -343,7 +348,19 @@
             
               <div class="markdown-body">
                 
-                <p>本篇文章主要介绍如何个性化备案、网站运行时长、添加访问量和访客数。以下教程基于Fluid主题，主题安装方式是直接用npm安装，安装方式参考：<a target="_blank" rel="noopener" href="https://hexo.fluid-dev.com/docs/start/">开始使用 | Hexo Fluid 用户手册 (fluid-dev.com)</a>。</p>
+                <h2 id="问题补充Leancloud应用绑定域名无法通过SSL"><a href="#问题补充Leancloud应用绑定域名无法通过SSL" class="headerlink" title="问题补充Leancloud应用绑定域名无法通过SSL"></a>问题补充Leancloud应用绑定域名无法通过SSL</h2><p>之前创建的LeanCloud国际版应用由于没有绑定国内域名，国内环境无法访问，导致依赖该应用的功能无法使用，比如网站访客量和访客数，文章浏览数等。</p>
+<p>leancloud应用中绑定域名</p>
+<p><img src="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240630100116929.png" srcset="/img/loading.gif" lazyload alt="image-20240630100116929"></p>
+<p>会让你配置DNS，记下CNAME后面的值</p>
+<p><img src="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240630100327033.png" srcset="/img/loading.gif" lazyload alt="image-20240630100327033"></p>
+<p>域名提供商里添加解析</p>
+<p><img src="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240630100257964.png" srcset="/img/loading.gif" lazyload alt="image-20240630100257964"></p>
+<p>DNS配置没问题后，等待部署证书</p>
+<p><img src="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240630100853360.png" srcset="/img/loading.gif" lazyload alt="image-20240630100853360"></p>
+<p>说绑定失败，“查询A和AAA记录时DNSSEC: DNSKEY Missing”。并且VERCEL绑定域名时，验证SSl也失败。&#x3D;&#x3D;最终发现是绑定的国内域名airianday.top没有备案，最终换了一个备案过的域名rainblog.run，才成功，如下图所示。&#x3D;&#x3D;</p>
+<p><img src="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240630143839632.png" srcset="/img/loading.gif" lazyload alt="image-20240630143839632"></p>
+<hr>
+<p>本篇文章主要介绍如何个性化备案、网站运行时长、添加访问量和访客数。以下教程基于Fluid主题，主题安装方式是直接用npm安装，安装方式参考：<a target="_blank" rel="noopener" href="https://hexo.fluid-dev.com/docs/start/">开始使用 | Hexo Fluid 用户手册 (fluid-dev.com)</a>。</p>
 <h2 id="运行时长和个性化备案"><a href="#运行时长和个性化备案" class="headerlink" title="运行时长和个性化备案"></a>运行时长和个性化备案</h2><p>效果如下</p>
 <p><img src="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240629211459247.png" srcset="/img/loading.gif" lazyload alt="image-20240629211459247"></p>
 <p>参考链接：<a target="_blank" rel="noopener" href="https://htext.top/post/aaca4077.html">我的 Fluid 主题折腾记录 - Huanlan233’s Texts (htext.top)</a></p>
@@ -471,7 +488,7 @@
       Fluid.utils.createCssLink('https://cdn.staticfile.org/waline/2.15.5/waline.min.css')
       Fluid.utils.createScript('https://cdn.staticfile.org/waline/2.15.5/waline.min.js', function() {
         var options = Object.assign(
-          {"serverURL":"https://blog-waline-x74w.vercel.app","path":"window.location.pathname","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":0,"pageSize":10,"locale":{"placeholder":"哈，快找个位置随便坐~"}},
+          {"serverURL":"waline.rainblog.run","path":"window.location.pathname","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":0,"pageSize":10,"locale":{"placeholder":"哈，快找个位置随便坐~"}},
           {
             el: '#waline',
             path: window.location.pathname
