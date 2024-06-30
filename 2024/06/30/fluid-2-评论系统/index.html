@@ -28,9 +28,9 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240630084912832.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240630085027551.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240630085609684.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240630090042531.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240630092117472.png">
 <meta property="article:published_time" content="2024-06-29T23:43:33.000Z">
-<meta property="article:modified_time" content="2024-06-30T01:09:08.701Z">
+<meta property="article:modified_time" content="2024-06-30T01:23:00.060Z">
 <meta property="article:author" content="AIrainday">
 <meta property="article:tag" content="hexo">
 <meta property="article:tag" content="fluid">
@@ -273,7 +273,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          640 字
+          651 字
         
       </span>
     
@@ -404,18 +404,14 @@
 <p>在该页面点击<code>Login</code>，弹框页面则为服务端的登录地址，可在此注册和登录</p>
 <p><img src="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240630085609684.png" srcset="/img/loading.gif" lazyload alt="image-20240630085609684"></p>
 <p>亦可以通过<code>评论系统地址/ui</code>或是登录过后点击自己的头像进入应用的管理页面。</p>
-<p>复制visit后跳转到的页面的url（评论应用的服务地址）：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240630090042531.png" srcset="/img/loading.gif" lazyload alt="image-20240630090042531"></p>
+<p>依次点击<code>Settings</code>,<code>Domains</code>，复制服务地址，后面需要用到</p>
+<p><img src="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240630092117472.png" srcset="/img/loading.gif" lazyload alt="image-20240630092117472"></p>
 <h2 id="Hexo-Fluid主题中使用Waline评论系统"><a href="#Hexo-Fluid主题中使用Waline评论系统" class="headerlink" title="Hexo Fluid主题中使用Waline评论系统"></a>Hexo Fluid主题中使用Waline评论系统</h2><p>修改主题配置文件：</p>
 <p>1.修改<code>comments</code>配置项</p>
 <figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">comments:</span><br>    <span class="hljs-attr">enable:</span> <span class="hljs-literal">true</span><br>    <span class="hljs-attr">type:</span> <span class="hljs-string">waline</span><br></code></pre></td></tr></table></figure>
 
 <p>2.启用<code>waline</code>配置项</p>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">waline:</span><br>  <span class="hljs-attr">serverURL:</span> <span class="hljs-string">&#x27;your-server-url&#x27;</span><br>  <span class="hljs-attr">path:</span> <span class="hljs-string">window.location.pathname</span><br>  <span class="hljs-attr">meta:</span> [<span class="hljs-string">&#x27;nick&#x27;</span>, <span class="hljs-string">&#x27;mail&#x27;</span>, <span class="hljs-string">&#x27;link&#x27;</span>]<br>  <span class="hljs-attr">requiredMeta:</span> [<span class="hljs-string">&#x27;nick&#x27;</span>]<br>  <span class="hljs-attr">lang:</span> <span class="hljs-string">&#x27;zh-CN&#x27;</span><br>  <span class="hljs-attr">emoji:</span> [<span class="hljs-string">&#x27;https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo&#x27;</span>]<br>  <span class="hljs-attr">dark:</span> <span class="hljs-string">&#x27;html[data-user-color-scheme=&quot;dark&quot;]&#x27;</span><br>  <span class="hljs-attr">wordLimit:</span> <span class="hljs-number">0</span><br>  <span class="hljs-attr">pageSize:</span> <span class="hljs-number">10</span><br>  <span class="hljs-attr">locale:</span> <br>    <span class="hljs-attr">placeholder:</span> <span class="hljs-string">&#x27;哈，快找个位置随便坐~&#x27;</span><br></code></pre></td></tr></table></figure>
-
-
-
-
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">waline:</span><br>  <span class="hljs-attr">serverURL:</span> <span class="hljs-string">&#x27;blog-waline-x74w.vercel.app&#x27;</span>  <span class="hljs-comment"># 上面复制过来的服务地址</span><br>  <span class="hljs-attr">path:</span> <span class="hljs-string">window.location.pathname</span><br>  <span class="hljs-attr">meta:</span> [<span class="hljs-string">&#x27;nick&#x27;</span>, <span class="hljs-string">&#x27;mail&#x27;</span>, <span class="hljs-string">&#x27;link&#x27;</span>]<br>  <span class="hljs-attr">requiredMeta:</span> [<span class="hljs-string">&#x27;nick&#x27;</span>]<br>  <span class="hljs-attr">lang:</span> <span class="hljs-string">&#x27;zh-CN&#x27;</span><br>  <span class="hljs-attr">emoji:</span> [<span class="hljs-string">&#x27;https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo&#x27;</span>]<br>  <span class="hljs-attr">dark:</span> <span class="hljs-string">&#x27;html[data-user-color-scheme=&quot;dark&quot;]&#x27;</span><br>  <span class="hljs-attr">wordLimit:</span> <span class="hljs-number">0</span><br>  <span class="hljs-attr">pageSize:</span> <span class="hljs-number">10</span><br>  <span class="hljs-attr">locale:</span> <br>    <span class="hljs-attr">placeholder:</span> <span class="hljs-string">&#x27;哈，快找个位置随便坐~&#x27;</span><br></code></pre></td></tr></table></figure>
 
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://blog.kevinchu.top/2023/07/17/vercel-deploy-waline/">Vercel部署Waline评论系统 - KEVIN’S BLOG (kevinchu.top)</a></p>
 
@@ -493,7 +489,7 @@
       Fluid.utils.createCssLink('https://cdn.staticfile.org/waline/2.15.5/waline.min.css')
       Fluid.utils.createScript('https://cdn.staticfile.org/waline/2.15.5/waline.min.js', function() {
         var options = Object.assign(
-          {"serverURL":"https://blog-waline-x74w-l9vn8joeb-airaindays-projects.vercel.app/","path":"window.location.pathname","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":0,"pageSize":10,"locale":{"placeholder":"哈，快找个位置随便坐~"}},
+          {"serverURL":"https://blog-waline-x74w.vercel.app","path":"window.location.pathname","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":0,"pageSize":10,"locale":{"placeholder":"哈，快找个位置随便坐~"}},
           {
             el: '#waline',
             path: window.location.pathname
