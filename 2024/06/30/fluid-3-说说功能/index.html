@@ -16,34 +16,27 @@
   <meta name="author" content="AIrainday">
   <meta name="keywords" content="博客 AI 好用工具 个人成长 AIrainday">
   
-    <meta name="description" content="本来用的评论系统是 utteranc.es，但是功能有点少，因此换成Waline。  Waline 是一款基于 Valine 衍生的简洁、安全的评论系统。  官网链接：https:&#x2F;&#x2F;waline.js.org&#x2F; 相对于 Valine 有一些后天的优势：     优势 描述    自由评论 完全的 Markdown 支持，同时包含表情、数学公式、HTML 嵌入   轻量 54kB gzip 的完整">
+    <meta name="description" content="创建应用并使用artitalk说说功能可以给博客开辟一个吐槽的地方，可以自己给自己留言，每天记录反省的内容等等。参考文章：明眸如初 (zywvvd.com)利用leancloud和artitalk来启用此功能，下面主要是记录leancloud域名绑定时的疑惑，也就是文章的第10步：  leancloud中点击绑定域名，域名填写比如shuoshuo.airainday.top(购买的域名前面加上自定">
 <meta property="og:type" content="article">
-<meta property="og:title" content="fluid -2- 评论系统">
-<meta property="og:url" content="http://example.com/2024/06/30/fluid-2-%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/index.html">
+<meta property="og:title" content="fluid -3- 说说功能">
+<meta property="og:url" content="http://example.com/2024/06/30/fluid-3-%E8%AF%B4%E8%AF%B4%E5%8A%9F%E8%83%BD/index.html">
 <meta property="og:site_name" content="AIrainday">
-<meta property="og:description" content="本来用的评论系统是 utteranc.es，但是功能有点少，因此换成Waline。  Waline 是一款基于 Valine 衍生的简洁、安全的评论系统。  官网链接：https:&#x2F;&#x2F;waline.js.org&#x2F; 相对于 Valine 有一些后天的优势：     优势 描述    自由评论 完全的 Markdown 支持，同时包含表情、数学公式、HTML 嵌入   轻量 54kB gzip 的完整">
+<meta property="og:description" content="创建应用并使用artitalk说说功能可以给博客开辟一个吐槽的地方，可以自己给自己留言，每天记录反省的内容等等。参考文章：明眸如初 (zywvvd.com)利用leancloud和artitalk来启用此功能，下面主要是记录leancloud域名绑定时的疑惑，也就是文章的第10步：  leancloud中点击绑定域名，域名填写比如shuoshuo.airainday.top(购买的域名前面加上自定">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240630084101726.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240630084212037.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240630084912832.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240630085027551.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240630085609684.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240630092117472.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240630093058555.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240630095432783.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240630095111432.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240630145911262.png">
-<meta property="article:published_time" content="2024-06-29T23:43:33.000Z">
-<meta property="article:modified_time" content="2024-06-30T06:59:14.525Z">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/20240628214406.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/20240629130333.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240630210425856.png">
+<meta property="article:published_time" content="2024-06-30T07:33:15.000Z">
+<meta property="article:modified_time" content="2024-06-30T13:14:36.537Z">
 <meta property="article:author" content="AIrainday">
 <meta property="article:tag" content="hexo">
 <meta property="article:tag" content="fluid">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240630084101726.png">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/20240628214406.png">
   
   
   
-  <title>fluid -2- 评论系统 - AIrainday</title>
+  <title>fluid -3- 说说功能 - AIrainday</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -254,7 +247,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="fluid -2- 评论系统"></span>
+            <span id="subtitle" data-typed-text="fluid -3- 说说功能"></span>
           
         </div>
 
@@ -265,8 +258,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-06-30 07:43" pubdate>
-          2024年6月30日 早上
+        <time datetime="2024-06-30 15:33" pubdate>
+          2024年6月30日 下午
         </time>
       </span>
     
@@ -277,7 +270,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          849 字
+          810 字
         
       </span>
     
@@ -288,7 +281,7 @@
         
         
         
-          8 分钟
+          7 分钟
         
       </span>
     
@@ -337,12 +330,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">fluid -2- 评论系统</h1>
+            <h1 id="seo-header">fluid -3- 说说功能</h1>
             
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2024年6月30日 下午
+                    本文最后更新于 2024年6月30日 晚上
                   
                 
               </p>
@@ -350,83 +343,28 @@
             
               <div class="markdown-body">
                 
-                <p>本来用的评论系统是 <a target="_blank" rel="noopener" href="https://utteranc.es/">utteranc.es</a>，但是功能有点少，因此换成Waline。</p>
-<blockquote>
-<p>Waline 是一款基于 Valine 衍生的简洁、安全的评论系统。</p>
-<ul>
-<li>官网链接：<a target="_blank" rel="noopener" href="https://www.zywvvd.com/pages/go.html?goUrl=https://waline.js.org/">https://waline.js.org/</a></li>
-<li>相对于 Valine 有一些后天的优势：</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>优势</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>自由评论</td>
-<td>完全的 Markdown 支持，同时包含表情、数学公式、HTML 嵌入</td>
-</tr>
-<tr>
-<td>轻量</td>
-<td>54kB gzip 的完整客户端大小</td>
-</tr>
-<tr>
-<td>强大的安全性</td>
-<td>内容校验、防灌水、保护敏感数据等</td>
-</tr>
-<tr>
-<td>登录支持</td>
-<td>在允许匿名评论的基础上，支持账号注册，保持身份</td>
-</tr>
-<tr>
-<td>完全免费部署</td>
-<td>可免费部署在 Vercel 上</td>
-</tr>
-<tr>
-<td>易于部署</td>
-<td>多种部署部署方式和存储服务支持</td>
-</tr>
-</tbody></table>
-</blockquote>
-<p>下面是具体的应用步骤。</p>
-<h2 id="LeanCloud创建应用"><a href="#LeanCloud创建应用" class="headerlink" title="LeanCloud创建应用"></a>LeanCloud创建应用</h2><p>建议用国际版，不用绑定域名。创建应用选择免费的开发版本即可。</p>
-<p>进入应用，选择左下角的 <code>设置</code> &gt; <code>应用 Key</code>。你可以看到你的 <code>APP ID</code>,<code>APP Key</code> 和 <code>Master Key</code>，后续会用到这三个值。</p>
-<h2 id="Vercel部署"><a href="#Vercel部署" class="headerlink" title="Vercel部署"></a>Vercel部署</h2><p>vercel链接：<a target="_blank" rel="noopener" href="https://vercel.com/new/airaindays-projects/clone?repository-url=https://github.com/walinejs/waline/tree/main/example">New Project – Vercel</a></p>
-<p>点击上方链接，跳转至 Vercel 进行 Server 端部署。</p>
-<p>如果你未登录的话，Vercel 会让你注册或登录，请使用 GitHub 账户进行快捷登录。</p>
-<p>输入一个你喜欢的 Vercel 项目名称并点击 <code>Create</code> 继续:</p>
-<p><img src="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240630084101726.png" srcset="/img/loading.gif" lazyload alt="image-20240630084101726"></p>
-<p>等待一会，出现满屏散花就说明部署成功了。点击Dashboard进入控制面板。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240630084212037.png" srcset="/img/loading.gif" lazyload alt="image-20240630084212037"></p>
-<p>点击顶部的<code>Settings-&gt;Environment Variables</code>进入环境变量配置页，并配置三个环境变量<code>LEAN_ID</code>，<code>LEAN_KEY</code>和 <code>LEAN_MASTER_KEY</code>，它们的值分别对应上一步在LeanCloud中获得的<code>APP ID</code>，<code>APP KEY</code>，<code>Master Key</code>，记得点击右下角<code>Save</code></p>
-<p><img src="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240630084912832.png" srcset="/img/loading.gif" lazyload alt="image-20240630084912832"></p>
-<p>环境变量配置完成后，点击顶部<code>Deployments</code>，进行<code>Redeploy</code>，使配置生效</p>
-<p><img src="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240630085027551.png" srcset="/img/loading.gif" lazyload alt="image-20240630085027551"></p>
-<p>重新部署完成后，点击<code>Visit</code>即可访问Waline服务端地址</p>
-<p>在该页面点击<code>Login</code>，弹框页面则为服务端的登录地址，可在此注册和登录</p>
-<p><img src="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240630085609684.png" srcset="/img/loading.gif" lazyload alt="image-20240630085609684"></p>
-<p>亦可以通过<code>评论系统地址/ui</code>或是登录过后点击自己的头像进入应用的管理页面。</p>
-<p>依次点击<code>Settings</code>,<code>Domains</code>，复制服务地址，后面需要用到</p>
-<p><img src="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240630092117472.png" srcset="/img/loading.gif" lazyload alt="image-20240630092117472"></p>
-<h2 id="Hexo-Fluid主题中使用Waline评论系统"><a href="#Hexo-Fluid主题中使用Waline评论系统" class="headerlink" title="Hexo Fluid主题中使用Waline评论系统"></a>Hexo Fluid主题中使用Waline评论系统</h2><p>修改主题配置文件：</p>
-<p>1.修改<code>comments</code>配置项</p>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">comments:</span><br>    <span class="hljs-attr">enable:</span> <span class="hljs-literal">true</span><br>    <span class="hljs-attr">type:</span> <span class="hljs-string">waline</span><br></code></pre></td></tr></table></figure>
+                <h2 id="创建应用并使用artitalk"><a href="#创建应用并使用artitalk" class="headerlink" title="创建应用并使用artitalk"></a>创建应用并使用artitalk</h2><p>说说功能可以给博客开辟一个吐槽的地方，可以自己给自己留言，每天记录反省的内容等等。<br>参考文章：<a target="_blank" rel="noopener" href="https://www.zywvvd.com/notes/hexo/theme/fluid/fluid-shuoshuo/fluid-shuoshuo/">明眸如初 (zywvvd.com)</a><br>利用leancloud和artitalk来启用此功能，下面主要是记录leancloud域名绑定时的疑惑，也就是文章的第10步：</p>
+<ol>
+<li>leancloud中点击绑定域名，域名填写比如shuoshuo.airainday.top(购买的域名前面加上自定的文字即可)</li>
+<li>购买的域名服务商那里添加一个记录，我的是阿里云买的域名，记录填写内容如下，将leancloud提供的CNAME值填写到记录中的记录值即可<br><img src="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/20240628214406.png" srcset="/img/loading.gif" lazyload alt="image.png|600"></li>
+</ol>
+<p>等待DNS解析成功，不过出现发送证书失败，还是和之前问题一样：<strong>国际版其实不绑定域名也能用，但是只能在国外网络环境中访问，国内无法访问，必须绑定一个备案后的域名才行，由于这里绑定的域名没有备案，因此会出现申请证书失败的错误。</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/20240629130333.png" srcset="/img/loading.gif" lazyload alt="image.png|600"></p>
+<p><strong>不绑定域名时</strong></p>
+<p>我们按照这里创建好应用，不绑定域名，然后在博客目录的source文件夹中建一个shuoshuo文件夹，里面新建index.html文件（和创建about页面一样）。接着填入下面内容即可。不用绑定域名（国际版不用填写serverURL）</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs html">---<br>title: 雨天语录<br>date: 2024-01-14 18:19:19<br>type: &quot;shuoshuo&quot;<br>layout: &quot;shuoshuo&quot;<br>comments: true<br><br>---<br><br><span class="hljs-comment">&lt;!-- 引用 artitalk --&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text/javascript&quot;</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://unpkg.com/artitalk&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><br><span class="hljs-comment">&lt;!-- 存放说说的容器 --&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;artitalk_main&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span><br><span class="language-javascript"><span class="hljs-keyword">new</span> <span class="hljs-title class_">Artitalk</span>(&#123;</span><br><span class="language-javascript">    <span class="hljs-comment">// serverURL: &#x27;https://shuoshuo.zywvvd.com&#x27;,</span></span><br><span class="language-javascript">    <span class="hljs-attr">appId</span>: <span class="hljs-string">&#x27;**&#x27;</span>,</span><br><span class="language-javascript">    <span class="hljs-attr">appKey</span>: <span class="hljs-string">&#x27;**&#x27;</span></span><br><span class="language-javascript">&#125;)</span><br><span class="language-javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
-<p>2.启用<code>waline</code>配置项</p>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">waline:</span><br>  <span class="hljs-attr">serverURL:</span> <span class="hljs-string">&#x27;blog-waline-x74w.vercel.app&#x27;</span>  <span class="hljs-comment"># 上面复制过来的服务地址</span><br>  <span class="hljs-attr">path:</span> <span class="hljs-string">window.location.pathname</span><br>  <span class="hljs-attr">meta:</span> [<span class="hljs-string">&#x27;nick&#x27;</span>, <span class="hljs-string">&#x27;mail&#x27;</span>, <span class="hljs-string">&#x27;link&#x27;</span>]<br>  <span class="hljs-attr">requiredMeta:</span> [<span class="hljs-string">&#x27;nick&#x27;</span>]<br>  <span class="hljs-attr">lang:</span> <span class="hljs-string">&#x27;zh-CN&#x27;</span><br>  <span class="hljs-attr">emoji:</span> [<span class="hljs-string">&#x27;https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo&#x27;</span>]<br>  <span class="hljs-attr">dark:</span> <span class="hljs-string">&#x27;html[data-user-color-scheme=&quot;dark&quot;]&#x27;</span><br>  <span class="hljs-attr">wordLimit:</span> <span class="hljs-number">0</span><br>  <span class="hljs-attr">pageSize:</span> <span class="hljs-number">10</span><br>  <span class="hljs-attr">locale:</span> <br>    <span class="hljs-attr">placeholder:</span> <span class="hljs-string">&#x27;哈，快找个位置随便坐~&#x27;</span><br></code></pre></td></tr></table></figure>
+<p><strong>绑定域名（国内已备案的域名才行）</strong></p>
+<p>绑定域名rainblog.run，然后和上面一样域名服务商添加CNAME解析地址。</p>
+<p>复制服务器地址，如下所示：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240630210425856.png" srcset="/img/loading.gif" lazyload alt="image-20240630210425856"></p>
+<p>然后和上面一样，博客根目录下新建一个shuoshuo文件夹，新建一个index.html文件，写入以下内容。和不绑定国内备案域名的区别就是多填了一个serverURL。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs html">---<br>title: 雨天语录<br>date: 2024-01-14 18:19:19<br>type: &quot;shuoshuo&quot;<br>layout: &quot;shuoshuo&quot;<br>comments: true<br><br>---<br><br><span class="hljs-comment">&lt;!-- 引用 artitalk --&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text/javascript&quot;</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://unpkg.com/artitalk&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><br><span class="hljs-comment">&lt;!-- 存放说说的容器 --&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;artitalk_main&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span><br><span class="language-javascript"><span class="hljs-keyword">new</span> <span class="hljs-title class_">Artitalk</span>(&#123;</span><br><span class="language-javascript">    <span class="hljs-attr">serverURL</span>: <span class="hljs-string">&#x27;https://shuoshuo.rainblog.run&#x27;</span>,</span><br><span class="language-javascript">    <span class="hljs-attr">appId</span>: <span class="hljs-string">&#x27;**&#x27;</span>,</span><br><span class="language-javascript">    <span class="hljs-attr">appKey</span>: <span class="hljs-string">&#x27;**&#x27;</span></span><br><span class="language-javascript">&#125;)</span><br><span class="language-javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
-<h2 id="国内网络出错"><a href="#国内网络出错" class="headerlink" title="国内网络出错"></a>国内网络出错</h2><p>国内网路环境加载不了评论，也发布不了评论</p>
-<p><img src="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240630093058555.png" srcset="/img/loading.gif" lazyload alt="image-20240630093058555"></p>
-<p>此时我们需要绑定国内域名，注意绑定国内域名时请绑定你申请域名的子域名，比如你的域名时airainday.top，应该填写waline.airianday.top,waline可以自定义为你想要的名称。（这样做是因为airainday.top之前已经与airainday.github.io绑定了，这里再填写airainday.top会冲突，因此填了一个子域名）</p>
-<p>然后需要在域名提供商那里添加CNAME解析记录：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240630095432783.png" srcset="/img/loading.gif" lazyload alt="image-20240630095432783"></p>
-<p>出现下图说明DNS解析正确，接着会生成SSL证书，等待一会。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240630095111432.png" srcset="/img/loading.gif" lazyload alt="image-20240630095111432"></p>
-<p>等了很久也没有成功，发现是绑定的域名没有备案，换一个备案后的域名即可。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240630145911262.png" srcset="/img/loading.gif" lazyload alt="image-20240630145911262"></p>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://blog.kevinchu.top/2023/07/17/vercel-deploy-waline/">Vercel部署Waline评论系统 - KEVIN’S BLOG (kevinchu.top)</a></p>
+<h2 id="创建shuoshuo入口"><a href="#创建shuoshuo入口" class="headerlink" title="创建shuoshuo入口"></a>创建shuoshuo入口</h2><p>我们前面已经创建好了shuoshuo的页面，只要在导航栏中添加一个链接作为shuoshuo页面入口即可。</p>
+<p>在主题配置文件中，找到menu，写入以下内容（语录对应的就是shuoshuo页面的入口）。</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">menu:</span><br>  <span class="hljs-bullet">-</span> &#123; <span class="hljs-attr">key:</span> <span class="hljs-string">&quot;home&quot;</span>, <span class="hljs-attr">link:</span> <span class="hljs-string">&quot;/&quot;</span>, <span class="hljs-attr">icon:</span> <span class="hljs-string">&quot;iconfont icon-home-fill&quot;</span> &#125;<br>  <span class="hljs-bullet">-</span> &#123; <span class="hljs-attr">key:</span> <span class="hljs-string">&quot;文章&quot;</span>, <br>      <span class="hljs-attr">link:</span> <span class="hljs-string">&quot;/&quot;</span>, <br>      <span class="hljs-attr">icon:</span> <span class="hljs-string">&quot;iconfont icon-books&quot;</span>,<br>      <span class="hljs-attr">submenu:</span> [<br>      &#123; <span class="hljs-attr">key:</span> <span class="hljs-string">&quot;archive&quot;</span>, <span class="hljs-attr">link:</span> <span class="hljs-string">&quot;/archives/&quot;</span>, <span class="hljs-attr">icon:</span> <span class="hljs-string">&quot;iconfont icon-archive-fill&quot;</span> &#125;,<br>      &#123; <span class="hljs-attr">key:</span> <span class="hljs-string">&quot;category&quot;</span>, <span class="hljs-attr">link:</span> <span class="hljs-string">&quot;/categories/&quot;</span>, <span class="hljs-attr">icon:</span> <span class="hljs-string">&quot;iconfont icon-category-fill&quot;</span> &#125;,<br>      &#123; <span class="hljs-attr">key:</span> <span class="hljs-string">&quot;tag&quot;</span>, <span class="hljs-attr">link:</span> <span class="hljs-string">&quot;/tags/&quot;</span>, <span class="hljs-attr">icon:</span> <span class="hljs-string">&quot;iconfont icon-tags-fill&quot;</span> &#125;<br>    ]<br>    &#125;<br>  <span class="hljs-bullet">-</span> &#123; <span class="hljs-attr">key:</span> <span class="hljs-string">&quot;语录&quot;</span>, <span class="hljs-attr">link:</span> <span class="hljs-string">&quot;/shuoshuo&quot;</span>, <span class="hljs-attr">icon:</span> <span class="hljs-string">&quot;iconfont icon-note&quot;</span> &#125;<br>  <span class="hljs-bullet">-</span> &#123; <span class="hljs-attr">key:</span> <span class="hljs-string">&quot;about&quot;</span>, <span class="hljs-attr">link:</span> <span class="hljs-string">&quot;/about/&quot;</span>, <span class="hljs-attr">icon:</span> <span class="hljs-string">&quot;iconfont icon-user-fill&quot;</span> &#125;<br></code></pre></td></tr></table></figure>
+
 
                 
               </div>
@@ -476,18 +414,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/06/30/fluid-3-%E8%AF%B4%E8%AF%B4%E5%8A%9F%E8%83%BD/" title="fluid -3- 说说功能">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">fluid -3- 说说功能</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/06/29/fluid-1-%E4%B8%AA%E6%80%A7%E5%8C%96%E9%A1%B5%E8%84%9A/" title="fluid -1- 个性化页脚">
-                        <span class="hidden-mobile">fluid -1- 个性化页脚</span>
+                      <a href="/2024/06/30/fluid-2-%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/" title="fluid -2- 评论系统">
+                        <span class="hidden-mobile">fluid -2- 评论系统</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
