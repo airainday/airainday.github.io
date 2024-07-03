@@ -69,7 +69,7 @@
     background: #838383;
     border-radius: 5px;
     padding-top: 30px;
-    box-shadow: 0 5px 10px #a1a1a17d;
+    /* box-shadow: 0 5px 10px #a1a1a17d; */
   }
   
   [data-user-color-scheme='dark'] figure.highlight {

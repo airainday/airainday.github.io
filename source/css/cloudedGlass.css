@@ -8,7 +8,7 @@
   backdrop-filter: blur(calc(var(--background-blur) * 2));
 }
 
-footer {
+/* footer {
   color: #1bc2c7 !important;
   font-weight: 600;
 }
@@ -16,7 +16,7 @@ footer {
 footer span {
   color: #1bc2c7 !important;
   font-weight: 600;
-}
+} */
 
 /*文章目录格式*/
 #toc {
@@ -35,10 +35,32 @@ footer span {
   --sec-text-color: #cecece !important;
 }
 
+/*图片背景全部为深色*/
+/* 深色模式banner img和文章页的banner imgs深色，背景都是深色所以字体都改为灰白色*/
+[data-user-color-scheme='dark'] #web_bg {
+  background-image: url("/img/big_dark_city.png")
+}
+
+[data-user-color-scheme='light'] {
+  --post-text-color:#000;
+}
+[data-user-color-scheme='light'] footer{
+  --text-color: #fff !important;
+  color: #fff !important;
+
+}
+
+
+/* 浅色模式banner img和文章页的banner img为浅色，背景都是浅色，所以字体都改成黑色*/
+[data-user-color-scheme='light'] #web_bg {
+  background-image: url("/img/big_dark_city.png")
+}
+
 :root {
   --link-hover-bg-color: #f8f9fa57;
   --text-color: #000;
   --sec-text-color: #000;
+  --link-hover-color: #3035de;
 }
 
 .category-list .category {
@@ -131,3 +153,6 @@ aside.sidebar.category-bar a {
 [data-user-color-scheme='dark'] .index-card:hover img {
   filter: grayscale(0) brightness(1);
 }
+
+
+
