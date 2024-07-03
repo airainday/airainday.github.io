@@ -1,7 +1,8 @@
 ---
 title: fluid -2- 评论系统
 tags: [hexo,fluid]
-categories: [博客网站-Hexo]
+categories: [Hexo]
+category_bar: true
 date: 2024-06-30 07:43:33
 ---
 

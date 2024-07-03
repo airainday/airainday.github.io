@@ -1,7 +1,8 @@
 ---
 title: fluid -1- 个性化页脚
 tags: [hexo,fluid]
-categories: [博客网站-Hexo]
+categories: [Hexo]
+category_bar: true
 date: 2024-06-29 21:08:56
 ---
 

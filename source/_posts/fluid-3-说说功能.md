@@ -1,7 +1,8 @@
 ---
 title: fluid -3- 说说功能
 tags: [hexo,fluid]
-categories: [博客网站-Hexo]
+categories: [Hexo]
+category_bar: true
 date: 2024-06-30 15:33:15
 ---
 
