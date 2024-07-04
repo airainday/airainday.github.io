@@ -243,6 +243,7 @@ custom_css:
 - /css/cloudedGlass.css
 - /css/selection.css
 - /css/scrollAnimation.css
+- https://cdn.staticfile.org/lxgw-wenkai-screen-webfont/1.7.0/style.min.css
 
 # 网页访问统计
 # Analysis of website visitors

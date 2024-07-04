@@ -5,7 +5,7 @@
 @font-face {
   font-family: btfFont;
   /*     src: url(https://cdn.jsdelivr.net/gh/huangwb8/bloghelper@latest/fonts/13.woff2) format('woff2') */
-  src: url(https://bensz.onmicrosoft.cn/fonts/13.woff2) format('woff2')
+  src: url("/font/YeZiGongChangXiaoShiTou-2.ttf")
 }
 
 /*文章背景模糊*/
