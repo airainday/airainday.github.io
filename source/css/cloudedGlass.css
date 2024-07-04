@@ -2,21 +2,17 @@
   --background-blur: 15px;
 }
 
+@font-face {
+  font-family: btfFont;
+  /*     src: url(https://cdn.jsdelivr.net/gh/huangwb8/bloghelper@latest/fonts/13.woff2) format('woff2') */
+  src: url(https://bensz.onmicrosoft.cn/fonts/13.woff2) format('woff2')
+}
+
 /*文章背景模糊*/
 #board {
   -webkit-backdrop-filter: blur(calc(var(--background-blur) * 2));
   backdrop-filter: blur(calc(var(--background-blur) * 2));
 }
-
-/* footer {
-  color: #1bc2c7 !important;
-  font-weight: 600;
-}
-
-footer span {
-  color: #1bc2c7 !important;
-  font-weight: 600;
-} */
 
 /*文章目录格式*/
 #toc {
@@ -37,9 +33,6 @@ footer span {
 
 /*图片背景全部为深色*/
 /* 深色模式banner img和文章页的banner imgs深色，背景都是深色所以字体都改为灰白色*/
-[data-user-color-scheme='dark'] #web_bg {
-  background-image: url("/img/big_dark_city.png")
-}
 
 [data-user-color-scheme='light'] {
   --post-text-color:#000;
@@ -50,17 +43,12 @@ footer span {
 
 }
 
-
-/* 浅色模式banner img和文章页的banner img为浅色，背景都是浅色，所以字体都改成黑色*/
-[data-user-color-scheme='light'] #web_bg {
-  background-image: url("/img/big_dark_city.png")
-}
-
 :root {
   --link-hover-bg-color: #f8f9fa57;
   --text-color: #000;
   --sec-text-color: #000;
   --link-hover-color: #3035de;
+  --font-family-sans-serif: btfFont, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
 .category-list .category {
