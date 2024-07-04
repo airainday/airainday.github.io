@@ -61,6 +61,7 @@
 <link rel="stylesheet" href="/css/cloudedGlass.css">
 <link rel="stylesheet" href="/css/selection.css">
 <link rel="stylesheet" href="/css/scrollAnimation.css">
+<link rel="stylesheet" href="https://cdn.staticfile.org/lxgw-wenkai-screen-webfont/1.7.0/style.min.css">
 
 
 
@@ -117,6 +118,7 @@
 
   <header>
     
+
 
 <div class="header-inner" style="height: 85vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
@@ -231,7 +233,7 @@
   </div>
 </nav>
 
-  
+  <!-- 
 
 <div id="banner" class="banner" parallax=true
      style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
@@ -251,6 +253,51 @@
     </div>
   </div>
 </div>
+ -->
+  
+
+<div id="banner" class="banner" data-title="value" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="页面不存在"></span>
+          
+        </div>
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+<script>
+  function getRandomNumber(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+var randomNum = getRandomNumber(0, 3).toString();
+
+var img_names = document.getElementById('banner').getAttribute('data-title');
+
+var banner_img = "/img/rain-random-bg/" + randomNum + ".jpg";
+document.getElementById('banner').removeAttribute('style')
+
+document
+  .querySelector('#web_bg')
+  .setAttribute('style', `background: url('${banner_img}'); position: fixed; width: 100%;height: 100%; z-index: -1; background-size: cover;`);
+  
+document
+  .querySelector("#banner .mask")
+  .setAttribute('style', 'background-color:rgba(0,0,0,0)')
+
+</script>
 
 </div>
 
@@ -455,5 +502,5 @@
   <noscript>
     <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
   </noscript>
-<!-- hexo injector body_end start --><script src="/js/backgroundize.js"></script><!-- hexo injector body_end end --></body>
+</body>
 </html>

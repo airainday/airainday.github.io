@@ -2,21 +2,40 @@
   --background-blur: 15px;
 }
 
+/* 修改字体 */
+@font-face {
+  font-family: ardFont;
+  /*     src: url(https://cdn.jsdelivr.net/gh/huangwb8/bloghelper@latest/fonts/13.woff2) format('woff2') */
+  src: url("/font/MaoKenZhuYuanTi-MaokenZhuyuanTi-2.ttf")
+}
+
+/* 修改main.css中:root里面自定义的样式 */
+:root {
+  --link-hover-color:#304adedb;
+  --text-color: #000;
+  --sec-text-color: #000;
+  --font-family-sans-serif: ardFont, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+/* 修改main.css中暗色主题下自定义样式 */
+[data-user-color-scheme='dark'] {
+  --link-hover-bg-color: #36415199;
+  --text-color: #cecece !important;
+  --sec-text-color: #cecece !important;
+  --link-hover-color: #30c5decc !important;
+}
+
+/* 修改main.css中亮色主题下自定义样式 */
+/* [data-user-color-scheme='light'] {
+  --link-hover-bg-color: #36415199;
+  --link-hover-color: #30c5decc !important;
+} */
+
 /*文章背景模糊*/
 #board {
   -webkit-backdrop-filter: blur(calc(var(--background-blur) * 2));
   backdrop-filter: blur(calc(var(--background-blur) * 2));
 }
-
-/* footer {
-  color: #1bc2c7 !important;
-  font-weight: 600;
-}
-
-footer span {
-  color: #1bc2c7 !important;
-  font-weight: 600;
-} */
 
 /*文章目录格式*/
 #toc {
@@ -29,17 +48,9 @@ footer span {
   backdrop-filter: blur(var(--background-blur));
 }
 
-[data-user-color-scheme='dark'] {
-  --link-hover-bg-color: #36415199;
-  --text-color: #cecece !important;
-  --sec-text-color: #cecece !important;
-}
 
 /*图片背景全部为深色*/
 /* 深色模式banner img和文章页的banner imgs深色，背景都是深色所以字体都改为灰白色*/
-[data-user-color-scheme='dark'] #web_bg {
-  background-image: url("/img/big_dark_city.png")
-}
 
 [data-user-color-scheme='light'] {
   --post-text-color:#000;
@@ -50,25 +61,11 @@ footer span {
 
 }
 
-
-/* 浅色模式banner img和文章页的banner img为浅色，背景都是浅色，所以字体都改成黑色*/
-[data-user-color-scheme='light'] #web_bg {
-  background-image: url("/img/big_dark_city.png")
-}
-
-:root {
-  --link-hover-bg-color: #f8f9fa57;
-  --text-color: #000;
-  --sec-text-color: #000;
-  --link-hover-color: #3035de;
-}
-
 .category-list .category {
   margin-bottom: 0;
 }
 
 /* 侧栏分类 */
-
 aside.sidebar.category-bar {
   top: 5rem;
   background: var(--board-bg-color);
