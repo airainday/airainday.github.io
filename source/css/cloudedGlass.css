@@ -2,11 +2,34 @@
   --background-blur: 15px;
 }
 
+/* 修改字体 */
 @font-face {
-  font-family: btfFont;
+  font-family: ardFont;
   /*     src: url(https://cdn.jsdelivr.net/gh/huangwb8/bloghelper@latest/fonts/13.woff2) format('woff2') */
-  src: url("/font/YeZiGongChangXiaoShiTou-2.ttf")
+  src: url("/font/MaoKenZhuYuanTi-MaokenZhuyuanTi-2.ttf")
 }
+
+/* 修改main.css中:root里面自定义的样式 */
+:root {
+  --link-hover-color:#304adedb;
+  --text-color: #000;
+  --sec-text-color: #000;
+  --font-family-sans-serif: ardFont, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+/* 修改main.css中暗色主题下自定义样式 */
+[data-user-color-scheme='dark'] {
+  --link-hover-bg-color: #36415199;
+  --text-color: #cecece !important;
+  --sec-text-color: #cecece !important;
+  --link-hover-color: #30c5decc !important;
+}
+
+/* 修改main.css中亮色主题下自定义样式 */
+/* [data-user-color-scheme='light'] {
+  --link-hover-bg-color: #36415199;
+  --link-hover-color: #30c5decc !important;
+} */
 
 /*文章背景模糊*/
 #board {
@@ -25,11 +48,6 @@
   backdrop-filter: blur(var(--background-blur));
 }
 
-[data-user-color-scheme='dark'] {
-  --link-hover-bg-color: #36415199;
-  --text-color: #cecece !important;
-  --sec-text-color: #cecece !important;
-}
 
 /*图片背景全部为深色*/
 /* 深色模式banner img和文章页的banner imgs深色，背景都是深色所以字体都改为灰白色*/
@@ -43,20 +61,11 @@
 
 }
 
-:root {
-  --link-hover-bg-color: #f8f9fa57;
-  --text-color: #000;
-  --sec-text-color: #000;
-  --link-hover-color: #3035de;
-  --font-family-sans-serif: btfFont, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-}
-
 .category-list .category {
   margin-bottom: 0;
 }
 
 /* 侧栏分类 */
-
 aside.sidebar.category-bar {
   top: 5rem;
   background: var(--board-bg-color);
