@@ -16,17 +16,18 @@
   <meta name="author" content="AIrainday">
   <meta name="keywords" content="博客 AI 好用工具 个人成长 AIrainday">
   
-    <meta name="description" content="AIrainday的个人博客">
+    <meta name="description" content="比如想要提取’mdsfmasdf Loss:200003.56 moretext’中的200003.56部分，我们应该怎么做呢。 正则表达式就是用一系列规则定义的匹配公式，利用该公式找到文本中匹配公式匹配到的内容。 上面例子的答案： 12345678910111213141516import retext &#x3D; &#x27;mdsfmasdf Loss:200003.56 moretext&amp;#x27">
 <meta property="og:type" content="article">
 <meta property="og:title" content="正则表达式">
 <meta property="og:url" content="http://example.com/2024/07/04/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/index.html">
 <meta property="og:site_name" content="AIrainday">
-<meta property="og:description" content="AIrainday的个人博客">
+<meta property="og:description" content="比如想要提取’mdsfmasdf Loss:200003.56 moretext’中的200003.56部分，我们应该怎么做呢。 正则表达式就是用一系列规则定义的匹配公式，利用该公式找到文本中匹配公式匹配到的内容。 上面例子的答案： 12345678910111213141516import retext &#x3D; &#x27;mdsfmasdf Loss:200003.56 moretext&amp;#x27">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-07-04T02:24:35.000Z">
-<meta property="article:modified_time" content="2024-07-04T13:36:54.647Z">
+<meta property="article:modified_time" content="2024-07-06T14:12:10.491Z">
 <meta property="article:author" content="AIrainday">
 <meta property="article:tag" content="正则表达式">
+<meta property="article:tag" content="python">
 <meta name="twitter:card" content="summary_large_image">
   
   
@@ -273,7 +274,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          0 字
+          561 字
         
       </span>
     
@@ -284,7 +285,7 @@
         
         
         
-          1 分钟
+          5 分钟
         
       </span>
     
@@ -346,7 +347,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          0 字
+          561 字
         
       </span>
     
@@ -357,7 +358,7 @@
         
         
         
-          1 分钟
+          5 分钟
         
       </span>
     
@@ -423,6 +424,58 @@ document
   <div class="row nomargin-x">
     <div class="side-col d-none d-lg-block col-lg-2">
       
+  <aside class="sidebar category-bar" style="margin-right: -1rem">
+    
+
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="Kits"
+        id="heading-c077a41fe3cd23221910cb17cd098907" role="tab" data-toggle="collapse" href="#collapse-c077a41fe3cd23221910cb17cd098907"
+        aria-expanded="true"
+      >
+        Kits
+        <span class="list-group-count">(1)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-c077a41fe3cd23221910cb17cd098907"
+           role="tabpanel" aria-labelledby="heading-c077a41fe3cd23221910cb17cd098907">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2024/07/04/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" title="正则表达式"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">正则表达式</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+</div>
+
+
+  </aside>
+
 
     </div>
 
@@ -435,7 +488,7 @@ document
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2024年7月4日 晚上
+                    本文最后更新于 2024年7月6日 晚上
                   
                 
               </p>
@@ -443,7 +496,24 @@ document
             
               <div class="markdown-body">
                 
-                
+                <p>比如想要提取’mdsfmasdf Loss:200003.56 moretext’中的200003.56部分，我们应该怎么做呢。</p>
+<p>正则表达式就是用一系列规则定义的匹配公式，利用该公式找到文本中匹配公式匹配到的内容。</p>
+<p>上面例子的答案：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> re<br><br>text = <span class="hljs-string">&#x27;mdsfmasdf Loss:200003.56 moretext&#x27;</span><br><br><span class="hljs-comment"># 使用正则表达式查找 &#x27;Loss:&#x27; 后的数字（包括可能的小数点）</span><br><span class="hljs-keyword">match</span> = re.search(<span class="hljs-string">r&#x27;Loss:(\d+(\.\d+)?)&#x27;</span>, text)<br><br><span class="hljs-keyword">if</span> <span class="hljs-keyword">match</span>:<br>    full_match = <span class="hljs-keyword">match</span>.group(<span class="hljs-number">0</span>)  <span class="hljs-comment"># 整个匹配的字符串 &#x27;Loss:200003.56&#x27;</span><br>    loss_value = <span class="hljs-keyword">match</span>.group(<span class="hljs-number">1</span>)  <span class="hljs-comment"># 捕获组 1: &#x27;200003.56&#x27;</span><br>    decimal_part = <span class="hljs-keyword">match</span>.group(<span class="hljs-number">2</span>)  <span class="hljs-comment"># 捕获组 2: &#x27;.56&#x27; 或 None</span><br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;Full match: <span class="hljs-subst">&#123;full_match&#125;</span>&quot;</span>)<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;Extracted loss value: <span class="hljs-subst">&#123;loss_value&#125;</span>&quot;</span>)<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;Decimal part: <span class="hljs-subst">&#123;decimal_part&#125;</span>&quot;</span>)<br><span class="hljs-keyword">else</span>:<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;No loss value found in the text.&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+<p>关注第6行代码：<code>match = re.search(r&#39;Loss:(\d+(\.\d+)?)&#39;, text)</code>，有两部分值得关注，第一个就是<code>re.search</code>方法，第二个是表达式<code>r&#39;Loss:(\d+(\.\d+)?)&#39;</code>。</p>
+<h2 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h2><ol>
+<li><code>re.search(pattern, string, flags=0)</code>：在字符串中查找正则表达式模式的第一次出现，并返回一个匹配对象。如果没有找到匹配项，则返回 <code>None</code></li>
+<li><code>re.match(pattern, string, flags=0)</code>：尝试从字符串的起始位置匹配正则表达式模式。如果匹配成功，则返回匹配对象；否则，返回 <code>None</code>。和search区别是，match只判断字符串开头位置有没有指定表达式模式。</li>
+<li><code>re.findall(pattern, string, flags=0)</code>：查找字符串中所有与正则表达式模式匹配的部分，并以列表形式返回。</li>
+</ol>
+<h2 id="表达式规则"><a href="#表达式规则" class="headerlink" title="表达式规则"></a>表达式规则</h2><p>比如<code>r&#39;Loss:(\d+(\.\d+)?)&#39;</code>，匹配Loss:一个或者多个数字后面可以有 <em>小数点后跟一个或者多个数字</em> ，也可以没有。里面的（）表示的是（）两层含义：</p>
+<ul>
+<li>括号里面内容是一个整体，后面跟量词<code>* + ?</code>时，将括号里的内容看作一个整体，比如<code>(\.\d+)?</code>可以表示<code>.12</code>或者什么也没有。</li>
+<li>（）里面的内容如果匹配到，会被单独拿出来，后续可以用<code>match.group(1)</code>来获取第一个括号所匹配到内容。</li>
+</ul>
+<p>其实还有很多方法，以及规则，具体用到时候在问gpt吧，gpt讲解的还是比较容易理解的。</p>
+
                 
               </div>
             
@@ -477,6 +547,8 @@ document
       <i class="iconfont icon-tags"></i>
       
         <a href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="print-no-link">#正则表达式</a>
+      
+        <a href="/tags/python/" class="print-no-link">#python</a>
       
     </div>
   
