@@ -23,6 +23,8 @@
   --text-color: #cecece !important;
   --sec-text-color: #cecece !important;
   --link-hover-color: #30c5decc !important;
+  --subtitle-color: #ffffff;
+  --navbar-text-color: #ffffff;
 }
 
 /* 修改main.css中亮色主题下自定义样式 */
