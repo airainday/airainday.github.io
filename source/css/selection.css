@@ -143,7 +143,10 @@
   [data-user-color-scheme='dark'] .markdown-body :not(pre) > code {
     background-color: rgb(100 169 58 / 33%);
   }
-  
+  [data-user-color-scheme='light'] .markdown-body :not(pre) > code {
+    background-color: rgba(225, 225, 225, 0.4);
+  }  
+
   /* 路径标签 */
   p.file-path + figure.highlight {
     border-top-left-radius: 0;
@@ -219,7 +222,6 @@
     padding: 0.2em 0.4em;
     margin: 0;
     font-size: 85%;
-    background-color: rgba(225, 225, 225, 0.4);
     border-radius: 3px;
   }
   

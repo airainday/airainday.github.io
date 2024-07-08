@@ -61,7 +61,7 @@ hexo.extend.filter.register('theme_inject', function(injects) {
 );
 ```
 
-上述代码含义就是将`source/_inject/layout/_partials/footer.ejs`文件内容完全替换<footer></footer>中的内容，我们只要修改`source/_inject/layout/_partials/footer.ejs`中的内容即可随意定义footer了。
+上述代码含义就是将`source/_inject/layout/_partials/footer.ejs`文件内容完全替换`<footer></footer>`中的内容，我们只要修改`source/_inject/layout/_partials/footer.ejs`中的内容即可随意定义footer了。
 
 下载[fluid源码](https://github.com/fluid-dev/hexo-theme-fluid/releases)将`layout/_partials/footer.ejs`复制到博客项目根目录`source/_inject/layout/_partials/`文件夹下（没有的目录请新建）。直接复制源码文件是为了保留之前的所有功能，然后我们基于此修改就能添加新的功能了。
 

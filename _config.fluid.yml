@@ -236,6 +236,8 @@ font:
 custom_js:
 - /js/runtime.js
 - /js/scrollAnimation.js
+- //cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js  #/APlayer#/APlayer依赖
+- //cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js  #/APlayer依赖
 
 # 指定自定义 .css 文件路径，用法和 custom_js 相同
 # The usage is the same as custom_js
@@ -244,6 +246,7 @@ custom_css:
 - /css/selection.css
 - /css/scrollAnimation.css
 - https://cdn.staticfile.org/lxgw-wenkai-screen-webfont/1.7.0/style.min.css
+- //cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css   #/APlayer依赖
 
 # 网页访问统计
 # Analysis of website visitors
