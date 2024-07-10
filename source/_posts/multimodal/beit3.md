@@ -1,3 +1,11 @@
+---
+title: beit3
+tags: [multimodal,beit3]
+categories: [multimodal]
+category_bar: true
+date: 2024-07-10 15:23:16
+---
+
 1. [TypeError: Descriptors cannot be created directly.报错分析与解决-CSDN博客](https://blog.csdn.net/sangedianhao/article/details/136662205)
 2. [Unknown model (beit3_large_patch16_384_retrieval) · Issue #1927 · huggingface/pytorch-image-models](https://github.com/huggingface/pytorch-image-models/issues/1927
 ## beit3项目源码Bugs

@@ -1,3 +1,11 @@
+---
+title: cn-clip
+tags: [multimodal,cn-clip]
+categories: [multimodal]
+category_bar: true
+date: 2024-07-10 15:23:16
+---
+
 Chinese-CLIP是基于CLIP和Chinese RoBERTa（中文语言模型）开发的中文版本的CLIP模型。
 
 ---

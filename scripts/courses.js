@@ -1,0 +1,1 @@
+hexo.extend.injector.register('courses', '<script src="/jquery.js"></script>', 'default');

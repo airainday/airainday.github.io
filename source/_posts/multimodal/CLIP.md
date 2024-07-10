@@ -1,3 +1,11 @@
+---
+title: clip
+tags: [multimodal,clip]
+categories: [multimodal]
+category_bar: true
+date: 2024-07-10 15:23:16
+---
+
 CLIP采用对比学习训练检索任务模型。
 
 ## 训练数据

@@ -1,12 +1,16 @@
 ---
 title: docker配置DL环境
 tags: [docker,环境配置]
-categories: [Docker]
+categories: [AI-env]
 category_bar: true
 date: 2024-07-09 21:41:33
 ---
 
-Docker只要拉取一个别人配置好环境的镜像，然后基于此镜像创建容器进行开发即可，并且方便移植，非常方便。
+Docker只要拉取一个别人配置好环境的镜像，然后基于此镜像创建容器进行开发即可，并且方便移植。
+
+## WIn安装Docker
+
+
 
 ## 镜像获取
 

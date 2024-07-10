@@ -1,13 +1,13 @@
 ---
-title: post
+title: fluid-0-常用命令
 tags: [hexo,fluid]
 categories: [Hexo]
 category_bar: true
 date: 2024-07-10 19:41:17
 ---
 ## 创建发表文章
-`hexo n post xxx`:会直接在比克根目录下的`source/_posts`下生成`xxx.md`文件
-如果我们想要将生成的文件放在_posts的子文件夹内，可以采用命令：`hexo n post -p dir/xxx`
+`hexo n post xxx`:会直接在比克根目录下的`source/_posts`下生成`xxx.md`文件，并且标题也是xxx
+如果我们想要将生成的文件放在_posts的子文件夹内，可以采用命令：`hexo n post -p dir/文件名 "标题"`，注意这里必须要有标题，否则会默认为post
 
 生成的文章会在开头带有日期，标题，tags等，你可以自定义文章开头带有哪些内容，在博客根目录`scaffolds/post.md`中修改，下面是我的内容
 

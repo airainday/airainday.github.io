@@ -1,6 +1,6 @@
 ---
-title: 多模态评价指标
-tags: [multimodal,多模态评价指标]
+title: InterVL
+tags: [multimodal,InterVL]
 categories: [multimodal]
 category_bar: true
 date: 2024-07-10 15:23:16

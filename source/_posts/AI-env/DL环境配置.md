@@ -1,7 +1,7 @@
 ---
 title: DL环境配置
 tags: [conda,pip,环境配置]
-categories: [AI]
+categories: [AI-env]
 category_bar: true
 date: 2024-07-05 15:23:16
 ---
