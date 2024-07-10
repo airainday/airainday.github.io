@@ -67,7 +67,7 @@ trusted-host=mirrors.aliyun.com
 
 `pip install xxx -i https://pypi.tuna.tsinghua.edu.cn/simple`
 
-## pytorch安装
+## Pytorch安装
 
 pytorch是深度学习的一个框架，很多项目是基于此的，因此这里讲一下如何安装这个包，它的版本与你Nvidia显卡驱动所支持的CUDA版本相关。
 
@@ -97,4 +97,9 @@ print(torch.backends.cudnn.version()) # 8302
 
 但是，**有些应用是需要安装CUDA Toolkit的**，比如mmdetection，它包含了一些自定义的 CUDA 操作，这些操作需要在安装时进行编译。安装 CUDA Toolkit 可以确保这些自定义操作能够正确编译和链接。因此建议我们还是安装CUDA Toolkit，以支持更多AI项目。
 
-3.第三个CUDA版本其实就是前面提到的pytorch自带的
+3.第三个CUDA版本其实就是前面提到的安装GPU版本的torch时相应的cuda，比如pytorch-cuda=11.8，可以将其理解为非完整版的CUDA toolkit
+
+**如果我们安装了CUDA Toolkit完整版的，然后再安装pytorch-cuda，此时pytorch-cuda版本号要和CUDAToolkit版本号一样吗？**
+
+## CUDA Toolkit安装
+
