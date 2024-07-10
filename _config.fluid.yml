@@ -245,9 +245,6 @@ custom_css:
 - /css/scrollAnimation.css
 - https://cdn.staticfile.org/lxgw-wenkai-screen-webfont/1.7.0/style.min.css
 
-custom_html:
-- <div class="aplayer" data-id="3778678" data-server="netease" data-type="playlist" data-fixed="true"	data-order="random"data-volume="0.65"data-autoplay="false"   date-preload="auto"data-theme="#cc543a"></div>
-
 # 网页访问统计
 # Analysis of website visitors
 web_analytics:  # 网页访问统计

@@ -13,9 +13,7 @@ conda是配置深度学习环境的利器，很方便隔离和配置每个深度
 
 ### 安装miniconda
 
-下载miniconda：[Index of /anaconda/miniconda/ | 清华大学开源软件镜像站 | Tsinghua Open Source Mirror](https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/)
-
-选择https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/Miniconda3-py39_23.10.0-1-Linux-x86_64.sh表示默认安装的python版本为3.9，适合平台linux-x64.
+下载miniconda的链接：[清华大学开源软件镜像站](https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/)，比如 [linux上默认py39版本](https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/Miniconda3-py39_23.10.0-1-Linux-x86_64.sh) ，py39和Linux-86-64分别表示默认安装的python版本为3.9，适合平台linux-x64。
 
 执行命令`sh 刚才下载的minicodna版本名称`，然后弹出阅读条款，同意license terms处填写`yes`；接着弹出安装路径，自己选择安装在哪里；接着会问你是否同意自动初始化conda，即每次进入shell时会自动激活conda环境，我们同意此选项即可，后续也可以用`conda config --set auto_activate_base false`禁止自动激活。
 

@@ -218,13 +218,6 @@
     border-left: 20px solid #000;
   }
   
-  .markdown-body code {
-    padding: 0.2em 0.4em;
-    margin: 0;
-    font-size: 85%;
-    border-radius: 3px;
-  }
-  
   /* hexo-math */
   .MathJax svg {
     width: 100%;
