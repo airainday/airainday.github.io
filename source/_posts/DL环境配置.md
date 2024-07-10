@@ -5,12 +5,11 @@ categories: [AI]
 category_bar: true
 date: 2024-07-05 15:23:16
 ---
-conda是配置深度学习环境的利器，很方便隔离和配置每个深度学习算法的环境。
-下面分windows和Linux两个平台依次讲解conda的安装及使用。
+conda是配置深度学习环境的利器，很方便隔离和配置每个深度学习算法的环境。下面基于windows、Linux、Docker三种方式依次讲解如何配置深度学习环境。
 
-# Linux平台
+# Linux
 
-## 环境创建
+## 环境创建和管理
 
 ### 安装miniconda
 
@@ -102,4 +101,26 @@ print(torch.backends.cudnn.version()) # 8302
 **如果我们安装了CUDA Toolkit完整版的，然后再安装pytorch-cuda，此时pytorch-cuda版本号要和CUDAToolkit版本号一样吗？**
 
 ## CUDA Toolkit安装
+
+参考官方文档进行安装：[CUDA Installation Guide for Linux (nvidia.com)](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html)
+
+## CUDNN安装
+
+下载：[cuDNN Archive | NVIDIA Developer](https://developer.nvidia.com/rdp/cudnn-archive)
+
+选择要安装的版本，这里选择8.5.0，与CUDA11.x都是适配的
+
+![image-20240710100051501](https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240710100051501.png)
+
+参考官方文档进行安装：[Installation Guide :: NVIDIA cuDNN Documentation](https://docs.nvidia.com/deeplearning/cudnn/archives/cudnn-891/install-guide/index.html)
+
+# Docker
+
+利用docker配置深度学习环境很方便，参考我的文章：docker配置DL环境（连接失效的话直接搜索）
+
+# Windows
+
+# 参考
+
+[Linux下安装cuda和对应版本的cudnn_linux怎么在自己的环境中安装cuda和cudnn-CSDN博客](https://blog.csdn.net/qq_44961869/article/details/115954258)
 
