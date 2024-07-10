@@ -16,23 +16,27 @@
   <meta name="author" content="AIrainday">
   <meta name="keywords" content="博客 AI 好用工具 个人成长 AIrainday">
   
-    <meta name="description" content="本文将集中于语言-视觉多模态方面的综述。">
+    <meta name="description" content="Docker只要拉取一个别人配置好环境的镜像，然后基于此镜像创建容器进行开发即可，并且方便移植，非常方便。 镜像获取比如我们想下载一个ubuntu镜像，直接在这里ubuntu - Official Image | Docker Hub搜索ubuntu，然后复制docker pull ubuntu,并且加上对应版本，比如20.04，在具备Docker的终端中执行：docker pull ubuntu">
 <meta property="og:type" content="article">
-<meta property="og:title" content="多模态综述">
-<meta property="og:url" content="http://example.com/2024/06/27/%E5%A4%9A%E6%A8%A1%E6%80%81%E7%BB%BC%E8%BF%B0/index.html">
+<meta property="og:title" content="docker配置DL环境">
+<meta property="og:url" content="http://example.com/2024/07/09/docker%E9%85%8D%E7%BD%AEDL%E7%8E%AF%E5%A2%83/index.html">
 <meta property="og:site_name" content="AIrainday">
-<meta property="og:description" content="本文将集中于语言-视觉多模态方面的综述。">
+<meta property="og:description" content="Docker只要拉取一个别人配置好环境的镜像，然后基于此镜像创建容器进行开发即可，并且方便移植，非常方便。 镜像获取比如我们想下载一个ubuntu镜像，直接在这里ubuntu - Official Image | Docker Hub搜索ubuntu，然后复制docker pull ubuntu,并且加上对应版本，比如20.04，在具备Docker的终端中执行：docker pull ubuntu">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-06-27T01:43:45.000Z">
-<meta property="article:modified_time" content="2024-07-06T14:12:10.489Z">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240710070005335.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240710070927689.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240710083612946.png">
+<meta property="article:published_time" content="2024-07-09T13:41:33.000Z">
+<meta property="article:modified_time" content="2024-07-10T03:25:07.089Z">
 <meta property="article:author" content="AIrainday">
-<meta property="article:tag" content="CLIP">
-<meta property="article:tag" content="Beit3">
+<meta property="article:tag" content="环境配置">
+<meta property="article:tag" content="docker">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240710070005335.png">
   
   
   
-  <title>多模态综述 - AIrainday</title>
+  <title>docker配置DL环境 - AIrainday</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -251,7 +255,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="多模态综述"></span>
+            <span id="subtitle" data-typed-text="docker配置DL环境"></span>
           
         </div>
 
@@ -262,8 +266,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-06-27 09:43" pubdate>
-          2024年6月27日 上午
+        <time datetime="2024-07-09 21:41" pubdate>
+          2024年7月9日 晚上
         </time>
       </span>
     
@@ -274,7 +278,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          18 字
+          1.1k 字
         
       </span>
     
@@ -285,7 +289,7 @@
         
         
         
-          1 分钟
+          10 分钟
         
       </span>
     
@@ -324,7 +328,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="多模态综述"></span>
+            <span id="subtitle" data-typed-text="docker配置DL环境"></span>
           
         </div>
 
@@ -335,8 +339,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-06-27 09:43" pubdate>
-          2024年6月27日 上午
+        <time datetime="2024-07-09 21:41" pubdate>
+          2024年7月9日 晚上
         </time>
       </span>
     
@@ -347,7 +351,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          18 字
+          1.1k 字
         
       </span>
     
@@ -358,7 +362,7 @@
         
         
         
-          1 分钟
+          10 分钟
         
       </span>
     
@@ -439,17 +443,17 @@ document
     
     <div class="category row nomargin-x">
       <a class="category-item 
-          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="AI"
-        id="heading-0a40e3c91a3a55c9a37428c6d194d0e5" role="tab" data-toggle="collapse" href="#collapse-0a40e3c91a3a55c9a37428c6d194d0e5"
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="Docker"
+        id="heading-c5fd214cdd0d2b3b4272e73b022ba5c2" role="tab" data-toggle="collapse" href="#collapse-c5fd214cdd0d2b3b4272e73b022ba5c2"
         aria-expanded="true"
       >
-        AI
-        <span class="list-group-count">(2)</span>
+        Docker
+        <span class="list-group-count">(1)</span>
         <i class="iconfont icon-arrowright"></i>
       </a>
       
-      <div class="category-collapse collapse show" id="collapse-0a40e3c91a3a55c9a37428c6d194d0e5"
-           role="tabpanel" aria-labelledby="heading-0a40e3c91a3a55c9a37428c6d194d0e5">
+      <div class="category-collapse collapse show" id="collapse-c5fd214cdd0d2b3b4272e73b022ba5c2"
+           role="tabpanel" aria-labelledby="heading-c5fd214cdd0d2b3b4272e73b022ba5c2">
         
         
           
@@ -458,19 +462,10 @@ document
     
       
       
-        <a href="/2024/07/05/DL%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" title="DL环境配置"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">DL环境配置</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2024/06/27/%E5%A4%9A%E6%A8%A1%E6%80%81%E7%BB%BC%E8%BF%B0/" title="多模态综述"
+        <a href="/2024/07/09/docker%E9%85%8D%E7%BD%AEDL%E7%8E%AF%E5%A2%83/" title="docker配置DL环境"
            class="list-group-item list-group-item-action
            active">
-          <span class="category-post">多模态综述</span>
+          <span class="category-post">docker配置DL环境</span>
         </a>
       
     
@@ -492,12 +487,12 @@ document
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">多模态综述</h1>
+            <h1 id="seo-header">docker配置DL环境</h1>
             
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2024年7月6日 晚上
+                    本文最后更新于 2024年7月10日 上午
                   
                 
               </p>
@@ -505,7 +500,78 @@ document
             
               <div class="markdown-body">
                 
-                <p>本文将集中于语言-视觉多模态方面的综述。</p>
+                <p>Docker只要拉取一个别人配置好环境的镜像，然后基于此镜像创建容器进行开发即可，并且方便移植，非常方便。</p>
+<h2 id="镜像获取"><a href="#镜像获取" class="headerlink" title="镜像获取"></a>镜像获取</h2><p>比如我们想下载一个ubuntu镜像，直接在这里<a target="_blank" rel="noopener" href="https://hub.docker.com/_/ubuntu">ubuntu - Official Image | Docker Hub</a>搜索ubuntu，然后复制<code>docker pull ubuntu</code>,并且加上对应版本，比如20.04，在具备Docker的终端中执行：<code>docker pull ubuntu:20.04</code>即可获得该镜像。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240710070005335.png" srcset="/img/loading.gif" lazyload alt="image-20240710070005335"></p>
+<p><strong>但是我们想找一个配置好conda、pytorch、cuda和cudnn的镜像</strong>。</p>
+<p>我们直接在docker hub上搜索Pytorch，会出现Pytorch官方提供的一系列镜像：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240710070927689.png" srcset="/img/loading.gif" lazyload alt="image-20240710070927689"></p>
+<p>这里选择带devel的进行下载，<code>docker pull pytorch/pytorch:2.0.1-cuda11.7-cudnn8-devel</code>,我们选择2.0.1版本的pytorch。</p>
+<p>下载完之后，<code>docker images</code>可以查看到刚才下载的镜像：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240710083612946.png" srcset="/img/loading.gif" lazyload alt="image-20240710083612946"></p>
+<p>我们已经把镜像下载下来了，接下来是基于此镜像创建容器。</p>
+<h2 id="创建容器"><a href="#创建容器" class="headerlink" title="创建容器"></a>创建容器</h2><p><code>docker images</code>:查看当前存在的镜像</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell">REPOSITORY                      TAG       IMAGE ID       CREATED         SIZE<br>ultralytics/yolov5              latest    23c76ebd5d7c   9 months ago    7.96GB<br>ubuntu20_torch-cuda11.7_mmd3d   v1.0      f196865743ea   9 months ago    13.5GB<br>pengzhile/pandora               latest    73e531d136bc   10 months ago   261MB<br>ubuntu                          20.04     53df61775e88   2 years ago     72.8MB<br></code></pre></td></tr></table></figure>
+
+<p>创建一个容器，利用ubuntu镜像创建一个名为raindl的镜像，-t是给容器分配一个伪终端，-i是让容器标准输出在伪终端显示，方便操控容器。</p>
+<p><code>docker run -it -v C:\Users\rain\Downloads\:/file -p 8897:22 --gpus all --shm-size 64g --name raindl ubuntu:20.04</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell">root@65d59ead92dc:/# pwd<br>/<br>root@65d59ead92dc:/# cd /file/<br>root@65d59ead92dc:/file# ls<br>Music  Video  app  datasets  desktop.ini  documents  programs<br></code></pre></td></tr></table></figure>
+
+<p>创建完容器后，可以在容器中使用GPU，<code>nvidia-smi</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs shell">root@65d59ead92dc:/usr/local# nvidia-smi<br>Tue Jul  9 22:21:55 2024<br>+---------------------------------------------------------------------------------------+<br>| NVIDIA-SMI 535.104.07             Driver Version: 537.34       CUDA Version: 12.2     |<br>|-----------------------------------------+----------------------+----------------------+<br>| GPU  Name                 Persistence-M | Bus-Id        Disp.A | Volatile Uncorr. ECC |<br>| Fan  Temp   Perf          Pwr:Usage/Cap |         Memory-Usage | GPU-Util  Compute M. |<br>|                                         |                      |               MIG M. |<br>|=========================================+======================+======================|<br>|   0  NVIDIA GeForce RTX 3090        On  | 00000000:01:00.0  On |                  N/A |<br>|  0%   31C    P8              29W / 350W |    806MiB / 24576MiB |      0%      Default |<br>|                                         |                      |                  N/A |<br>+-----------------------------------------+----------------------+----------------------+<br></code></pre></td></tr></table></figure>
+
+<p><strong>新进入一个容器，需要执行<code>apt update</code>更新软件下载链接，方便后续安装软件。</strong></p>
+<p>但是容器里面是没有CUDA Toolkit和cudnn的，也没有conda环境。</p>
+<p><strong>我们可以自己创建，不过没必要，直接用别人创建好环境的镜像即可。</strong></p>
+<p>比如前面拉取到的pytorch&#x2F;pytorch:2.0.1-cuda11.7-cudnn8-devel镜像：</p>
+<p><code>docker run -itv C:\Users\rain\Downloads\:/file -p 8898:22 --gpus all --shm-size 64g --name raindl-cuda pytorch/pytorch:2.0.1-cuda11.7-cudnn8-devel</code></p>
+<p>启动后自动进入&#x2F;workspace目录内，这是该镜像的设置。</p>
+<p>我们查看该容器是否包含配置好的pytorch和cuda，cudnn完整的环境</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs shell">root@1a8190a19173:/usr/local/cuda# nvcc -V<br>nvcc: NVIDIA (R) Cuda compiler driver<br>Copyright (c) 2005-2022 NVIDIA Corporation<br>Built on Wed_Jun__8_16:49:14_PDT_2022<br>Cuda compilation tools, release 11.7, V11.7.99<br>Build cuda_11.7.r11.7/compiler.31442593_0<br></code></pre></td></tr></table></figure>
+
+<p>可以看到已经包含了完整的CUDA11.7</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs shell">root@1a8190a19173:/usr/local/cuda# python<br>Python 3.10.11 (main, Apr 20 2023, 19:02:41) [GCC 11.2.0] on linux<br>Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.<br><span class="hljs-meta prompt_">&gt;</span><span class="language-bash">&gt;&gt; import torch</span><br><span class="hljs-meta prompt_">&gt;</span><span class="language-bash">&gt;&gt; torch.cuda.is_available()</span><br>True<br><span class="hljs-meta prompt_">&gt;</span><span class="language-bash">&gt;&gt; torch.version.cuda</span><br>&#x27;11.7&#x27;<br><span class="hljs-meta prompt_">&gt;</span><span class="language-bash">&gt;&gt; torch.__version__</span><br>&#x27;2.0.1&#x27;<br><span class="hljs-meta prompt_">&gt;</span><span class="language-bash">&gt;&gt; torch.backends.cudnn.version()</span><br>8500<br></code></pre></td></tr></table></figure>
+
+<p>我们的Pytorch也可以使用CUDA和CUDNN加速。</p>
+<p><strong>不过机器上好像没有单独安装CUDNN</strong>：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">检查库文件</span><br>(base) root@1a8190a19173:~# ls /usr/local/cuda/lib64/libcudnn*<br>ls: cannot access &#x27;/usr/local/cuda/lib64/libcudnn*&#x27;: No such file or directory<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">检查版本文件</span><br>(base) root@1a8190a19173:~# cat /usr/local/cuda/include/cudnn_version.h | grep CUDNN_MAJOR -A 2<br>cat: /usr/local/cuda/include/cudnn_version.h: No such file or directory<br></code></pre></td></tr></table></figure>
+
+<p><strong>用上面方法验证是没有安装的，但是官方验证方法是：</strong></p>
+<blockquote>
+<p>To verify that cuDNN is installed and is running properly, compile the mnistCUDNN sample located in the &#x2F;usr&#x2F;src&#x2F;cudnn_samples_v8 directory in the Debian file.</p>
+<ol>
+<li><p>Copy the cuDNN samples to a writable path.</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-variable">$cp</span> -r <span class="hljs-regexp">/usr/</span>src<span class="hljs-regexp">/cudnn_samples_v8/</span> <span class="hljs-variable">$HOME</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>Go to the writable path.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash"><span class="hljs-built_in">cd</span>  <span class="hljs-variable">$HOME</span>/cudnn_samples_v8/mnistCUDNN</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>Compile the mnistCUDNN sample.</p>
+<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs gams"><span class="hljs-meta"><span class="hljs-keyword">$make</span> clean &amp;&amp; make</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>Run the mnistCUDNN sample.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">./mnistCUDNN</span><br></code></pre></td></tr></table></figure>
+
+<p>If cuDNN is properly installed and running on your Linux system, you will see a message similar to the following:</p>
+<figure class="highlight subunit"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs subunit"><span class="hljs-keyword">Test </span>passed!<br></code></pre></td></tr></table></figure></li>
+</ol>
+</blockquote>
+<p>跟随上面方法试一下，发现没有ministCUDNN文件夹</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">(base) root@1a8190a19173:/usr/src/cudnn_samples_v8# ls<br>NVIDIA_SLA_cuDNN_Support.txt<br></code></pre></td></tr></table></figure>
+
+<p>我们github上下载一下：<a target="_blank" rel="noopener" href="https://github.com/johnpzh/cudnn_samples_v8">johnpzh&#x2F;cudnn_samples_v8: cuDNN samples v8.x (github.com)</a></p>
+<p>然后复制到容器的 <code>/</code>目录下面，执行<code>make clean &amp;&amp; make</code>（如果出现<code>fatal error: FreeImage.h: No such file or directory</code>，执行<code>apt update &amp;&amp; apt install libfreeimage3 libfreeimage-dev</code>安装即可，安装完之后，重新执行上述命令）</p>
+<p>然后执行<code>./mnistCUDNN</code>,出现下面字符说明CUDNN是安装成功了的：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">...<br>Result of classification: 1 3 5<br>Test passed!<br></code></pre></td></tr></table></figure>
+
+
+
+<p>同样，后续我测试了nvidia提供的<code>nvidia/cuda:11.7.1-cudnn8-devel-ubuntu20.04</code>镜像，虽然用<code>ls /usr/local/cuda/lib64/libcudnn*</code>或者<code>cat /usr/local/cuda/include/cudnn_version.h | grep CUDNN_MAJOR -A 2</code>没有检测到cudnn相关内容，但是其实是已经安装好cudnn的。</p>
+<p>结论：如果用docker创建深度学习环境的话，建议直接下载pytorch提供的devel镜像，比如<code>pytorch/pytorch:2.0.1-cuda11.7-cudnn8-devel</code>,下载之前执行<code>nvidia-smi</code>查看你显卡驱动最高支持的CUDA版本号，你下载的镜像的cuda版本不能超过此版本号。该镜像中包含了完整的CUDA和CUDNN以及Pytorh和conda，省去了我们配置DL环境的很多麻烦。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/linjiqin/p/8608975.html">Docker容器的创建、启动、和停止 - Ruthless - 博客园 (cnblogs.com)</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/ljp1919/article/details/106209358">docker拉取的pytorch-gpu版找不到cuda和cudnn的位置，为何？_docker找不到torch-CSDN博客</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_44961869/article/details/115954258">Linux下安装cuda和对应版本的cudnn_linux怎么在自己的环境中安装cuda和cudnn-CSDN博客</a></p>
+<p><a target="_blank" rel="noopener" href="https://jackfrisht.medium.com/install-nvidia-driver-via-ppa-in-ubuntu-18-04-fc9a8c4658b9">安裝 Nvidia driver Cuda Cudnn on Ubuntu 22.04 | Medium</a></p>
 
                 
               </div>
@@ -524,7 +590,7 @@ document
     
       <span class="category-chain">
         
-  <a href="/categories/AI/" class="category-chain-item">AI</a>
+  <a href="/categories/Docker/" class="category-chain-item">Docker</a>
   
   
 
@@ -539,9 +605,9 @@ document
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/CLIP/" class="print-no-link">#CLIP</a>
+        <a href="/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" class="print-no-link">#环境配置</a>
       
-        <a href="/tags/Beit3/" class="print-no-link">#Beit3</a>
+        <a href="/tags/docker/" class="print-no-link">#docker</a>
       
     </div>
   
@@ -555,15 +621,15 @@ document
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/06/29/fluid-1-%E4%B8%AA%E6%80%A7%E5%8C%96%E9%A1%B5%E8%84%9A/" title="fluid -1- 个性化页脚">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">fluid -1- 个性化页脚</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
+                    
+                      <a href="/2024/07/05/DL%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" title="DL环境配置">
+                        <span class="hidden-mobile">DL环境配置</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
                     
                   </article>
                 </div>

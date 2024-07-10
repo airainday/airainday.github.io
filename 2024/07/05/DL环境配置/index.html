@@ -16,23 +16,26 @@
   <meta name="author" content="AIrainday">
   <meta name="keywords" content="博客 AI 好用工具 个人成长 AIrainday">
   
-    <meta name="description" content="本文将集中于语言-视觉多模态方面的综述。">
+    <meta name="description" content="conda是配置深度学习环境的利器，很方便隔离和配置每个深度学习算法的环境。下面基于windows、Linux、Docker三种方式依次讲解如何配置深度学习环境。 Linux环境创建和管理安装miniconda下载miniconda：Index of &#x2F;anaconda&#x2F;miniconda&#x2F; | 清华大学开源软件镜像站 | Tsinghua Open Source M">
 <meta property="og:type" content="article">
-<meta property="og:title" content="多模态综述">
-<meta property="og:url" content="http://example.com/2024/06/27/%E5%A4%9A%E6%A8%A1%E6%80%81%E7%BB%BC%E8%BF%B0/index.html">
+<meta property="og:title" content="DL环境配置">
+<meta property="og:url" content="http://example.com/2024/07/05/DL%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/index.html">
 <meta property="og:site_name" content="AIrainday">
-<meta property="og:description" content="本文将集中于语言-视觉多模态方面的综述。">
+<meta property="og:description" content="conda是配置深度学习环境的利器，很方便隔离和配置每个深度学习算法的环境。下面基于windows、Linux、Docker三种方式依次讲解如何配置深度学习环境。 Linux环境创建和管理安装miniconda下载miniconda：Index of &#x2F;anaconda&#x2F;miniconda&#x2F; | 清华大学开源软件镜像站 | Tsinghua Open Source M">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-06-27T01:43:45.000Z">
-<meta property="article:modified_time" content="2024-07-06T14:12:10.489Z">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240710100051501.png">
+<meta property="article:published_time" content="2024-07-05T07:23:16.000Z">
+<meta property="article:modified_time" content="2024-07-10T03:18:25.305Z">
 <meta property="article:author" content="AIrainday">
-<meta property="article:tag" content="CLIP">
-<meta property="article:tag" content="Beit3">
+<meta property="article:tag" content="conda">
+<meta property="article:tag" content="pip">
+<meta property="article:tag" content="环境配置">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240710100051501.png">
   
   
   
-  <title>多模态综述 - AIrainday</title>
+  <title>DL环境配置 - AIrainday</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -251,7 +254,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="多模态综述"></span>
+            <span id="subtitle" data-typed-text="DL环境配置"></span>
           
         </div>
 
@@ -262,8 +265,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-06-27 09:43" pubdate>
-          2024年6月27日 上午
+        <time datetime="2024-07-05 15:23" pubdate>
+          2024年7月5日 下午
         </time>
       </span>
     
@@ -274,7 +277,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          18 字
+          1.2k 字
         
       </span>
     
@@ -285,7 +288,7 @@
         
         
         
-          1 分钟
+          10 分钟
         
       </span>
     
@@ -324,7 +327,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="多模态综述"></span>
+            <span id="subtitle" data-typed-text="DL环境配置"></span>
           
         </div>
 
@@ -335,8 +338,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-06-27 09:43" pubdate>
-          2024年6月27日 上午
+        <time datetime="2024-07-05 15:23" pubdate>
+          2024年7月5日 下午
         </time>
       </span>
     
@@ -347,7 +350,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          18 字
+          1.2k 字
         
       </span>
     
@@ -358,7 +361,7 @@
         
         
         
-          1 分钟
+          10 分钟
         
       </span>
     
@@ -460,7 +463,7 @@ document
       
         <a href="/2024/07/05/DL%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" title="DL环境配置"
            class="list-group-item list-group-item-action
-           ">
+           active">
           <span class="category-post">DL环境配置</span>
         </a>
       
@@ -469,7 +472,7 @@ document
       
         <a href="/2024/06/27/%E5%A4%9A%E6%A8%A1%E6%80%81%E7%BB%BC%E8%BF%B0/" title="多模态综述"
            class="list-group-item list-group-item-action
-           active">
+           ">
           <span class="category-post">多模态综述</span>
         </a>
       
@@ -492,12 +495,12 @@ document
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">多模态综述</h1>
+            <h1 id="seo-header">DL环境配置</h1>
             
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2024年7月6日 晚上
+                    本文最后更新于 2024年7月10日 上午
                   
                 
               </p>
@@ -505,7 +508,50 @@ document
             
               <div class="markdown-body">
                 
-                <p>本文将集中于语言-视觉多模态方面的综述。</p>
+                <p>conda是配置深度学习环境的利器，很方便隔离和配置每个深度学习算法的环境。下面基于windows、Linux、Docker三种方式依次讲解如何配置深度学习环境。</p>
+<h1 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h1><h2 id="环境创建和管理"><a href="#环境创建和管理" class="headerlink" title="环境创建和管理"></a>环境创建和管理</h2><h3 id="安装miniconda"><a href="#安装miniconda" class="headerlink" title="安装miniconda"></a>安装miniconda</h3><p>下载miniconda：<a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/">Index of &#x2F;anaconda&#x2F;miniconda&#x2F; | 清华大学开源软件镜像站 | Tsinghua Open Source Mirror</a></p>
+<p>选择<a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/Miniconda3-py39_23.10.0-1-Linux-x86_64.sh%E8%A1%A8%E7%A4%BA%E9%BB%98%E8%AE%A4%E5%AE%89%E8%A3%85%E7%9A%84python%E7%89%88%E6%9C%AC%E4%B8%BA3.9%EF%BC%8C%E9%80%82%E5%90%88%E5%B9%B3%E5%8F%B0linux-x64">https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/Miniconda3-py39_23.10.0-1-Linux-x86_64.sh表示默认安装的python版本为3.9，适合平台linux-x64</a>.</p>
+<p>执行命令<code>sh 刚才下载的minicodna版本名称</code>，然后弹出阅读条款，同意license terms处填写<code>yes</code>；接着弹出安装路径，自己选择安装在哪里；接着会问你是否同意自动初始化conda，即每次进入shell时会自动激活conda环境，我们同意此选项即可，后续也可以用<code>conda config --set auto_activate_base false</code>禁止自动激活。</p>
+<p>安装完毕之后，自动创建的conda环境（base）的python版本为3.9，这和你下载的miniconda版本相关。</p>
+<h3 id="conda镜像配置"><a href="#conda镜像配置" class="headerlink" title="conda镜像配置"></a>conda镜像配置</h3><p><code>conda config --show channels</code>可以查看当前codna从哪里下载的包，默认是defaults（国外的官方服务器）</p>
+<p>添加镜像（你的机器方便访问的包下载服务器）</p>
+<p><code>conda config --add channels xxx</code></p>
+<p>比如添加清华大学镜像源：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/<br>conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/<br></code></pre></td></tr></table></figure>
+
+<p>此时查看<code>~/.condarc</code>文件，可以看到channels下面有你添加的镜像源，后续可以修改此文件方便的添加或者删除镜像源。</p>
+<h3 id="创建和删除环境"><a href="#创建和删除环境" class="headerlink" title="创建和删除环境"></a>创建和删除环境</h3><p><code>conda create -n 环境名 python=xxx</code></p>
+<p><code>conda env remove -n 环境名</code></p>
+<p>可以克隆环境从一个已经创建好的conda环境（同一台机器上）</p>
+<p><code>conda create --name new_env --clone old_env</code></p>
+<h3 id="pip源配置"><a href="#pip源配置" class="headerlink" title="pip源配置"></a>pip源配置</h3><p>OK环境创建好以后，后面就是下载项目所用的各种包了，可以用conda安装也可以用pip安装，conda源已经配好下面配置以下pip源：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">创建~/.pip/pip.conf文件</span><br>vim ~/.pip/pip.conf<br><span class="hljs-meta prompt_"># </span><span class="language-bash">写入以下内容</span><br>[global]<br>index-url = https://pypi.tuna.tsinghua.edu.cn/simple<br>[install]<br>trusted-host=mirrors.aliyun.com<br></code></pre></td></tr></table></figure>
+
+<p>上面是永久配置pip源，如果是临时一次安装，可以用<code>-i 源</code>:</p>
+<p><code>pip install xxx -i https://pypi.tuna.tsinghua.edu.cn/simple</code></p>
+<h2 id="Pytorch安装"><a href="#Pytorch安装" class="headerlink" title="Pytorch安装"></a>Pytorch安装</h2><p>pytorch是深度学习的一个框架，很多项目是基于此的，因此这里讲一下如何安装这个包，它的版本与你Nvidia显卡驱动所支持的CUDA版本相关。</p>
+<p>CUDA版本有三个：</p>
+<p>1.GPU安装好驱动以后，会有一个对应的CUDA版本，用<code>nvidia-smi</code>可以查看，比如11.8，该版本表示你后续要安装的CUDA Toolkit Version(runtime version)版本不能超过11.8</p>
+<p>2.CUDA Toolkit Version(runtime version)</p>
+<blockquote>
+<p>CUDA Toolkit Version（也称为运行时版本）是由 NVIDIA 提供的一组软件开发工具，用于创建使用 GPU（图形处理单元）进行并行计算的应用程序。它包含了开发、优化和调试 GPU 加速应用程序所需的库、编译器、驱动程序和工具。</p>
+</blockquote>
+<p>有些项目其实是不需要安装该工具的，比如yolov5，我们只要安装自带cuda的pytorch版本即可，比如：<code>conda install pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c nvidia</code>或者<code>pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118</code>。</p>
+<p><strong>需要注意的是安装pytorch的cuda版本不能超过你驱动所支持的最高CUDA版本。</strong></p>
+<p>这些PyTorch 已经包含了所需的 CUDA 库，可以直接使用 GPU 加速。我们可以用以下代码检测torch是否可以用GPU：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> torch<br>torch.__version__  <span class="hljs-comment"># 1.13.1+cu116</span><br><span class="hljs-built_in">print</span>(torch.cuda.is_available())  <span class="hljs-comment"># True</span><br><span class="hljs-built_in">print</span>(torch.version.cuda)  <span class="hljs-comment"># 11.6</span><br><span class="hljs-built_in">print</span>(torch.backends.cudnn.version()) <span class="hljs-comment"># 8302</span><br></code></pre></td></tr></table></figure>
+
+<p>上面结果可以看出我们的pytorch完全可以用GPU。</p>
+<p>但是，<strong>有些应用是需要安装CUDA Toolkit的</strong>，比如mmdetection，它包含了一些自定义的 CUDA 操作，这些操作需要在安装时进行编译。安装 CUDA Toolkit 可以确保这些自定义操作能够正确编译和链接。因此建议我们还是安装CUDA Toolkit，以支持更多AI项目。</p>
+<p>3.第三个CUDA版本其实就是前面提到的安装GPU版本的torch时相应的cuda，比如pytorch-cuda&#x3D;11.8，可以将其理解为非完整版的CUDA toolkit</p>
+<p><strong>如果我们安装了CUDA Toolkit完整版的，然后再安装pytorch-cuda，此时pytorch-cuda版本号要和CUDAToolkit版本号一样吗？</strong></p>
+<h2 id="CUDA-Toolkit安装"><a href="#CUDA-Toolkit安装" class="headerlink" title="CUDA Toolkit安装"></a>CUDA Toolkit安装</h2><p>参考官方文档进行安装：<a target="_blank" rel="noopener" href="https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html">CUDA Installation Guide for Linux (nvidia.com)</a></p>
+<h2 id="CUDNN安装"><a href="#CUDNN安装" class="headerlink" title="CUDNN安装"></a>CUDNN安装</h2><p>下载：<a target="_blank" rel="noopener" href="https://developer.nvidia.com/rdp/cudnn-archive">cuDNN Archive | NVIDIA Developer</a></p>
+<p>选择要安装的版本，这里选择8.5.0，与CUDA11.x都是适配的</p>
+<p><img src="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240710100051501.png" srcset="/img/loading.gif" lazyload alt="image-20240710100051501"></p>
+<p>参考官方文档进行安装：<a target="_blank" rel="noopener" href="https://docs.nvidia.com/deeplearning/cudnn/archives/cudnn-891/install-guide/index.html">Installation Guide :: NVIDIA cuDNN Documentation</a></p>
+<h1 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h1><p>利用docker配置深度学习环境很方便，参考我的文章：docker配置DL环境（连接失效的话直接搜索）</p>
+<h1 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h1><h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_44961869/article/details/115954258">Linux下安装cuda和对应版本的cudnn_linux怎么在自己的环境中安装cuda和cudnn-CSDN博客</a></p>
 
                 
               </div>
@@ -539,9 +585,11 @@ document
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/CLIP/" class="print-no-link">#CLIP</a>
+        <a href="/tags/conda/" class="print-no-link">#conda</a>
       
-        <a href="/tags/Beit3/" class="print-no-link">#Beit3</a>
+        <a href="/tags/pip/" class="print-no-link">#pip</a>
+      
+        <a href="/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" class="print-no-link">#环境配置</a>
       
     </div>
   
@@ -555,15 +603,21 @@ document
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/06/29/fluid-1-%E4%B8%AA%E6%80%A7%E5%8C%96%E9%A1%B5%E8%84%9A/" title="fluid -1- 个性化页脚">
+                      <a href="/2024/07/09/docker%E9%85%8D%E7%BD%AEDL%E7%8E%AF%E5%A2%83/" title="docker配置DL环境">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">fluid -1- 个性化页脚</span>
+                        <span class="hidden-mobile">docker配置DL环境</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </article>
                   <article class="post-next col-6">
                     
+                    
+                      <a href="/2024/07/04/fluid-4-%E9%9A%8F%E6%9C%BA%E6%9B%B4%E6%8D%A2%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87/" title="fluid-4-随机更换背景图片">
+                        <span class="hidden-mobile">fluid-4-随机更换背景图片</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
                     
                   </article>
                 </div>
