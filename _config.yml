@@ -105,7 +105,5 @@ deploy:
   repo: git@github.com:airainday/airainday.github.io.git
   branch: master
 
-# aplayer
-aplayer:  
-  meting: true  
-  asset_inject: false
+custom_scripts:
+  - source/_inject/courses.ejs  
