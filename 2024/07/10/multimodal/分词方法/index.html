@@ -1,0 +1,1160 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/profile.png">
+  <link rel="icon" href="/img/profile.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="AIrainday">
+  <meta name="keywords" content="博客 AI 好用工具 个人成长 AIrainday">
+  
+    <meta name="description" content="Tokenization（分词） 在自然语言处理(NLP)的任务中是最基本的一步，把文本内容处理为最小基本单元即token(标记，令牌，词元，没有准确的翻译)用于后续的处理，如何把文本处理成token呢？有一系列的方法，基本思想是构建一个词表通过词表一一映射进行分词，但如何构建合适的词表呢？下面以下以分词粒度为角度进行技术区分。 简单来说分词就是将文本句子通过一个词表映射为一串数字，词表里面是一个">
+<meta property="og:type" content="article">
+<meta property="og:title" content="分词方法">
+<meta property="og:url" content="http://example.com/2024/07/10/multimodal/%E5%88%86%E8%AF%8D%E6%96%B9%E6%B3%95/index.html">
+<meta property="og:site_name" content="AIrainday">
+<meta property="og:description" content="Tokenization（分词） 在自然语言处理(NLP)的任务中是最基本的一步，把文本内容处理为最小基本单元即token(标记，令牌，词元，没有准确的翻译)用于后续的处理，如何把文本处理成token呢？有一系列的方法，基本思想是构建一个词表通过词表一一映射进行分词，但如何构建合适的词表呢？下面以下以分词粒度为角度进行技术区分。 简单来说分词就是将文本句子通过一个词表映射为一串数字，词表里面是一个">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-07-10T07:23:16.000Z">
+<meta property="article:modified_time" content="2024-07-10T13:04:49.243Z">
+<meta property="article:author" content="AIrainday">
+<meta property="article:tag" content="multimodal">
+<meta property="article:tag" content="分词方法">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>分词方法 - AIrainday</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/cloudedGlass.css">
+<link rel="stylesheet" href="/css/selection.css">
+<link rel="stylesheet" href="/css/scrollAnimation.css">
+<link rel="stylesheet" href="https://cdn.staticfile.org/lxgw-wenkai-screen-webfont/1.7.0/style.min.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":40,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":false,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"whA7rfxiLejveyKSnTVJcE67-MdYXbMMI","app_key":"yXRvXVt4CzAiXMxTL0XK9qES","server_url":"https://shuoshuo.rainblog.run","path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body><!-- hexo injector body_begin start --><div id="web_bg"></div><!-- hexo injector body_begin end -->
+  
+
+  <header>
+    
+
+
+<div class="header-inner" style="height: 100vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>AIrainday</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-books"></i>
+                <span>文章</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/archives/" target="_self">
+                    <i class="iconfont icon-archive-fill"></i>
+                    <span>归档</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/categories/" target="_self">
+                    <i class="iconfont icon-category-fill"></i>
+                    <span>分类</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/tags/" target="_self">
+                    <i class="iconfont icon-tags-fill"></i>
+                    <span>标签</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/shuoshuo" target="_self">
+                <i class="iconfont icon-note"></i>
+                <span>语录</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  <!-- 
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="分词方法"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-07-10 15:23" pubdate>
+          2024年7月10日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          7.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          63 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+ -->
+  
+
+<div id="banner" class="banner" data-title="value" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="分词方法"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-07-10 15:23" pubdate>
+          2024年7月10日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          7.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          63 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+<script>
+  function getRandomNumber(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+var randomNum = getRandomNumber(0, 3).toString();
+
+var img_names = document.getElementById('banner').getAttribute('data-title');
+
+var banner_img = "/img/rain-random-bg/0" + randomNum + ".jpg";
+document.getElementById('banner').removeAttribute('style')
+
+document
+  .querySelector('#web_bg')
+  .setAttribute('style', `background: url('${banner_img}'); position: fixed; width: 100%;height: 100%; z-index: -1; background-size: cover;`);
+  
+document
+  .querySelector("#banner .mask")
+  .setAttribute('style', 'background-color:rgba(0,0,0,0)')
+
+</script>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar category-bar" style="margin-right: -1rem">
+    
+
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="multimodal"
+        id="heading-d6fa5adbdf3a083906993078ec4b951d" role="tab" data-toggle="collapse" href="#collapse-d6fa5adbdf3a083906993078ec4b951d"
+        aria-expanded="true"
+      >
+        multimodal
+        <span class="list-group-count">(9)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-d6fa5adbdf3a083906993078ec4b951d"
+           role="tabpanel" aria-labelledby="heading-d6fa5adbdf3a083906993078ec4b951d">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2024/07/10/multimodal/InterVL/" title="InterVL"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">InterVL</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2024/07/10/multimodal/M2Encoder/" title="M2Encoder"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">M2Encoder</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2024/07/10/multimodal/beit3/" title="beit3"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">beit3</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2024/07/10/multimodal/clip/" title="clip"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">clip</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2024/07/10/multimodal/cn-clip/" title="cn-clip"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">cn-clip</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2024/07/10/multimodal/%E5%88%86%E8%AF%8D%E6%96%B9%E6%B3%95/" title="分词方法"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">分词方法</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2024/07/10/multimodal/%E5%A4%9A%E6%A8%A1%E6%80%81%E6%A8%A1%E5%9E%8B%E5%BE%AE%E8%B0%83/" title="多模态微调"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">多模态微调</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2024/07/10/multimodal/%E6%95%B0%E6%8D%AE%E9%9B%86/" title="多模态数据集"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">多模态数据集</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2024/07/10/multimodal/%E8%AF%84%E4%BB%B7%E6%8C%87%E6%A0%87/" title="多模态评价指标"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">多模态评价指标</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+</div>
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">分词方法</h1>
+            
+              <p id="updated-time" class="note note-info" style="">
+                
+                  
+                    本文最后更新于 2024年7月10日 晚上
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <p>Tokenization（分词） 在自然语言处理(NLP)的任务中是最基本的一步，<strong>把文本内容处理为最小基本单元即token</strong>(标记，令牌，词元，没有准确的翻译)用于后续的处理，如何把文本处理成token呢？有一系列的方法，基本思想是<strong>构建一个词表通过词表一一映射进行分词</strong>，但如何构建合适的词表呢？下面以下以<strong>分词粒度为角度</strong>进行技术区分。</p>
+<p>简单来说分词就是将文本句子通过一个词表映射为一串数字，词表里面是一个个词元-数字对。</p>
+<h2 id="1-word（词）粒度"><a href="#1-word（词）粒度" class="headerlink" title="1.word（词）粒度"></a>1.word（词）粒度</h2><p>在英文语系中，word（词）级别分词实现很简单，因为有天然的分隔符。 在中文里面word（词）粒度，需要一些分词工具比如jieba，以下是中文和英文的例子：</p>
+<figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs gherkin">中文句子：我喜欢看电影和读书。<br>分词结果：我 |<span class="hljs-string"> 喜欢 </span>|<span class="hljs-string"> 看 </span>|<span class="hljs-string"> 电影 </span>|<span class="hljs-string"> 和 </span>|<span class="hljs-string"> 读书。</span><br><span class="hljs-string">英文句子：I enjoy watching movies and reading books.</span><br><span class="hljs-string">分词结果：I </span>|<span class="hljs-string"> enjoy </span>|<span class="hljs-string"> watching </span>|<span class="hljs-string"> movies </span>|<span class="hljs-string"> and </span>|<span class="hljs-string"> reading </span>|<span class="hljs-string"> books.</span><br></code></pre></td></tr></table></figure>
+
+<p>word（词）粒度的优点有：</p>
+<ul>
+<li><strong>语义明确</strong>：以词为单位进行分词可以更好地保留每个词的语义，使得文本在后续处理中能够更准确地表达含义。</li>
+<li><strong>上下文理解</strong>：以词为粒度进行分词有助于保留词语之间的关联性和上下文信息，从而在语义分析和理解时能够更好地捕捉句子的意图。</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li><strong>长尾效应和稀有词问题</strong>： 词表可能变得巨大，包含很多不常见的词汇，增加存储和训练成本，稀有词的训练数据有限，难以获得准确的表示。</li>
+<li><strong>OOV（Out-of-Vocabulary）</strong>： 词粒度分词模型只能使用词表中的词来进行处理，无法处理词表之外的词汇，这就是所谓的OOV问题。</li>
+<li><strong>形态关系和词缀关系</strong>： 无法捕捉同一词的不同形态，也无法有效学习词缀在不同词汇之间的共通性，限制了模型的语言理解能力，比如love和loves在word（词）粒度的词表中将会是两个词。</li>
+</ul>
+<h2 id="2-char（字符）粒度"><a href="#2-char（字符）粒度" class="headerlink" title="2.char（字符）粒度"></a>2.char（字符）粒度</h2><p>以字符为单位进行分词，即将文本拆分成一个个单独的字符作为最小基本单元，这种字符粒度的分词方法适用于多种语言，无论是英文、中文还是其他不同语言，都能够一致地使用字符粒度进行处理，因为英文就26个字母以及其他的一些符号，中文常见字就6000个左右。</p>
+<figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs gherkin">中文句子：我喜欢看电影和读书。<br>分词结果：我 |<span class="hljs-string"> 喜 </span>|<span class="hljs-string"> 欢 </span>|<span class="hljs-string"> 看 </span>|<span class="hljs-string"> 电 </span>|<span class="hljs-string"> 影 </span>|<span class="hljs-string"> 和 </span>|<span class="hljs-string"> 读 </span>|<span class="hljs-string"> 书 </span>|<span class="hljs-string"> 。</span><br><span class="hljs-string"></span><br><span class="hljs-string">英文句子：I enjoy watching movies and reading books.</span><br><span class="hljs-string">分词结果：I </span>|<span class="hljs-string">   </span>|<span class="hljs-string"> e </span>|<span class="hljs-string"> n </span>|<span class="hljs-string"> j </span>|<span class="hljs-string"> o </span>|<span class="hljs-string"> y </span>|<span class="hljs-string">   </span>|<span class="hljs-string"> w </span>|<span class="hljs-string"> a </span>|<span class="hljs-string"> t </span>|<span class="hljs-string"> c </span>|<span class="hljs-string"> h </span>|<span class="hljs-string"> i </span>|<span class="hljs-string"> n </span>|<span class="hljs-string"> g </span>|<span class="hljs-string">   </span>|<span class="hljs-string"> m </span>|<span class="hljs-string"> o </span>|<span class="hljs-string"> v </span>|<span class="hljs-string"> i </span>|<span class="hljs-string"> e </span>|<span class="hljs-string"> s </span>|<span class="hljs-string">   </span>|<span class="hljs-string"> a </span>|<span class="hljs-string"> n </span>|<span class="hljs-string"> d </span>|<span class="hljs-string">   </span>|<span class="hljs-string"> r </span>|<span class="hljs-string"> e </span>|<span class="hljs-string"> a </span>|<span class="hljs-string"> d </span>|<span class="hljs-string"> i </span>|<span class="hljs-string"> n </span>|<span class="hljs-string"> g </span>|<span class="hljs-string">   </span>|<span class="hljs-string"> b </span>|<span class="hljs-string"> o </span>|<span class="hljs-string"> o </span>|<span class="hljs-string"> k </span>|<span class="hljs-string"> s </span>|<span class="hljs-string"> .</span><br></code></pre></td></tr></table></figure>
+
+<p>char（字符）粒度的优点有：</p>
+<ul>
+<li><strong>统一处理方式</strong>：字符粒度分词方法适用于不同语言，无需针对每种语言设计不同的分词规则或工具，具有通用性。</li>
+<li><strong>解决OOV问题</strong>：由于字符粒度分词可以处理任何字符，无需维护词表，因此可以很好地处理一些新创词汇、专有名词等问题。</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li><strong>语义信息不明确</strong>：字符粒度分词无法直接表达词的语义，可能导致在一些语义分析任务中效果较差。</li>
+<li><strong>处理效率低</strong>：由于文本被拆分为字符，处理的粒度较小，增加后续处理的计算成本和时间。</li>
+</ul>
+<h2 id="3-subword（子词）粒度"><a href="#3-subword（子词）粒度" class="headerlink" title="3.subword（子词）粒度"></a>3.subword（子词）粒度</h2><p>在很多情况下，既不希望将文本切分成单独的词（太大），也不想将其切分成单个字符（太小），而是希望得到介于词和字符之间的子词单元。这就引入了 subword（子词）粒度的分词方法，常见的子词算法有<em>BPE、BBPE、Unigram、WordPiece、SentencePiece</em>等</p>
+<h3 id="3-1-WordPiece"><a href="#3-1-WordPiece" class="headerlink" title="3.1 WordPiece"></a>3.1 WordPiece</h3><p>WordPiece核心思想是将单词拆分成多个前缀符号（比如BERT中的##）最小单元，再通过子词合并规则将最小单元进行合并为子词级别。例如对于单词”word”，拆分如下：</p>
+<p>然后通过合并规则进行合并，从而循环迭代构建出一个词表，以下是核心步骤：</p>
+<ol>
+<li>计算初始词表：通过训练语料获得或者最初的英文中26个字母加上各种符号以及常见中文字符，这些作为初始词表。</li>
+<li>计算合并分数：对训练语料拆分的多个子词单元通过合拼规则计算合并分数。</li>
+<li>合并分数最高的子词对：选择分数最高的子词对，将它们合并成一个新的子词单元，并更新词表。</li>
+<li>重复合并步骤：不断重复步骤 2 和步骤 3，直到达到预定的词表大小、合并次数，或者直到不再有有意义的合并（即，进一步合并不会显著提高词表的效益）。</li>
+<li>分词：使用最终得到的词汇表对文本进行分词。</li>
+</ol>
+<p>简单举例：</p>
+<p>我们有以下的训练语料中的样例，括号中第2位为在训练语料中出现的频率：</p>
+<figure class="highlight clojure"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs clojure">(<span class="hljs-string">&quot;hug&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-number">10</span>)<span class="hljs-punctuation">,</span> (<span class="hljs-string">&quot;pug&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-number">5</span>)<span class="hljs-punctuation">,</span> (<span class="hljs-string">&quot;pun&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-number">12</span>)<span class="hljs-punctuation">,</span> (<span class="hljs-string">&quot;bun&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-number">4</span>)<span class="hljs-punctuation">,</span> (<span class="hljs-string">&quot;hugs&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-number">5</span>)<br></code></pre></td></tr></table></figure>
+
+<p>我们对其进行拆分为带前缀的形式：</p>
+<figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs livescript">(<span class="hljs-string">&quot;h&quot;</span> <span class="hljs-string">&quot;#<span class="hljs-subst">#u</span>&quot;</span> <span class="hljs-string">&quot;#<span class="hljs-subst">#g</span>&quot;</span>, <span class="hljs-number">10</span>), (<span class="hljs-string">&quot;p&quot;</span> <span class="hljs-string">&quot;#<span class="hljs-subst">#u</span>&quot;</span> <span class="hljs-string">&quot;#<span class="hljs-subst">#g</span>&quot;</span>, <span class="hljs-number">5</span>), (<span class="hljs-string">&quot;p&quot;</span> <span class="hljs-string">&quot;#<span class="hljs-subst">#u</span>&quot;</span> <span class="hljs-string">&quot;#<span class="hljs-subst">#n</span>&quot;</span>, <span class="hljs-number">12</span>), (<span class="hljs-string">&quot;b&quot;</span> <span class="hljs-string">&quot;#<span class="hljs-subst">#u</span>&quot;</span> <span class="hljs-string">&quot;#<span class="hljs-subst">#n</span>&quot;</span>, <span class="hljs-number">4</span>), (<span class="hljs-string">&quot;h&quot;</span> <span class="hljs-string">&quot;#<span class="hljs-subst">#u</span>&quot;</span> <span class="hljs-string">&quot;#<span class="hljs-subst">#g</span>&quot;</span> <span class="hljs-string">&quot;#<span class="hljs-subst">#s</span>&quot;</span>, <span class="hljs-number">5</span>)<br></code></pre></td></tr></table></figure>
+
+<p>所以这些样例的初始词表将会是：</p>
+<figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs livescript">[<span class="hljs-string">&quot;b&quot;</span>, <span class="hljs-string">&quot;h&quot;</span>, <span class="hljs-string">&quot;p&quot;</span>, <span class="hljs-string">&quot;#<span class="hljs-subst">#g</span>&quot;</span>, <span class="hljs-string">&quot;#<span class="hljs-subst">#n</span>&quot;</span>, <span class="hljs-string">&quot;#<span class="hljs-subst">#s</span>&quot;</span>, <span class="hljs-string">&quot;#<span class="hljs-subst">#u</span>&quot;</span>]<br></code></pre></td></tr></table></figure>
+
+<p>接下来重要的一步进行计算合并分数，也称作互信息（信息论中衡量两个变量之间的关联程度），简单来说就是以下公式来计算</p>
+<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs abnf"><span class="hljs-attribute">score</span><span class="hljs-operator">=</span>(freq_of_pair)/(freq_of_first_element×freq_of_second_element)<br>分数 <span class="hljs-operator">=</span> 合并pair候选的频率 / (第一个元素的频率 × 第二个元素的频率)<br></code></pre></td></tr></table></figure>
+
+<p>对于上述样例中这个pair(“##u”, “##g”)出现的频率是最高的20次，但是”##u”出现的频率是36次， “##g”出现的频率是20次，所以这个pair(“##u”, “##g”)的分数是(20)&#x2F;(36<em>20) &#x3D; 1&#x2F;36，同理计算这个pair(“##g”, “##s”)的分数为(5)&#x2F;(20</em>5) &#x3D; 1&#x2F;20，所以最先合并的pair是(“##g”, “##s”)→(“##gs”)。此时词表和拆分后的的频率将变成以下：</p>
+<figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs livescript">Vocabulary: [<span class="hljs-string">&quot;b&quot;</span>, <span class="hljs-string">&quot;h&quot;</span>, <span class="hljs-string">&quot;p&quot;</span>, <span class="hljs-string">&quot;#<span class="hljs-subst">#g</span>&quot;</span>, <span class="hljs-string">&quot;#<span class="hljs-subst">#n</span>&quot;</span>, <span class="hljs-string">&quot;#<span class="hljs-subst">#s</span>&quot;</span>, <span class="hljs-string">&quot;#<span class="hljs-subst">#u</span>&quot;</span>, <span class="hljs-string">&quot;#<span class="hljs-subst">#gs</span>&quot;</span>]<br>Corpus: (<span class="hljs-string">&quot;h&quot;</span> <span class="hljs-string">&quot;#<span class="hljs-subst">#u</span>&quot;</span> <span class="hljs-string">&quot;#<span class="hljs-subst">#g</span>&quot;</span>, <span class="hljs-number">10</span>), (<span class="hljs-string">&quot;p&quot;</span> <span class="hljs-string">&quot;#<span class="hljs-subst">#u</span>&quot;</span> <span class="hljs-string">&quot;#<span class="hljs-subst">#g</span>&quot;</span>, <span class="hljs-number">5</span>), (<span class="hljs-string">&quot;p&quot;</span> <span class="hljs-string">&quot;#<span class="hljs-subst">#u</span>&quot;</span> <span class="hljs-string">&quot;#<span class="hljs-subst">#n</span>&quot;</span>, <span class="hljs-number">12</span>), (<span class="hljs-string">&quot;b&quot;</span> <span class="hljs-string">&quot;#<span class="hljs-subst">#u</span>&quot;</span> <span class="hljs-string">&quot;#<span class="hljs-subst">#n</span>&quot;</span>, <span class="hljs-number">4</span>), (<span class="hljs-string">&quot;h&quot;</span> <span class="hljs-string">&quot;#<span class="hljs-subst">#u</span>&quot;</span> <span class="hljs-string">&quot;#<span class="hljs-subst">#gs</span>&quot;</span>, <span class="hljs-number">5</span>)<br></code></pre></td></tr></table></figure>
+
+<p>重复上述的操作，直到达到你想要的词表的大小</p>
+<figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs livescript">Vocabulary: [<span class="hljs-string">&quot;b&quot;</span>, <span class="hljs-string">&quot;h&quot;</span>, <span class="hljs-string">&quot;p&quot;</span>, <span class="hljs-string">&quot;#<span class="hljs-subst">#g</span>&quot;</span>, <span class="hljs-string">&quot;#<span class="hljs-subst">#n</span>&quot;</span>, <span class="hljs-string">&quot;#<span class="hljs-subst">#s</span>&quot;</span>, <span class="hljs-string">&quot;#<span class="hljs-subst">#u</span>&quot;</span>, <span class="hljs-string">&quot;#<span class="hljs-subst">#gs</span>&quot;</span>, <span class="hljs-string">&quot;hu&quot;</span>, <span class="hljs-string">&quot;hug&quot;</span>]<br>Corpus: (<span class="hljs-string">&quot;hug&quot;</span>, <span class="hljs-number">10</span>), (<span class="hljs-string">&quot;p&quot;</span> <span class="hljs-string">&quot;#<span class="hljs-subst">#u</span>&quot;</span> <span class="hljs-string">&quot;#<span class="hljs-subst">#g</span>&quot;</span>, <span class="hljs-number">5</span>), (<span class="hljs-string">&quot;p&quot;</span> <span class="hljs-string">&quot;#<span class="hljs-subst">#u</span>&quot;</span> <span class="hljs-string">&quot;#<span class="hljs-subst">#n</span>&quot;</span>, <span class="hljs-number">12</span>), (<span class="hljs-string">&quot;b&quot;</span> <span class="hljs-string">&quot;#<span class="hljs-subst">#u</span>&quot;</span> <span class="hljs-string">&quot;#<span class="hljs-subst">#n</span>&quot;</span>, <span class="hljs-number">4</span>), (<span class="hljs-string">&quot;hu&quot;</span> <span class="hljs-string">&quot;#<span class="hljs-subst">#gs</span>&quot;</span>, <span class="hljs-number">5</span>)<br></code></pre></td></tr></table></figure>
+
+<p>代码实现:</p>
+<p>用一些包含中英文的文本作为训练语料，因为英文有天然的分隔符，所以在这个例子中，中文已经进行了分词：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-attr">sentences</span> = [<br>    <span class="hljs-string">&quot;我&quot;</span>,<br>    <span class="hljs-string">&quot;喜欢&quot;</span>,<br>    <span class="hljs-string">&quot;吃&quot;</span>,<br>    <span class="hljs-string">&quot;苹果&quot;</span>,<br>    <span class="hljs-string">&quot;他&quot;</span>,<br>    <span class="hljs-string">&quot;不&quot;</span>,<br>    <span class="hljs-string">&quot;喜欢&quot;</span>,<br>    <span class="hljs-string">&quot;吃&quot;</span>,<br>    <span class="hljs-string">&quot;苹果派&quot;</span>,<br>    <span class="hljs-string">&quot;I like to eat apples&quot;</span>,<br>    <span class="hljs-string">&quot;She has a cute cat&quot;</span>,<br>    <span class="hljs-string">&quot;you are very cute&quot;</span>,<br>    <span class="hljs-string">&quot;give you a hug&quot;</span>,<br>]<br></code></pre></td></tr></table></figure>
+
+<p>统计每个词出现的频率并初始化初始词表：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> collections <span class="hljs-keyword">import</span> defaultdict<br><span class="hljs-comment"># 构建频率统计</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">build_stats</span>(<span class="hljs-params">sentences</span>):<br>    stats = defaultdict(<span class="hljs-built_in">int</span>)<br>    <span class="hljs-keyword">for</span> sentence <span class="hljs-keyword">in</span> sentences:<br>        symbols = sentence.split()<br>        <span class="hljs-keyword">for</span> symbol <span class="hljs-keyword">in</span> symbols:<br>            stats[symbol] += <span class="hljs-number">1</span><br>    <span class="hljs-keyword">return</span> stats<br><br>stats = build_stats(sentences)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;stats:&quot;</span>, stats)<br><br>alphabet = []<br><span class="hljs-keyword">for</span> word <span class="hljs-keyword">in</span> stats.keys():<br>    <span class="hljs-keyword">if</span> word[<span class="hljs-number">0</span>] <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> alphabet:<br>        alphabet.append(word[<span class="hljs-number">0</span>])<br>    <span class="hljs-keyword">for</span> letter <span class="hljs-keyword">in</span> word[<span class="hljs-number">1</span>:]:<br>        <span class="hljs-keyword">if</span> <span class="hljs-string">f&quot;##<span class="hljs-subst">&#123;letter&#125;</span>&quot;</span> <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> alphabet:<br>            alphabet.append(<span class="hljs-string">f&quot;##<span class="hljs-subst">&#123;letter&#125;</span>&quot;</span>)<br><br>alphabet.sort()<br><span class="hljs-comment"># 初始词表</span><br>vocab = alphabet.copy()<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;alphabet:&quot;</span>, alphabet)<br><br><span class="hljs-comment"># 结果</span><br>stats: defaultdict(&lt;<span class="hljs-keyword">class</span> <span class="hljs-string">&#x27;int&#x27;</span>&gt;, &#123;<span class="hljs-string">&#x27;我&#x27;</span>: <span class="hljs-number">1</span>, <span class="hljs-string">&#x27;喜欢&#x27;</span>: <span class="hljs-number">2</span>, <span class="hljs-string">&#x27;吃&#x27;</span>: <span class="hljs-number">2</span>, <span class="hljs-string">&#x27;苹果&#x27;</span>: <span class="hljs-number">1</span>, <span class="hljs-string">&#x27;他&#x27;</span>: <span class="hljs-number">1</span>, <span class="hljs-string">&#x27;不&#x27;</span>: <span class="hljs-number">1</span>, <span class="hljs-string">&#x27;苹果派&#x27;</span>: <span class="hljs-number">1</span>, <span class="hljs-string">&#x27;I&#x27;</span>: <span class="hljs-number">1</span>, <span class="hljs-string">&#x27;like&#x27;</span>: <span class="hljs-number">1</span>, <span class="hljs-string">&#x27;to&#x27;</span>: <span class="hljs-number">1</span>, <span class="hljs-string">&#x27;eat&#x27;</span>: <span class="hljs-number">1</span>, <span class="hljs-string">&#x27;apples&#x27;</span>: <span class="hljs-number">1</span>, <span class="hljs-string">&#x27;She&#x27;</span>: <span class="hljs-number">1</span>, <span class="hljs-string">&#x27;has&#x27;</span>: <span class="hljs-number">1</span>, <span class="hljs-string">&#x27;a&#x27;</span>: <span class="hljs-number">2</span>, <span class="hljs-string">&#x27;cute&#x27;</span>: <span class="hljs-number">2</span>, <span class="hljs-string">&#x27;cat&#x27;</span>: <span class="hljs-number">1</span>, <span class="hljs-string">&#x27;you&#x27;</span>: <span class="hljs-number">2</span>, <span class="hljs-string">&#x27;are&#x27;</span>: <span class="hljs-number">1</span>, <span class="hljs-string">&#x27;very&#x27;</span>: <span class="hljs-number">1</span>, <span class="hljs-string">&#x27;give&#x27;</span>: <span class="hljs-number">1</span>, <span class="hljs-string">&#x27;hug&#x27;</span>: <span class="hljs-number">1</span>&#125;)<br><span class="hljs-comment"># 初始词表</span><br>alphabet: [<span class="hljs-string">&#x27;##a&#x27;</span>, <span class="hljs-string">&#x27;##e&#x27;</span>, <span class="hljs-string">&#x27;##g&#x27;</span>, <span class="hljs-string">&#x27;##h&#x27;</span>, <span class="hljs-string">&#x27;##i&#x27;</span>, <span class="hljs-string">&#x27;##k&#x27;</span>, <span class="hljs-string">&#x27;##l&#x27;</span>, <span class="hljs-string">&#x27;##o&#x27;</span>, <span class="hljs-string">&#x27;##p&#x27;</span>, <span class="hljs-string">&#x27;##r&#x27;</span>, <span class="hljs-string">&#x27;##s&#x27;</span>, <span class="hljs-string">&#x27;##t&#x27;</span>, <span class="hljs-string">&#x27;##u&#x27;</span>, <span class="hljs-string">&#x27;##v&#x27;</span>, <span class="hljs-string">&#x27;##y&#x27;</span>, <span class="hljs-string">&#x27;##果&#x27;</span>, <span class="hljs-string">&#x27;##欢&#x27;</span>, <span class="hljs-string">&#x27;##派&#x27;</span>, <span class="hljs-string">&#x27;I&#x27;</span>, <span class="hljs-string">&#x27;S&#x27;</span>, <span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;c&#x27;</span>, <span class="hljs-string">&#x27;e&#x27;</span>, <span class="hljs-string">&#x27;g&#x27;</span>, <span class="hljs-string">&#x27;h&#x27;</span>, <span class="hljs-string">&#x27;l&#x27;</span>, <span class="hljs-string">&#x27;t&#x27;</span>, <span class="hljs-string">&#x27;v&#x27;</span>, <span class="hljs-string">&#x27;y&#x27;</span>, <span class="hljs-string">&#x27;不&#x27;</span>, <span class="hljs-string">&#x27;他&#x27;</span>, <span class="hljs-string">&#x27;吃&#x27;</span>, <span class="hljs-string">&#x27;喜&#x27;</span>, <span class="hljs-string">&#x27;我&#x27;</span>, <span class="hljs-string">&#x27;苹&#x27;</span>]<br></code></pre></td></tr></table></figure>
+
+<p>根据初始词表拆分每个词：</p>
+<figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs prolog">splits = &#123;<br>    word: [c if i == <span class="hljs-number">0</span> else f<span class="hljs-string">&quot;##&#123;c&#125;&quot;</span> for i, c in enumerate(word)]<br>    for word in stats.keys()<br>&#125;<br>print(<span class="hljs-string">&quot;splits:&quot;</span>, splits)<br><br># 结果<br>splits: &#123;<span class="hljs-string">&#x27;我&#x27;</span>: [<span class="hljs-string">&#x27;我&#x27;</span>], <span class="hljs-string">&#x27;喜欢&#x27;</span>: [<span class="hljs-string">&#x27;喜&#x27;</span>, <span class="hljs-string">&#x27;##欢&#x27;</span>], <span class="hljs-string">&#x27;吃&#x27;</span>: [<span class="hljs-string">&#x27;吃&#x27;</span>], <span class="hljs-string">&#x27;苹果&#x27;</span>: [<span class="hljs-string">&#x27;苹&#x27;</span>, <span class="hljs-string">&#x27;##果&#x27;</span>], <span class="hljs-string">&#x27;他&#x27;</span>: [<span class="hljs-string">&#x27;他&#x27;</span>], <span class="hljs-string">&#x27;不&#x27;</span>: [<span class="hljs-string">&#x27;不&#x27;</span>], <span class="hljs-string">&#x27;苹果派&#x27;</span>: [<span class="hljs-string">&#x27;苹&#x27;</span>, <span class="hljs-string">&#x27;##果&#x27;</span>, <span class="hljs-string">&#x27;##派&#x27;</span>], <span class="hljs-string">&#x27;I&#x27;</span>: [<span class="hljs-string">&#x27;I&#x27;</span>], <span class="hljs-string">&#x27;like&#x27;</span>: [<span class="hljs-string">&#x27;l&#x27;</span>, <span class="hljs-string">&#x27;##i&#x27;</span>, <span class="hljs-string">&#x27;##k&#x27;</span>, <span class="hljs-string">&#x27;##e&#x27;</span>], <span class="hljs-string">&#x27;to&#x27;</span>: [<span class="hljs-string">&#x27;t&#x27;</span>, <span class="hljs-string">&#x27;##o&#x27;</span>], <span class="hljs-string">&#x27;eat&#x27;</span>: [<span class="hljs-string">&#x27;e&#x27;</span>, <span class="hljs-string">&#x27;##a&#x27;</span>, <span class="hljs-string">&#x27;##t&#x27;</span>], <span class="hljs-string">&#x27;apples&#x27;</span>: [<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;##p&#x27;</span>, <span class="hljs-string">&#x27;##p&#x27;</span>, <span class="hljs-string">&#x27;##l&#x27;</span>, <span class="hljs-string">&#x27;##e&#x27;</span>, <span class="hljs-string">&#x27;##s&#x27;</span>], <span class="hljs-string">&#x27;She&#x27;</span>: [<span class="hljs-string">&#x27;S&#x27;</span>, <span class="hljs-string">&#x27;##h&#x27;</span>, <span class="hljs-string">&#x27;##e&#x27;</span>], <span class="hljs-string">&#x27;has&#x27;</span>: [<span class="hljs-string">&#x27;h&#x27;</span>, <span class="hljs-string">&#x27;##a&#x27;</span>, <span class="hljs-string">&#x27;##s&#x27;</span>], <span class="hljs-string">&#x27;a&#x27;</span>: [<span class="hljs-string">&#x27;a&#x27;</span>], <span class="hljs-string">&#x27;cute&#x27;</span>: [<span class="hljs-string">&#x27;c&#x27;</span>, <span class="hljs-string">&#x27;##u&#x27;</span>, <span class="hljs-string">&#x27;##t&#x27;</span>, <span class="hljs-string">&#x27;##e&#x27;</span>], <span class="hljs-string">&#x27;cat&#x27;</span>: [<span class="hljs-string">&#x27;c&#x27;</span>, <span class="hljs-string">&#x27;##a&#x27;</span>, <span class="hljs-string">&#x27;##t&#x27;</span>], <span class="hljs-string">&#x27;you&#x27;</span>: [<span class="hljs-string">&#x27;y&#x27;</span>, <span class="hljs-string">&#x27;##o&#x27;</span>, <span class="hljs-string">&#x27;##u&#x27;</span>], <span class="hljs-string">&#x27;are&#x27;</span>: [<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;##r&#x27;</span>, <span class="hljs-string">&#x27;##e&#x27;</span>], <span class="hljs-string">&#x27;very&#x27;</span>: [<span class="hljs-string">&#x27;v&#x27;</span>, <span class="hljs-string">&#x27;##e&#x27;</span>, <span class="hljs-string">&#x27;##r&#x27;</span>, <span class="hljs-string">&#x27;##y&#x27;</span>], <span class="hljs-string">&#x27;give&#x27;</span>: [<span class="hljs-string">&#x27;g&#x27;</span>, <span class="hljs-string">&#x27;##i&#x27;</span>, <span class="hljs-string">&#x27;##v&#x27;</span>, <span class="hljs-string">&#x27;##e&#x27;</span>], <span class="hljs-string">&#x27;hug&#x27;</span>: [<span class="hljs-string">&#x27;h&#x27;</span>, <span class="hljs-string">&#x27;##u&#x27;</span>, <span class="hljs-string">&#x27;##g&#x27;</span>]&#125;<br></code></pre></td></tr></table></figure>
+
+<p>根据上述提到的计算互信息的分数公式进行计算：</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs vim">def compute_pair_scores(splits):<br>    letter_freqs = defaultdict(<span class="hljs-keyword">int</span>)<br>    pair_freqs = defaultdict(<span class="hljs-keyword">int</span>)<br>    <span class="hljs-keyword">for</span> word, freq in stats.<span class="hljs-built_in">items</span>():<br>        <span class="hljs-keyword">split</span> = splits[word]<br>        <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(<span class="hljs-keyword">split</span>) == <span class="hljs-number">1</span>:<br>            letter_freqs[<span class="hljs-keyword">split</span>[<span class="hljs-number">0</span>]] += freq<br>            <span class="hljs-keyword">continue</span><br>        <span class="hljs-keyword">for</span> i in <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(<span class="hljs-keyword">split</span>) - <span class="hljs-number">1</span>):<br>            pair = (<span class="hljs-keyword">split</span>[i], <span class="hljs-keyword">split</span>[i + <span class="hljs-number">1</span>])<br>            letter_freqs[<span class="hljs-keyword">split</span>[i]] += freq<br>            pair_freqs[pair] += freq<br>        letter_freqs[<span class="hljs-keyword">split</span>[-<span class="hljs-number">1</span>]] += freq<br><br>    scores = &#123;<br>        pair: freq / (letter_freqs[pair[<span class="hljs-number">0</span>]] * letter_freqs[pair[<span class="hljs-number">1</span>]])<br>        <span class="hljs-keyword">for</span> pair, freq in pair_freqs.<span class="hljs-built_in">items</span>()<br>    &#125;<br>    <span class="hljs-keyword">return</span> scores<br><br>pair_scores = compute_pair_scores(splits)<br><span class="hljs-keyword">for</span> i, key in enumerate(pair_scores.<span class="hljs-built_in">keys</span>()):<br>    <span class="hljs-keyword">print</span>(<span class="hljs-keyword">f</span><span class="hljs-string">&quot;&#123;key&#125;: &#123;pair_scores[key]&#125;&quot;</span>)<br>    <span class="hljs-keyword">if</span> i &gt;= <span class="hljs-number">5</span>:<br>        <span class="hljs-keyword">break</span><br></code></pre></td></tr></table></figure>
+
+<p>一些结果：</p>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs 1c">(&#x27;喜&#x27;, &#x27;##欢&#x27;): <span class="hljs-number">0.5</span><br>(&#x27;苹&#x27;, &#x27;##果&#x27;): <span class="hljs-number">0.5</span><br>(&#x27;##果&#x27;, &#x27;##派&#x27;): <span class="hljs-number">0.5</span><br>(&#x27;l&#x27;, &#x27;##i&#x27;): <span class="hljs-number">0.5</span><br>(&#x27;##i&#x27;, &#x27;##k&#x27;): <span class="hljs-number">0.5</span><br>(&#x27;##k&#x27;, &#x27;##e&#x27;): <span class="hljs-number">0.125</span><br></code></pre></td></tr></table></figure>
+
+<p>我们需要的是将分数最高的进行合并然后开始循环迭代，看一看分数最高的pair（子词对）：</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm"><span class="hljs-keyword">best_pair </span>= <span class="hljs-string">&quot;&quot;</span><br>max_score = None<br>for pair, <span class="hljs-keyword">score </span>in pair_scores.items():<br>    if max_score is None <span class="hljs-keyword">or </span>max_score &lt; <span class="hljs-keyword">score:</span><br><span class="hljs-keyword"></span>        <span class="hljs-keyword">best_pair </span>= pair<br>        max_score = <span class="hljs-keyword">score</span><br><span class="hljs-keyword"></span><br>print(<span class="hljs-keyword">best_pair, </span>max_score)<br><br><span class="hljs-comment"># 结果</span><br>(<span class="hljs-string">&#x27;S&#x27;</span>, <span class="hljs-string">&#x27;##h&#x27;</span>) <span class="hljs-number">1</span>.<span class="hljs-number">0</span><br></code></pre></td></tr></table></figure>
+
+<p>结果为(‘S’, ‘##h’) 1.0，所以最先合成的就是(‘S’, ‘##h’)→’##Sh’，合并的函数如下：</p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs livecodeserver">def merge_pair(<span class="hljs-keyword">a</span>, b, splits):<br>    <span class="hljs-keyword">for</span> <span class="hljs-built_in">word</span> <span class="hljs-keyword">in</span> stats:<br>        <span class="hljs-built_in">split</span> = splits[<span class="hljs-built_in">word</span>]<br>        <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(<span class="hljs-built_in">split</span>) == <span class="hljs-number">1</span>:<br>            continue<br>        i = <span class="hljs-number">0</span><br>        <span class="hljs-keyword">while</span> i &lt; <span class="hljs-built_in">len</span>(<span class="hljs-built_in">split</span>) - <span class="hljs-number">1</span>:<br>            <span class="hljs-keyword">if</span> <span class="hljs-built_in">split</span>[i] == <span class="hljs-keyword">a</span> <span class="hljs-keyword">and</span> <span class="hljs-built_in">split</span>[i + <span class="hljs-number">1</span>] == b:<br>                <span class="hljs-built_in">merge</span> = <span class="hljs-keyword">a</span> + b[<span class="hljs-number">2</span>:] <span class="hljs-keyword">if</span> b.startswith(<span class="hljs-string">&quot;##&quot;</span>) <span class="hljs-keyword">else</span> <span class="hljs-keyword">a</span> + b<br>                <span class="hljs-built_in">split</span> = <span class="hljs-built_in">split</span>[:i] + [<span class="hljs-built_in">merge</span>] + <span class="hljs-built_in">split</span>[i + <span class="hljs-number">2</span> :]<br>            <span class="hljs-keyword">else</span>:<br>                i += <span class="hljs-number">1</span><br>        splits[<span class="hljs-built_in">word</span>] = <span class="hljs-built_in">split</span><br>    <span class="hljs-literal">return</span> splits<br></code></pre></td></tr></table></figure>
+
+<p>最后就是一直进行循环迭代，直到vocab达到了我们想要的数量</p>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs haxe">vocab_size = <span class="hljs-number">50</span><br><span class="hljs-keyword">while</span> len(vocab) &lt; vocab_size:<span class="hljs-type"></span><br>    scores = compute_pair_scores(splits)<br>    best_pair, max_score = <span class="hljs-string">&quot;&quot;</span>, None<br>    <span class="hljs-keyword">for</span> pair, score <span class="hljs-keyword">in</span> scores.items():<span class="hljs-type"></span><br>        <span class="hljs-keyword">if</span> max_score <span class="hljs-keyword">is</span> None or max_score &lt; score:<span class="hljs-type"></span><br>            best_pair = pair<br>            max_score = score<br>    splits = merge_pair(*best_pair, splits)<br>    <span class="hljs-keyword">new</span><span class="hljs-type">_token</span> = (<br>        best_pair[<span class="hljs-number">0</span>] + best_pair[<span class="hljs-number">1</span>][<span class="hljs-number">2</span>:<span class="hljs-type"></span>]<br>        <span class="hljs-keyword">if</span> best_pair[<span class="hljs-number">1</span>].startswith(<span class="hljs-string">&quot;##&quot;</span>)<br>        <span class="hljs-keyword">else</span> best_pair[<span class="hljs-number">0</span>] + best_pair[<span class="hljs-number">1</span>]<br>    )<br>    vocab.append(<span class="hljs-keyword">new</span><span class="hljs-type">_token</span>)<br><br>print(<span class="hljs-string">&quot;vocab:&quot;</span>, vocab)<br><br><span class="hljs-meta"># 结果</span><br>vocab: <span class="hljs-type"></span>[<span class="hljs-string">&#x27;##a&#x27;</span>, <span class="hljs-string">&#x27;##e&#x27;</span>, <span class="hljs-string">&#x27;##g&#x27;</span>, <span class="hljs-string">&#x27;##h&#x27;</span>, <span class="hljs-string">&#x27;##i&#x27;</span>, <span class="hljs-string">&#x27;##k&#x27;</span>, <span class="hljs-string">&#x27;##l&#x27;</span>, <span class="hljs-string">&#x27;##o&#x27;</span>, <span class="hljs-string">&#x27;##p&#x27;</span>, <span class="hljs-string">&#x27;##r&#x27;</span>, <span class="hljs-string">&#x27;##s&#x27;</span>, <span class="hljs-string">&#x27;##t&#x27;</span>, <span class="hljs-string">&#x27;##u&#x27;</span>, <span class="hljs-string">&#x27;##v&#x27;</span>, <span class="hljs-string">&#x27;##y&#x27;</span>, <span class="hljs-string">&#x27;##果&#x27;</span>, <span class="hljs-string">&#x27;##欢&#x27;</span>, <span class="hljs-string">&#x27;##派&#x27;</span>, <span class="hljs-string">&#x27;I&#x27;</span>, <span class="hljs-string">&#x27;S&#x27;</span>, <span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;c&#x27;</span>, <span class="hljs-string">&#x27;e&#x27;</span>, <span class="hljs-string">&#x27;g&#x27;</span>, <span class="hljs-string">&#x27;h&#x27;</span>, <span class="hljs-string">&#x27;l&#x27;</span>, <span class="hljs-string">&#x27;t&#x27;</span>, <span class="hljs-string">&#x27;v&#x27;</span>, <span class="hljs-string">&#x27;y&#x27;</span>, <span class="hljs-string">&#x27;不&#x27;</span>, <span class="hljs-string">&#x27;他&#x27;</span>, <span class="hljs-string">&#x27;吃&#x27;</span>, <span class="hljs-string">&#x27;喜&#x27;</span>, <span class="hljs-string">&#x27;我&#x27;</span>, <span class="hljs-string">&#x27;苹&#x27;</span>, <span class="hljs-string">&#x27;Sh&#x27;</span>, <span class="hljs-string">&#x27;喜欢&#x27;</span>, <span class="hljs-string">&#x27;苹果&#x27;</span>, <span class="hljs-string">&#x27;苹果派&#x27;</span>, <span class="hljs-string">&#x27;li&#x27;</span>, <span class="hljs-string">&#x27;lik&#x27;</span>, <span class="hljs-string">&#x27;gi&#x27;</span>, <span class="hljs-string">&#x27;giv&#x27;</span>, <span class="hljs-string">&#x27;##pl&#x27;</span>, <span class="hljs-string">&#x27;##ppl&#x27;</span>, <span class="hljs-string">&#x27;##ry&#x27;</span>, <span class="hljs-string">&#x27;to&#x27;</span>, <span class="hljs-string">&#x27;yo&#x27;</span>, <span class="hljs-string">&#x27;ea&#x27;</span>, <span class="hljs-string">&#x27;eat&#x27;</span>]<br></code></pre></td></tr></table></figure>
+
+<p>上述就是WordPiece分词方法的代码实现，一般来说最后会在词表中加上一些特殊词汇，以及英文中26个字母加上各种符号以及常见中文字符，不过如果训练语料比较大以及词表比较大那这些应该也是已经包括了，只需要添加特殊词汇：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-attr">all_vocab</span> = vocab + [<span class="hljs-string">&quot;[PAD]&quot;</span>, <span class="hljs-string">&quot;[UNK]&quot;</span>, <span class="hljs-string">&quot;[CLS]&quot;</span>, <span class="hljs-string">&quot;[SEP]&quot;</span>, <span class="hljs-string">&quot;[MASK]&quot;</span>] + other_alphabet<br></code></pre></td></tr></table></figure>
+
+<p>在大语言模型时代，最常用的分词方法是Byte-Pair Encoding (BPE)和Byte-level BPE(BBPE)，Byte-Pair Encoding (BPE)最初是一种文本压缩算法在15年被引入到NLP用于分词，在训练 GPT 时被 OpenAI 用于tokenization，后续好多模型GPT，RoBERTa等都采用了这种分词方法。Byte-level BPE(BBPE)是于19年在BPE的基础上提出以Byte-level(字节)为粒度的分词方法，目前GPT2，BLOOM，Llama，Falcon等采用的是该分词方法。</p>
+<h3 id="3-2-Byte-Pair-Encoding-BPE"><a href="#3-2-Byte-Pair-Encoding-BPE" class="headerlink" title="3.2 Byte-Pair Encoding (BPE)"></a>3.2 Byte-Pair Encoding (BPE)</h3><p>Byte-Pair Encoding (BPE)核心思想是逐步合并出现频率最高的子词对而不是像Wordpiece计算合并分数，从而构建出一个词汇表，以下是核心步骤：</p>
+<ol>
+<li>计算初始词表：通过训练语料获得或者最初的英文中26个字母加上各种符号以及常见中文字符，这些作为初始词表。</li>
+<li>构建频率统计：统计所有子词单元对（两个连续的子词）在文本中的出现频率。</li>
+<li>合并频率最高的子词对：选择出现频率最高的子词对，将它们合并成一个新的子词单元，并更新词汇表。</li>
+<li>重复合并步骤：不断重复步骤 2 和步骤 3，直到达到预定的词汇表大小、合并次数，或者直到不再有有意义的合并（即，进一步合并不会显著提高词汇表的效益）。</li>
+<li>分词：使用最终得到的词汇表对文本进行分词。</li>
+</ol>
+<p>简单的代码实现：</p>
+<p>用一些包含中英文的文本作为训练语料和上面相同，因为英文有天然的分隔符，所以在这个例子中，中文已经进行了分词：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-attr">sentences</span> = [<br>    <span class="hljs-string">&quot;我&quot;</span>,<br>    <span class="hljs-string">&quot;喜欢&quot;</span>,<br>    <span class="hljs-string">&quot;吃&quot;</span>,<br>    <span class="hljs-string">&quot;苹果&quot;</span>,<br>    <span class="hljs-string">&quot;他&quot;</span>,<br>    <span class="hljs-string">&quot;不&quot;</span>,<br>    <span class="hljs-string">&quot;喜欢&quot;</span>,<br>    <span class="hljs-string">&quot;吃&quot;</span>,<br>    <span class="hljs-string">&quot;苹果派&quot;</span>,<br>    <span class="hljs-string">&quot;I like to eat apples&quot;</span>,<br>    <span class="hljs-string">&quot;She has a cute cat&quot;</span>,<br>    <span class="hljs-string">&quot;you are very cute&quot;</span>,<br>    <span class="hljs-string">&quot;give you a hug&quot;</span>,<br>]<br></code></pre></td></tr></table></figure>
+
+<p>统计每个词出现的频率并初始化初始词表：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 构建频率统计</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">build_stats</span>(<span class="hljs-params">sentences</span>):<br>    stats = defaultdict(<span class="hljs-built_in">int</span>)<br>    <span class="hljs-keyword">for</span> sentence <span class="hljs-keyword">in</span> sentences:<br>        symbols = sentence.split()<br>        <span class="hljs-keyword">for</span> symbol <span class="hljs-keyword">in</span> symbols:<br>            stats[symbol] += <span class="hljs-number">1</span><br>    <span class="hljs-keyword">return</span> stats<br><br>stats = build_stats(sentences)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;stats:&quot;</span>, stats)<br><br>alphabet = []<br><span class="hljs-keyword">for</span> word <span class="hljs-keyword">in</span> stats.keys():<br>    <span class="hljs-keyword">for</span> letter <span class="hljs-keyword">in</span> word:<br>        <span class="hljs-keyword">if</span> letter <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> alphabet:<br>            alphabet.append(letter)<br>alphabet.sort()<br><br><span class="hljs-comment"># 初始词表</span><br>vocab = alphabet.copy()<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;alphabet:&quot;</span>, alphabet)<br><br><span class="hljs-comment"># 结果</span><br>stats: defaultdict(&lt;<span class="hljs-keyword">class</span> <span class="hljs-string">&#x27;int&#x27;</span>&gt;, &#123;<span class="hljs-string">&#x27;我&#x27;</span>: <span class="hljs-number">1</span>, <span class="hljs-string">&#x27;喜欢&#x27;</span>: <span class="hljs-number">2</span>, <span class="hljs-string">&#x27;吃&#x27;</span>: <span class="hljs-number">2</span>, <span class="hljs-string">&#x27;苹果&#x27;</span>: <span class="hljs-number">1</span>, <span class="hljs-string">&#x27;他&#x27;</span>: <span class="hljs-number">1</span>, <span class="hljs-string">&#x27;不&#x27;</span>: <span class="hljs-number">1</span>, <span class="hljs-string">&#x27;苹果派&#x27;</span>: <span class="hljs-number">1</span>, <span class="hljs-string">&#x27;I&#x27;</span>: <span class="hljs-number">1</span>, <span class="hljs-string">&#x27;like&#x27;</span>: <span class="hljs-number">1</span>, <span class="hljs-string">&#x27;to&#x27;</span>: <span class="hljs-number">1</span>, <span class="hljs-string">&#x27;eat&#x27;</span>: <span class="hljs-number">1</span>, <span class="hljs-string">&#x27;apples&#x27;</span>: <span class="hljs-number">1</span>, <span class="hljs-string">&#x27;She&#x27;</span>: <span class="hljs-number">1</span>, <span class="hljs-string">&#x27;has&#x27;</span>: <span class="hljs-number">1</span>, <span class="hljs-string">&#x27;a&#x27;</span>: <span class="hljs-number">2</span>, <span class="hljs-string">&#x27;cute&#x27;</span>: <span class="hljs-number">2</span>, <span class="hljs-string">&#x27;cat&#x27;</span>: <span class="hljs-number">1</span>, <span class="hljs-string">&#x27;you&#x27;</span>: <span class="hljs-number">2</span>, <span class="hljs-string">&#x27;are&#x27;</span>: <span class="hljs-number">1</span>, <span class="hljs-string">&#x27;very&#x27;</span>: <span class="hljs-number">1</span>, <span class="hljs-string">&#x27;give&#x27;</span>: <span class="hljs-number">1</span>, <span class="hljs-string">&#x27;hug&#x27;</span>: <span class="hljs-number">1</span>&#125;)<br><span class="hljs-comment"># 初始词表</span><br>alphabet: [<span class="hljs-string">&#x27;I&#x27;</span>, <span class="hljs-string">&#x27;S&#x27;</span>, <span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;c&#x27;</span>, <span class="hljs-string">&#x27;e&#x27;</span>, <span class="hljs-string">&#x27;g&#x27;</span>, <span class="hljs-string">&#x27;h&#x27;</span>, <span class="hljs-string">&#x27;i&#x27;</span>, <span class="hljs-string">&#x27;k&#x27;</span>, <span class="hljs-string">&#x27;l&#x27;</span>, <span class="hljs-string">&#x27;o&#x27;</span>, <span class="hljs-string">&#x27;p&#x27;</span>, <span class="hljs-string">&#x27;r&#x27;</span>, <span class="hljs-string">&#x27;s&#x27;</span>, <span class="hljs-string">&#x27;t&#x27;</span>, <span class="hljs-string">&#x27;u&#x27;</span>, <span class="hljs-string">&#x27;v&#x27;</span>, <span class="hljs-string">&#x27;y&#x27;</span>, <span class="hljs-string">&#x27;不&#x27;</span>, <span class="hljs-string">&#x27;他&#x27;</span>, <span class="hljs-string">&#x27;吃&#x27;</span>, <span class="hljs-string">&#x27;喜&#x27;</span>, <span class="hljs-string">&#x27;我&#x27;</span>, <span class="hljs-string">&#x27;果&#x27;</span>, <span class="hljs-string">&#x27;欢&#x27;</span>, <span class="hljs-string">&#x27;派&#x27;</span>, <span class="hljs-string">&#x27;苹&#x27;</span>]<br></code></pre></td></tr></table></figure>
+
+<p>根据初始词表拆分每个词，计算左右pair(子词对)出现的频率</p>
+<figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs prolog">splits = &#123;word: [c for c in word] for word in stats.keys()&#125;<br>print(<span class="hljs-string">&quot;splits:&quot;</span>, splits)<br><br>def compute_pair_freqs(splits):<br>    pair_freqs = defaultdict(int)<br>    for word, freq in stats.items():<br>        split = splits[word]<br>        if len(split) == <span class="hljs-number">1</span>:<br>            continue<br>        for i in range(len(split) - <span class="hljs-number">1</span>):<br>            pair = (split[i], split[i + <span class="hljs-number">1</span>])<br>            pair_freqs[pair] += freq<br>    return pair_freqs<br>pair_freqs = compute_pair_freqs(splits)<br><br>for i, key in enumerate(pair_freqs.keys()):<br>    print(f<span class="hljs-string">&quot;&#123;key&#125;: &#123;pair_freqs[key]&#125;&quot;</span>)<br>    if i &gt;= <span class="hljs-number">5</span>:<br>        break<br><br># 结果<br>splits: &#123;<span class="hljs-string">&#x27;我&#x27;</span>: [<span class="hljs-string">&#x27;我&#x27;</span>], <span class="hljs-string">&#x27;喜欢&#x27;</span>: [<span class="hljs-string">&#x27;喜&#x27;</span>, <span class="hljs-string">&#x27;欢&#x27;</span>], <span class="hljs-string">&#x27;吃&#x27;</span>: [<span class="hljs-string">&#x27;吃&#x27;</span>], <span class="hljs-string">&#x27;苹果&#x27;</span>: [<span class="hljs-string">&#x27;苹&#x27;</span>, <span class="hljs-string">&#x27;果&#x27;</span>], <span class="hljs-string">&#x27;他&#x27;</span>: [<span class="hljs-string">&#x27;他&#x27;</span>], <span class="hljs-string">&#x27;不&#x27;</span>: [<span class="hljs-string">&#x27;不&#x27;</span>], <span class="hljs-string">&#x27;苹果派&#x27;</span>: [<span class="hljs-string">&#x27;苹&#x27;</span>, <span class="hljs-string">&#x27;果&#x27;</span>, <span class="hljs-string">&#x27;派&#x27;</span>], <span class="hljs-string">&#x27;I&#x27;</span>: [<span class="hljs-string">&#x27;I&#x27;</span>], <span class="hljs-string">&#x27;like&#x27;</span>: [<span class="hljs-string">&#x27;l&#x27;</span>, <span class="hljs-string">&#x27;i&#x27;</span>, <span class="hljs-string">&#x27;k&#x27;</span>, <span class="hljs-string">&#x27;e&#x27;</span>], <span class="hljs-string">&#x27;to&#x27;</span>: [<span class="hljs-string">&#x27;t&#x27;</span>, <span class="hljs-string">&#x27;o&#x27;</span>], <span class="hljs-string">&#x27;eat&#x27;</span>: [<span class="hljs-string">&#x27;e&#x27;</span>, <span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;t&#x27;</span>], <span class="hljs-string">&#x27;apples&#x27;</span>: [<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;p&#x27;</span>, <span class="hljs-string">&#x27;p&#x27;</span>, <span class="hljs-string">&#x27;l&#x27;</span>, <span class="hljs-string">&#x27;e&#x27;</span>, <span class="hljs-string">&#x27;s&#x27;</span>], <span class="hljs-string">&#x27;She&#x27;</span>: [<span class="hljs-string">&#x27;S&#x27;</span>, <span class="hljs-string">&#x27;h&#x27;</span>, <span class="hljs-string">&#x27;e&#x27;</span>], <span class="hljs-string">&#x27;has&#x27;</span>: [<span class="hljs-string">&#x27;h&#x27;</span>, <span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;s&#x27;</span>], <span class="hljs-string">&#x27;a&#x27;</span>: [<span class="hljs-string">&#x27;a&#x27;</span>], <span class="hljs-string">&#x27;cute&#x27;</span>: [<span class="hljs-string">&#x27;c&#x27;</span>, <span class="hljs-string">&#x27;u&#x27;</span>, <span class="hljs-string">&#x27;t&#x27;</span>, <span class="hljs-string">&#x27;e&#x27;</span>], <span class="hljs-string">&#x27;cat&#x27;</span>: [<span class="hljs-string">&#x27;c&#x27;</span>, <span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;t&#x27;</span>], <span class="hljs-string">&#x27;you&#x27;</span>: [<span class="hljs-string">&#x27;y&#x27;</span>, <span class="hljs-string">&#x27;o&#x27;</span>, <span class="hljs-string">&#x27;u&#x27;</span>], <span class="hljs-string">&#x27;are&#x27;</span>: [<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;r&#x27;</span>, <span class="hljs-string">&#x27;e&#x27;</span>], <span class="hljs-string">&#x27;very&#x27;</span>: [<span class="hljs-string">&#x27;v&#x27;</span>, <span class="hljs-string">&#x27;e&#x27;</span>, <span class="hljs-string">&#x27;r&#x27;</span>, <span class="hljs-string">&#x27;y&#x27;</span>], <span class="hljs-string">&#x27;give&#x27;</span>: [<span class="hljs-string">&#x27;g&#x27;</span>, <span class="hljs-string">&#x27;i&#x27;</span>, <span class="hljs-string">&#x27;v&#x27;</span>, <span class="hljs-string">&#x27;e&#x27;</span>], <span class="hljs-string">&#x27;hug&#x27;</span>: [<span class="hljs-string">&#x27;h&#x27;</span>, <span class="hljs-string">&#x27;u&#x27;</span>, <span class="hljs-string">&#x27;g&#x27;</span>]&#125;<br><br>(<span class="hljs-string">&#x27;喜&#x27;</span>, <span class="hljs-string">&#x27;欢&#x27;</span>): <span class="hljs-number">2</span><br>(<span class="hljs-string">&#x27;苹&#x27;</span>, <span class="hljs-string">&#x27;果&#x27;</span>): <span class="hljs-number">2</span><br>(<span class="hljs-string">&#x27;果&#x27;</span>, <span class="hljs-string">&#x27;派&#x27;</span>): <span class="hljs-number">1</span><br>(<span class="hljs-string">&#x27;l&#x27;</span>, <span class="hljs-string">&#x27;i&#x27;</span>): <span class="hljs-number">1</span><br>(<span class="hljs-string">&#x27;i&#x27;</span>, <span class="hljs-string">&#x27;k&#x27;</span>): <span class="hljs-number">1</span><br>(<span class="hljs-string">&#x27;k&#x27;</span>, <span class="hljs-string">&#x27;e&#x27;</span>): <span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
+
+<p>然后开始循环迭代找到出现频率最高的pair(子词对)：</p>
+<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs lasso">best_pair = <span class="hljs-string">&quot;&quot;</span><br>max_freq = <span class="hljs-literal">None</span><br>for <span class="hljs-built_in">pair</span>, freq <span class="hljs-keyword">in</span> pair_freqs.items():<br>    <span class="hljs-keyword">if</span> max_freq is <span class="hljs-literal">None</span> <span class="hljs-literal">or</span> max_freq &lt; freq:<br>        best_pair = <span class="hljs-built_in">pair</span><br>        max_freq = freq<br><br>print(best_pair, max_freq)<br></code></pre></td></tr></table></figure>
+
+<p>结果为【(‘喜’, ‘欢’) 2】，所以最先合成的就是(‘喜’, ‘欢’)→’喜欢’，然后合并的函数如下：</p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs livecodeserver">def merge_pair(<span class="hljs-keyword">a</span>, b, splits):<br>    <span class="hljs-keyword">for</span> <span class="hljs-built_in">word</span> <span class="hljs-keyword">in</span> stats:<br>        <span class="hljs-built_in">split</span> = splits[<span class="hljs-built_in">word</span>]<br>        <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(<span class="hljs-built_in">split</span>) == <span class="hljs-number">1</span>:<br>            continue<br><br>        i = <span class="hljs-number">0</span><br>        <span class="hljs-keyword">while</span> i &lt; <span class="hljs-built_in">len</span>(<span class="hljs-built_in">split</span>) - <span class="hljs-number">1</span>:<br>            <span class="hljs-keyword">if</span> <span class="hljs-built_in">split</span>[i] == <span class="hljs-keyword">a</span> <span class="hljs-keyword">and</span> <span class="hljs-built_in">split</span>[i + <span class="hljs-number">1</span>] == b:<br>                <span class="hljs-built_in">split</span> = <span class="hljs-built_in">split</span>[:i] + [<span class="hljs-keyword">a</span> + b] + <span class="hljs-built_in">split</span>[i + <span class="hljs-number">2</span> :]<br>            <span class="hljs-keyword">else</span>:<br>                i += <span class="hljs-number">1</span><br>        splits[<span class="hljs-built_in">word</span>] = <span class="hljs-built_in">split</span><br>    <span class="hljs-literal">return</span> splits<br></code></pre></td></tr></table></figure>
+
+<p>最后就是一直进行循环直到vocab达到了我们想要的数量：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 假设我们想要的词典为50</span><br>merges = &#123;&#125;<br>vocab_size = <span class="hljs-number">50</span><br><br><span class="hljs-keyword">while</span> <span class="hljs-built_in">len</span>(vocab) &lt; vocab_size:<br>    pair_freqs = compute_pair_freqs(splits)<br>    best_pair = <span class="hljs-string">&quot;&quot;</span><br>    max_freq = <span class="hljs-literal">None</span><br>    <span class="hljs-keyword">for</span> pair, freq <span class="hljs-keyword">in</span> pair_freqs.items():<br>        <span class="hljs-keyword">if</span> max_freq <span class="hljs-keyword">is</span> <span class="hljs-literal">None</span> <span class="hljs-keyword">or</span> max_freq &lt; freq:<br>            best_pair = pair<br>            max_freq = freq<br>    splits = merge_pair(*best_pair, splits)<br>    merges[best_pair] = best_pair[<span class="hljs-number">0</span>] + best_pair[<span class="hljs-number">1</span>]<br>    vocab.append(best_pair[<span class="hljs-number">0</span>] + best_pair[<span class="hljs-number">1</span>])<br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;merges:&quot;</span>, merges)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;vocab:&quot;</span>, vocab)<br><br><span class="hljs-comment"># 结果</span><br>merges: &#123;(<span class="hljs-string">&#x27;喜&#x27;</span>, <span class="hljs-string">&#x27;欢&#x27;</span>): <span class="hljs-string">&#x27;喜欢&#x27;</span>, (<span class="hljs-string">&#x27;苹&#x27;</span>, <span class="hljs-string">&#x27;果&#x27;</span>): <span class="hljs-string">&#x27;苹果&#x27;</span>, (<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;t&#x27;</span>): <span class="hljs-string">&#x27;at&#x27;</span>, (<span class="hljs-string">&#x27;c&#x27;</span>, <span class="hljs-string">&#x27;u&#x27;</span>): <span class="hljs-string">&#x27;cu&#x27;</span>, (<span class="hljs-string">&#x27;cu&#x27;</span>, <span class="hljs-string">&#x27;t&#x27;</span>): <span class="hljs-string">&#x27;cut&#x27;</span>, (<span class="hljs-string">&#x27;cut&#x27;</span>, <span class="hljs-string">&#x27;e&#x27;</span>): <span class="hljs-string">&#x27;cute&#x27;</span>, (<span class="hljs-string">&#x27;y&#x27;</span>, <span class="hljs-string">&#x27;o&#x27;</span>): <span class="hljs-string">&#x27;yo&#x27;</span>, (<span class="hljs-string">&#x27;yo&#x27;</span>, <span class="hljs-string">&#x27;u&#x27;</span>): <span class="hljs-string">&#x27;you&#x27;</span>, (<span class="hljs-string">&#x27;v&#x27;</span>, <span class="hljs-string">&#x27;e&#x27;</span>): <span class="hljs-string">&#x27;ve&#x27;</span>, (<span class="hljs-string">&#x27;苹果&#x27;</span>, <span class="hljs-string">&#x27;派&#x27;</span>): <span class="hljs-string">&#x27;苹果派&#x27;</span>, (<span class="hljs-string">&#x27;l&#x27;</span>, <span class="hljs-string">&#x27;i&#x27;</span>): <span class="hljs-string">&#x27;li&#x27;</span>, (<span class="hljs-string">&#x27;li&#x27;</span>, <span class="hljs-string">&#x27;k&#x27;</span>): <span class="hljs-string">&#x27;lik&#x27;</span>, (<span class="hljs-string">&#x27;lik&#x27;</span>, <span class="hljs-string">&#x27;e&#x27;</span>): <span class="hljs-string">&#x27;like&#x27;</span>, (<span class="hljs-string">&#x27;t&#x27;</span>, <span class="hljs-string">&#x27;o&#x27;</span>): <span class="hljs-string">&#x27;to&#x27;</span>, (<span class="hljs-string">&#x27;e&#x27;</span>, <span class="hljs-string">&#x27;at&#x27;</span>): <span class="hljs-string">&#x27;eat&#x27;</span>, (<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;p&#x27;</span>): <span class="hljs-string">&#x27;ap&#x27;</span>, (<span class="hljs-string">&#x27;ap&#x27;</span>, <span class="hljs-string">&#x27;p&#x27;</span>): <span class="hljs-string">&#x27;app&#x27;</span>, (<span class="hljs-string">&#x27;app&#x27;</span>, <span class="hljs-string">&#x27;l&#x27;</span>): <span class="hljs-string">&#x27;appl&#x27;</span>, (<span class="hljs-string">&#x27;appl&#x27;</span>, <span class="hljs-string">&#x27;e&#x27;</span>): <span class="hljs-string">&#x27;apple&#x27;</span>, (<span class="hljs-string">&#x27;apple&#x27;</span>, <span class="hljs-string">&#x27;s&#x27;</span>): <span class="hljs-string">&#x27;apples&#x27;</span>, (<span class="hljs-string">&#x27;S&#x27;</span>, <span class="hljs-string">&#x27;h&#x27;</span>): <span class="hljs-string">&#x27;Sh&#x27;</span>, (<span class="hljs-string">&#x27;Sh&#x27;</span>, <span class="hljs-string">&#x27;e&#x27;</span>): <span class="hljs-string">&#x27;She&#x27;</span>, (<span class="hljs-string">&#x27;h&#x27;</span>, <span class="hljs-string">&#x27;a&#x27;</span>): <span class="hljs-string">&#x27;ha&#x27;</span>&#125;<br>vocab: [<span class="hljs-string">&#x27;I&#x27;</span>, <span class="hljs-string">&#x27;S&#x27;</span>, <span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;c&#x27;</span>, <span class="hljs-string">&#x27;e&#x27;</span>, <span class="hljs-string">&#x27;g&#x27;</span>, <span class="hljs-string">&#x27;h&#x27;</span>, <span class="hljs-string">&#x27;i&#x27;</span>, <span class="hljs-string">&#x27;k&#x27;</span>, <span class="hljs-string">&#x27;l&#x27;</span>, <span class="hljs-string">&#x27;o&#x27;</span>, <span class="hljs-string">&#x27;p&#x27;</span>, <span class="hljs-string">&#x27;r&#x27;</span>, <span class="hljs-string">&#x27;s&#x27;</span>, <span class="hljs-string">&#x27;t&#x27;</span>, <span class="hljs-string">&#x27;u&#x27;</span>, <span class="hljs-string">&#x27;v&#x27;</span>, <span class="hljs-string">&#x27;y&#x27;</span>, <span class="hljs-string">&#x27;不&#x27;</span>, <span class="hljs-string">&#x27;他&#x27;</span>, <span class="hljs-string">&#x27;吃&#x27;</span>, <span class="hljs-string">&#x27;喜&#x27;</span>, <span class="hljs-string">&#x27;我&#x27;</span>, <span class="hljs-string">&#x27;果&#x27;</span>, <span class="hljs-string">&#x27;欢&#x27;</span>, <span class="hljs-string">&#x27;派&#x27;</span>, <span class="hljs-string">&#x27;苹&#x27;</span>, <span class="hljs-string">&#x27;喜欢&#x27;</span>, <span class="hljs-string">&#x27;苹果&#x27;</span>, <span class="hljs-string">&#x27;at&#x27;</span>, <span class="hljs-string">&#x27;cu&#x27;</span>, <span class="hljs-string">&#x27;cut&#x27;</span>, <span class="hljs-string">&#x27;cute&#x27;</span>, <span class="hljs-string">&#x27;yo&#x27;</span>, <span class="hljs-string">&#x27;you&#x27;</span>, <span class="hljs-string">&#x27;ve&#x27;</span>, <span class="hljs-string">&#x27;苹果派&#x27;</span>, <span class="hljs-string">&#x27;li&#x27;</span>, <span class="hljs-string">&#x27;lik&#x27;</span>, <span class="hljs-string">&#x27;like&#x27;</span>, <span class="hljs-string">&#x27;to&#x27;</span>, <span class="hljs-string">&#x27;eat&#x27;</span>, <span class="hljs-string">&#x27;ap&#x27;</span>, <span class="hljs-string">&#x27;app&#x27;</span>, <span class="hljs-string">&#x27;appl&#x27;</span>, <span class="hljs-string">&#x27;apple&#x27;</span>, <span class="hljs-string">&#x27;apples&#x27;</span>, <span class="hljs-string">&#x27;Sh&#x27;</span>, <span class="hljs-string">&#x27;She&#x27;</span>, <span class="hljs-string">&#x27;ha&#x27;</span>]<br></code></pre></td></tr></table></figure>
+
+<p>再加上一些特殊词汇和其他词汇：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-attr">all_vocab</span> = vocab + [<span class="hljs-string">&quot;[PAD]&quot;</span>, <span class="hljs-string">&quot;[UNK]&quot;</span>, <span class="hljs-string">&quot;[BOS]&quot;</span>, <span class="hljs-string">&quot;[EOS]&quot;</span>] + other_alphabet<br></code></pre></td></tr></table></figure>
+
+<p>上述就是BPE的代码实现，BPE理论上还是会出现OOV的，当词汇表的大小受限时，一些较少频繁出现的子词和没有在训练过程中见过的子词，就会无法进入词汇表出现OOV，而Byte-level BPE(BBPE)理论上是不会出现这个情况的。</p>
+<h3 id="3-3-Byte-level-BPE-BBPE"><a href="#3-3-Byte-level-BPE-BBPE" class="headerlink" title="3.3 Byte-level BPE(BBPE)"></a>3.3 Byte-level BPE(BBPE)</h3><p>基础知识：</p>
+<p><strong>Unicode：</strong> Unicode 是一种字符集，旨在涵盖地球上几乎所有的书写系统和字符。它为每个字符分配了一个唯一的代码点（code point）用于标识字符。Unicode 不关注字符在计算机内部的具体表示方式，而只是提供了一种字符到代码点的映射。Unicode 的出现解决了字符集的碎片化问题，使得不同的语言和字符能够在一个共同的标准下共存。然而，Unicode 并没有规定如何在计算机内存中存储和传输这些字符。</p>
+<p><strong>UTF-8：</strong> UTF-8（Unicode Transformation Format-8）是一种变长的字符编码方案，它将 Unicode 中的代码点转换为字节序列。UTF-8 的一个重要特点是它是向后兼容 ASCII 的，这意味着标准的 ASCII 字符在 UTF-8 中使用相同的字节表示，从而确保现有的 ASCII 文本可以无缝地与 UTF-8 共存。在 UTF-8 编码中，字符的表示长度可以是1到4个字节，不同范围的 Unicode 代码点使用不同长度的字节序列表示，这样可以高效地表示整个 Unicode 字符集。UTF-8 的编码规则是：</p>
+<ul>
+<li>单字节字符（ASCII 范围内的字符）使用一个字节表示，保持与 ASCII 编码的兼容性。</li>
+<li>带有更高代码点的字符使用多个字节表示。UTF-8 使用特定的字节序列来指示一个字符所需的字节数，以及字符的实际数据。</li>
+</ul>
+<p>例如，英文字母 “A” 的 Unicode 代码点是U+0041，在 UTF-8 中表示为 0x41（与 ASCII 编码相同）；而中文汉字 “你” 的 Unicode 代码点是U+4F60，在 UTF-8 中表示为0xE4 0xBD 0xA0三个字节的序列。</p>
+<p>所以简单的来说：</p>
+<ul>
+<li>Unicode 是字符集，为每个字符分配唯一的代码点。</li>
+<li>UTF-8 是一种基于 Unicode 的字符编码方式，用于在计算机中存储和传输字符。</li>
+</ul>
+<p>**Byte(字节)**：计算机存储和数据处理时，字节是最小的单位。一个字节包含8个(Bit)二进制位，每个位可以是0或1，每位的不同排列和组合可以表示不同的数据，所以一个字节能表示的范围是256个。</p>
+<p>言归正传：</p>
+<p>Byte-level BPE(BBPE)和Byte-Pair Encoding (BPE)区别就是BPE是最小词汇是字符级别，而BBPE是字节级别的，通过UTF-8的编码方式这一个字节的256的范围，理论上可以表示这个世界上的所有字符。</p>
+<p>所以实现的步骤和BPE就是实现的粒度不一样，其他的都是一样的。</p>
+<ol>
+<li>初始词表：构建初始词表，包含一个字节的所有表示(256)。</li>
+<li>构建频率统计：统计所有子词单元对（两个连续的子词）在文本中的出现频率。</li>
+<li>合并频率最高的子词对：选择出现频率最高的子词对，将它们合并成一个新的子词单元，并更新词汇表。</li>
+<li>重复合并步骤：不断重复步骤 2 和步骤 3，直到达到预定的词汇表大小、合并次数，或者直到不再有有意义的合并（即，进一步合并不会显著提高词汇表的效益）。</li>
+<li>分词：使用最终得到的词汇表对文本进行分词。</li>
+</ol>
+<p>简单代码实现，不做赘述，读者朋友们可以自己实现一下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> collections <span class="hljs-keyword">import</span> defaultdict<br>sentences = [<br>    <span class="hljs-string">&quot;我&quot;</span>,<br>    <span class="hljs-string">&quot;喜欢&quot;</span>,<br>    <span class="hljs-string">&quot;吃&quot;</span>,<br>    <span class="hljs-string">&quot;苹果&quot;</span>,<br>    <span class="hljs-string">&quot;他&quot;</span>,<br>    <span class="hljs-string">&quot;不&quot;</span>,<br>    <span class="hljs-string">&quot;喜欢&quot;</span>,<br>    <span class="hljs-string">&quot;吃&quot;</span>,<br>    <span class="hljs-string">&quot;苹果派&quot;</span>,<br>    <span class="hljs-string">&quot;I like to eat apples&quot;</span>,<br>    <span class="hljs-string">&quot;She has a cute cat&quot;</span>,<br>    <span class="hljs-string">&quot;you are very cute&quot;</span>,<br>    <span class="hljs-string">&quot;give you a hug&quot;</span>,<br>]<br><span class="hljs-comment"># 构建初始词汇表，包含一个字节的256个表示</span><br>initial_vocab = [<span class="hljs-built_in">bytes</span>([byte]) <span class="hljs-keyword">for</span> byte <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">256</span>)]<br>vocab = initial_vocab.copy()<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;initial_vocab:&quot;</span>, initial_vocab)<br><br><span class="hljs-comment"># 构建频率统计</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">build_stats</span>(<span class="hljs-params">sentences</span>):<br>    stats = defaultdict(<span class="hljs-built_in">int</span>)<br>    <span class="hljs-keyword">for</span> sentence <span class="hljs-keyword">in</span> sentences:<br>        symbols = sentence.split()<br>        <span class="hljs-keyword">for</span> symbol <span class="hljs-keyword">in</span> symbols:<br>            stats[symbol.encode(<span class="hljs-string">&quot;utf-8&quot;</span>)] += <span class="hljs-number">1</span><br>    <span class="hljs-keyword">return</span> stats<br>stats = build_stats(sentences)<br><br>splits = &#123;word: [byte <span class="hljs-keyword">for</span> byte <span class="hljs-keyword">in</span> word] <span class="hljs-keyword">for</span> word <span class="hljs-keyword">in</span> stats.keys()&#125;<br><span class="hljs-keyword">def</span> <span class="hljs-title function_">compute_pair_freqs</span>(<span class="hljs-params">splits</span>):<br>    pair_freqs = defaultdict(<span class="hljs-built_in">int</span>)<br>    <span class="hljs-keyword">for</span> word, freq <span class="hljs-keyword">in</span> stats.items():<br>        split = splits[word]<br>        <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(split) == <span class="hljs-number">1</span>:<br>            <span class="hljs-keyword">continue</span><br>        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(split) - <span class="hljs-number">1</span>):<br>            pair = (split[i], split[i + <span class="hljs-number">1</span>])<br>            pair_freqs[pair] += freq<br>    <span class="hljs-keyword">return</span> pair_freqs<br><br>pair_freqs = compute_pair_freqs(splits)<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">merge_pair</span>(<span class="hljs-params">pair, splits</span>):<br>    merged_byte = <span class="hljs-built_in">bytes</span>(pair)<br>    <span class="hljs-keyword">for</span> word <span class="hljs-keyword">in</span> stats:<br>        split = splits[word]<br>        <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(split) == <span class="hljs-number">1</span>:<br>            <span class="hljs-keyword">continue</span><br>        i = <span class="hljs-number">0</span><br>        <span class="hljs-keyword">while</span> i &lt; <span class="hljs-built_in">len</span>(split) - <span class="hljs-number">1</span>:<br>            <span class="hljs-keyword">if</span> split[i:i+<span class="hljs-number">2</span>] == pair:  <span class="hljs-comment"># 检查分割中是否有这对字节</span><br>                split = split[:i] + [merged_byte] + split[i + <span class="hljs-number">2</span> :]<br>            <span class="hljs-keyword">else</span>:<br>                i += <span class="hljs-number">1</span><br>        splits[word] = split<br>    <span class="hljs-keyword">return</span> splits<br><br>vocab_size = <span class="hljs-number">50</span><br><span class="hljs-keyword">while</span> <span class="hljs-built_in">len</span>(vocab) &lt; vocab_size:<br>    pair_freqs = compute_pair_freqs(splits)<br>    best_pair = ()<br>    max_freq = <span class="hljs-literal">None</span><br>    <span class="hljs-keyword">for</span> pair, freq <span class="hljs-keyword">in</span> pair_freqs.items():<br>        <span class="hljs-keyword">if</span> max_freq <span class="hljs-keyword">is</span> <span class="hljs-literal">None</span> <span class="hljs-keyword">or</span> max_freq &lt; freq:<br>            best_pair = pair<br>            max_freq = freq<br>    splits = merge_pair(best_pair, splits)<br>    merged_byte = <span class="hljs-built_in">bytes</span>(best_pair)<br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;vocab:&quot;</span>, vocab)<br></code></pre></td></tr></table></figure>
+
+<p>着重解释一下为什么Byte-level BPE(BBPE)不会出现OOV问题，初始的词表里有256个表示如下：</p>
+<figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sml">[b&#x27;\x00&#x27;, b&#x27;\x01&#x27;, b&#x27;\x02&#x27;, b&#x27;\x03&#x27;, b&#x27;\x04&#x27;, b&#x27;\x05&#x27;, b&#x27;\x06&#x27;, b&#x27;\x07&#x27;, b&#x27;\x08&#x27;, b&#x27;\t&#x27;, b&#x27;\n&#x27;, b&#x27;\x0b&#x27;, b&#x27;\x0c&#x27;, b&#x27;\r&#x27;, b&#x27;\x0e&#x27;, b&#x27;\x0f&#x27;, b&#x27;\x10&#x27;, b&#x27;\x11&#x27;, b&#x27;\x12&#x27;, b&#x27;\x13&#x27;, b&#x27;\x14&#x27;, b&#x27;\x15&#x27;, b&#x27;\x16&#x27;, b&#x27;\x17&#x27;, b&#x27;\x18&#x27;, b&#x27;\x19&#x27;, b&#x27;\x1a&#x27;, b&#x27;\x1b&#x27;, b&#x27;\x1c&#x27;, b&#x27;\x1d&#x27;, b&#x27;\x1e&#x27;, b&#x27;\x1f&#x27;, b&#x27; <span class="hljs-string">&#x27;, b&#x27;</span>!<span class="hljs-string">&#x27;, b&#x27;</span><span class="hljs-string">&quot;&#x27;, b&#x27;#&#x27;, b&#x27;$&#x27;, b&#x27;%&#x27;, b&#x27;&amp;&#x27;, b&quot;</span><span class="hljs-string">&#x27;&quot;, b&#x27;</span>(<span class="hljs-string">&#x27;, b&#x27;</span>)<span class="hljs-string">&#x27;, b&#x27;</span>*<span class="hljs-string">&#x27;, b&#x27;</span>+<span class="hljs-string">&#x27;, b&#x27;</span>,<span class="hljs-string">&#x27;, b&#x27;</span>-<span class="hljs-string">&#x27;, b&#x27;</span>.<span class="hljs-string">&#x27;, b&#x27;</span>/<span class="hljs-string">&#x27;, b&#x27;</span><span class="hljs-number">0</span><span class="hljs-string">&#x27;, b&#x27;</span><span class="hljs-number">1</span><span class="hljs-string">&#x27;, b&#x27;</span><span class="hljs-number">2</span><span class="hljs-string">&#x27;, b&#x27;</span><span class="hljs-number">3</span><span class="hljs-string">&#x27;, b&#x27;</span><span class="hljs-number">4</span><span class="hljs-string">&#x27;, b&#x27;</span><span class="hljs-number">5</span><span class="hljs-string">&#x27;, b&#x27;</span><span class="hljs-number">6</span><span class="hljs-string">&#x27;, b&#x27;</span><span class="hljs-number">7</span><span class="hljs-string">&#x27;, b&#x27;</span><span class="hljs-number">8</span><span class="hljs-string">&#x27;, b&#x27;</span><span class="hljs-number">9</span><span class="hljs-string">&#x27;, b&#x27;</span>:<span class="hljs-string">&#x27;, b&#x27;</span>;<span class="hljs-string">&#x27;, b&#x27;</span>&lt;<span class="hljs-string">&#x27;, b&#x27;</span>=<span class="hljs-string">&#x27;, b&#x27;</span>&gt;<span class="hljs-string">&#x27;, b&#x27;</span>?<span class="hljs-string">&#x27;, b&#x27;</span>@<span class="hljs-string">&#x27;, b&#x27;</span><span class="hljs-type">A&#x27;</span>, b&#x27;B&#x27;, b&#x27;C&#x27;, b&#x27;D&#x27;, b&#x27;E&#x27;, b&#x27;F&#x27;, b&#x27;G&#x27;, b&#x27;H&#x27;, b&#x27;I&#x27;, b&#x27;J&#x27;, b&#x27;K&#x27;, b&#x27;L&#x27;, b&#x27;M&#x27;, b&#x27;N&#x27;, b&#x27;O&#x27;, b&#x27;P&#x27;, b&#x27;Q&#x27;, b&#x27;R&#x27;, b&#x27;S&#x27;, b&#x27;T&#x27;, b&#x27;U&#x27;, b&#x27;V&#x27;, b&#x27;W&#x27;, b&#x27;X&#x27;, b&#x27;Y&#x27;, b&#x27;Z&#x27;, b&#x27;[<span class="hljs-string">&#x27;, b&#x27;</span>\\<span class="hljs-string">&#x27;, b&#x27;</span>]<span class="hljs-string">&#x27;, b&#x27;</span>^<span class="hljs-string">&#x27;, b&#x27;</span>_&#x27;, b&#x27;`<span class="hljs-string">&#x27;, b&#x27;</span>a&#x27;, b&#x27;b&#x27;, b&#x27;c&#x27;, b&#x27;d&#x27;, b&#x27;e&#x27;, b&#x27;f&#x27;, b&#x27;g&#x27;, b&#x27;h&#x27;, b&#x27;i&#x27;, b&#x27;j&#x27;, b&#x27;k&#x27;, b&#x27;l&#x27;, b&#x27;m&#x27;, b&#x27;n&#x27;, b&#x27;o&#x27;, b&#x27;p&#x27;, b&#x27;q&#x27;, b&#x27;r&#x27;, b&#x27;s&#x27;, b&#x27;t&#x27;, b&#x27;u&#x27;, b&#x27;v&#x27;, b&#x27;w&#x27;, b&#x27;x&#x27;, b&#x27;y&#x27;, b&#x27;z&#x27;, b&#x27;&#123;<span class="hljs-string">&#x27;, b&#x27;</span>|<span class="hljs-string">&#x27;, b&#x27;</span>&#125;<span class="hljs-string">&#x27;, b&#x27;</span>~<span class="hljs-string">&#x27;, b&#x27;</span>\x7f&#x27;, b&#x27;\x80&#x27;, b&#x27;\x81&#x27;, b&#x27;\x82&#x27;, b&#x27;\x83&#x27;, b&#x27;\x84&#x27;, b&#x27;\x85&#x27;, b&#x27;\x86&#x27;, b&#x27;\x87&#x27;, b&#x27;\x88&#x27;, b&#x27;\x89&#x27;, b&#x27;\x8a&#x27;, b&#x27;\x8b&#x27;, b&#x27;\x8c&#x27;, b&#x27;\x8d&#x27;, b&#x27;\x8e&#x27;, b&#x27;\x8f&#x27;, b&#x27;\x90&#x27;, b&#x27;\x91&#x27;, b&#x27;\x92&#x27;, b&#x27;\x93&#x27;, b&#x27;\x94&#x27;, b&#x27;\x95&#x27;, b&#x27;\x96&#x27;, b&#x27;\x97&#x27;, b&#x27;\x98&#x27;, b&#x27;\x99&#x27;, b&#x27;\x9a&#x27;, b&#x27;\x9b&#x27;, b&#x27;\x9c&#x27;, b&#x27;\x9d&#x27;, b&#x27;\x9e&#x27;, b&#x27;\x9f&#x27;, b&#x27;\xa0&#x27;, b&#x27;\xa1&#x27;, b&#x27;\xa2&#x27;, b&#x27;\xa3&#x27;, b&#x27;\xa4&#x27;, b&#x27;\xa5&#x27;, b&#x27;\xa6&#x27;, b&#x27;\xa7&#x27;, b&#x27;\xa8&#x27;, b&#x27;\xa9&#x27;, b&#x27;\xaa&#x27;, b&#x27;\xab&#x27;, b&#x27;\xac&#x27;, b&#x27;\xad&#x27;, b&#x27;\xae&#x27;, b&#x27;\xaf&#x27;, b&#x27;\xb0&#x27;, b&#x27;\xb1&#x27;, b&#x27;\xb2&#x27;, b&#x27;\xb3&#x27;, b&#x27;\xb4&#x27;, b&#x27;\xb5&#x27;, b&#x27;\xb6&#x27;, b&#x27;\xb7&#x27;, b&#x27;\xb8&#x27;, b&#x27;\xb9&#x27;, b&#x27;\xba&#x27;, b&#x27;\xbb&#x27;, b&#x27;\xbc&#x27;, b&#x27;\xbd&#x27;, b&#x27;\xbe&#x27;, b&#x27;\xbf&#x27;, b&#x27;\xc0&#x27;, b&#x27;\xc1&#x27;, b&#x27;\xc2&#x27;, b&#x27;\xc3&#x27;, b&#x27;\xc4&#x27;, b&#x27;\xc5&#x27;, b&#x27;\xc6&#x27;, b&#x27;\xc7&#x27;, b&#x27;\xc8&#x27;, b&#x27;\xc9&#x27;, b&#x27;\xca&#x27;, b&#x27;\xcb&#x27;, b&#x27;\xcc&#x27;, b&#x27;\xcd&#x27;, b&#x27;\xce&#x27;, b&#x27;\xcf&#x27;, b&#x27;\xd0&#x27;, b&#x27;\xd1&#x27;, b&#x27;\xd2&#x27;, b&#x27;\xd3&#x27;, b&#x27;\xd4&#x27;, b&#x27;\xd5&#x27;, b&#x27;\xd6&#x27;, b&#x27;\xd7&#x27;, b&#x27;\xd8&#x27;, b&#x27;\xd9&#x27;, b&#x27;\xda&#x27;, b&#x27;\xdb&#x27;, b&#x27;\xdc&#x27;, b&#x27;\xdd&#x27;, b&#x27;\xde&#x27;, b&#x27;\xdf&#x27;, b&#x27;\xe0&#x27;, b&#x27;\xe1&#x27;, b&#x27;\xe2&#x27;, b&#x27;\xe3&#x27;, b&#x27;\xe4&#x27;, b&#x27;\xe5&#x27;, b&#x27;\xe6&#x27;, b&#x27;\xe7&#x27;, b&#x27;\xe8&#x27;, b&#x27;\xe9&#x27;, b&#x27;\xea&#x27;, b&#x27;\xeb&#x27;, b&#x27;\xec&#x27;, b&#x27;\xed&#x27;, b&#x27;\xee&#x27;, b&#x27;\xef&#x27;, b&#x27;\xf0&#x27;, b&#x27;\xf1&#x27;, b&#x27;\xf2&#x27;, b&#x27;\xf3&#x27;, b&#x27;\xf4&#x27;, b&#x27;\xf5&#x27;, b&#x27;\xf6&#x27;, b&#x27;\xf7&#x27;, b&#x27;\xf8&#x27;, b&#x27;\xf9&#x27;, b&#x27;\xfa&#x27;, b&#x27;\xfb&#x27;, b&#x27;\xfc&#x27;, b&#x27;\xfd&#x27;, b&#x27;\xfe&#x27;, b&#x27;\xff&#x27;]<br></code></pre></td></tr></table></figure>
+
+<p>通过上述的方式其实是在一直根据训练语料循环迭代合成子词或者词，最后形成词表，比如“苹果”通过UTF-8进行编码后为“\xe8\x8b\xb9\xe6\x9e\x9c”，如果词表里面有，那“苹果”就通过词表映射成了1个表示，准确来说是1个token；如果词表里没有，那就用256中的“\xe8＋\x8b＋\xb9＋\xe6＋\x9e＋\x9c”来表示“苹果”这个词，那就是6个token。在先前的各种分词方法中，如果词典里没有”苹果“这个词，也没有”苹“，”果“这样的子词的话，那就变成了<code>[UNK]</code>。所以在现在的大模型中，以Byte-level BPE(BBPE)这种方式进行分词是不会出现OOV，但词表中如果没有word级别的词的话，一些中英文就会分词分的很细碎，比如Llama在中文上就会把一些词分成多个token其实就是UTF-8后的中文编码，对编码效率以及语义会有影响，于是出现了一些扩充Llama中文词表的工作。</p>
+<h3 id="3-4-SentencePiece"><a href="#3-4-SentencePiece" class="headerlink" title="3.4 SentencePiece"></a>3.4 SentencePiece</h3><p>SentencePiece，顾名思义，它是<strong>把一个句子看作一个整体，再拆成片段</strong>，而没有保留天然的词语的概念。一般地，它<strong>把空格space也当作一种特殊字符来处理，再用BPE或者Unigram算法来构造词汇表</strong>。同时谷歌也推出了一个分词工具包叫SentencePiece，除了集成了BPE、ULM子词算法之外，SentencePiece还能支持字符和词级别的分词。</p>
+<h2 id="3-5-Unigram"><a href="#3-5-Unigram" class="headerlink" title="3.5 Unigram"></a>3.5 Unigram</h2><p>…</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/652520262">LLM大语言模型之Tokenization分词方法（WordPiece，Byte-Pair Encoding (BPE)，Byte-level BPE(BBPE)原理及其代码实现） - 知乎 (zhihu.com)</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/b369f001be4a">使用transformers轻松调用bert模型生成中文词向量 - 简书 (jianshu.com)</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/630696264">大模型词表扩充必备工具SentencePiece - 知乎 (zhihu.com)</a><br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/d4de091d1367">BPE、WordPiece和SentencePiece - 简书 (jianshu.com)</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/multimodal/" class="category-chain-item">multimodal</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/multimodal/" class="print-no-link">#multimodal</a>
+      
+        <a href="/tags/%E5%88%86%E8%AF%8D%E6%96%B9%E6%B3%95/" class="print-no-link">#分词方法</a>
+      
+    </div>
+  
+</div>
+
+
+              
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/07/10/multimodal/%E5%A4%9A%E6%A8%A1%E6%80%81%E6%A8%A1%E5%9E%8B%E5%BE%AE%E8%B0%83/" title="多模态微调">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">多模态微调</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/07/10/multimodal/%E6%95%B0%E6%8D%AE%E9%9B%86/" title="多模态数据集">
+                        <span class="hidden-mobile">多模态数据集</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="waline"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#waline', function() {
+      Fluid.utils.createCssLink('https://cdn.staticfile.org/waline/2.15.5/waline.min.css')
+      Fluid.utils.createScript('https://cdn.staticfile.org/waline/2.15.5/waline.min.js', function() {
+        var options = Object.assign(
+          {"serverURL":"waline.rainblog.run","path":"window.location.pathname","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":0,"pageSize":10,"locale":{"placeholder":"哈，快找个位置随便坐~"}},
+          {
+            el: '#waline',
+            path: window.location.pathname
+          }
+        )
+        Waline.init(options);
+        Fluid.utils.waitElementVisible('#waline .vcontent', () => {
+          var imgSelector = '#waline .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    
+
+<div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+
+  <div class="runtime">
+    <!-- 网站已运行时间 -->
+    <span id="runtime_span">加载中...</span>
+  </div>
+
+  <!-- 页脚的一言 -->
+  <!-- <div class="statistics">
+    <a target="_blank" rel="noopener" href="https://developer.hitokoto.cn/" id="hitokoto_text"><span style="color: #DDD;"  id="hitokoto"></span></a>
+    <script src="https://v1.hitokoto.cn/?encode=js&select=%23hitokoto" defer></script>
+  </div>   -->
+
+  
+  
+
+  
+    <!-- 备案信息 ICP for Moe -->
+    <div class="moe_beian">
+    <span>
+      <a href="https://icp.gov.moe/" target="_blank" rel="nofollow noopener">
+        
+      </a>
+    </span>
+    
+      
+        <span title="233333">
+          <a
+            href="https://icp.gov.moe/?keyword=20240531"
+            rel="nofollow noopener"
+            class="beian-moe"
+            target="_blank"
+          >
+            
+              <span style="visibility: hidden; width: 0">|</span>
+              <img src="/img/moe_beian.png" srcset="/img/loading.gif" lazyload alt="moe-icon"/>
+            
+            <span>萌ICP备20240531号</span>
+          </a>
+        </span>
+      
+    
+  </div>
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/runtime.js"></script>
+<script src="/js/scrollAnimation.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
