@@ -515,14 +515,14 @@ document
       <h2 class="index-header">
         
         <a href="/2024/07/10/multimodal/01_CN-CLIP/" target="_self">
-          cn-clip
+          01_CN-CLIP
         </a>
       </h2>
 
       
       <a class="index-excerpt index-excerpt__noimg" href="/2024/07/10/multimodal/01_CN-CLIP/" target="_self">
         <div>
-          Chinese-CLIP是基于CLIP和Chinese RoBERTa（中文语言模型）开发的中文版本的CLIP模型。 论文首先，总体数据如下  We extract the Chinese data (with the mark “zh”) from the latest LAION-5B (Schuhmann et al., 2021), and collect the data from th
+          Chinese-CLIP是基于CLIP和Chinese RoBERTa（中文语言模型）开发的中文版本的CLIP模型。 论文训练数据来自LAION-5B中文部分数据共108M、Wukong中文数据共72M、MSCOCO和Visual Genome翻译后的中文数据（没有用测试集）。并且添加了内部高质量数据集约20M，加一起一共是200M图文对中文预训练数据集。 有了数据，如何训练CN-CLIP模型呢？
         </div>
       </a>
 
@@ -577,141 +577,15 @@ document
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2024/07/10/multimodal/InterVL/" target="_self">
-          InterVL
+        <a href="/2024/07/10/multimodal/02_BEiT3/" target="_self">
+          02_BEiT3
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/07/10/multimodal/InterVL/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/07/10/multimodal/02_BEiT3/" target="_self">
         <div>
-          
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-07-10 15:23" pubdate>
-              2024-07-10
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/multimodal/" class="category-chain-item">multimodal</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/multimodal/">#multimodal</a>
-            
-              <a href="/tags/InterVL/">#InterVL</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/07/10/multimodal/M2Encoder/" target="_self">
-          M2Encoder
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/07/10/multimodal/M2Encoder/" target="_self">
-        <div>
-          M^2（M-Square）Encoder：通过大规模高效预训练来推进双语言图文理解能力。 摘要：虽然以CLIP为代表的VL多模态模型已经发展的很好了，但是由于大规模预训练数据集的相对匮乏导致多语言模型VLM（比如中英）发展相对较缓慢。针对这个问题，团队引入了BM-6B这个双语（中英）数据集，里面有6B多的图文对。这么多的数据训练起来很慢，团队针对这个问题提出了一种叫做分组聚合的对比损失计算方式，可
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-07-10 15:23" pubdate>
-              2024-07-10
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/multimodal/" class="category-chain-item">multimodal</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/multimodal/">#multimodal</a>
-            
-              <a href="/tags/M2Encoder/">#M2Encoder</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/07/10/multimodal/beit3/" target="_self">
-          beit3
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/07/10/multimodal/beit3/" target="_self">
-        <div>
-          TypeError: Descriptors cannot be created directly.报错分析与解决-CSDN博客 [Unknown model (beit3_large_patch16_384_retrieval) · Issue #1927 · huggingface&#x2F;pytorch-image-models](https://github.com/huggingfa
+          论文xxx 项目环境配置xxx evaluate-flickr30k进行flickr30k数据集上进行retrieval任务时遇到以下bug。 1、执行下面代码对dataset_flickr30k.json进行tokenizing时出现错误，原因是protobuf版本过高，安装protobuf 3.20.0版本解决。TypeError: Descriptors cannot be created
         </div>
       </a>
 
@@ -766,15 +640,15 @@ document
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2024/07/10/multimodal/clip/" target="_self">
-          clip
+        <a href="/2024/07/10/multimodal/03_InterVL/" target="_self">
+          03_InterVL
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/07/10/multimodal/clip/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/07/10/multimodal/03_InterVL/" target="_self">
         <div>
-          CLIP采用对比学习训练检索任务模型。 训练数据CLip：从互联网中收集到的400M图像文本对，ImageNet上的分类能力(zero-shot即不需要事先进行监督训练)比肩ResNet50。 网络结构下面的伪代码很清楚的说明了CLIP的运行方式。 图像和文本表示先各自经过图像编码器和文本编码器（比如ViT和Bert）； 图像编码器输出经过线性映射到指定维度后进行L2正则化; 文本编码器输出经过线
+          论文
         </div>
       </a>
 
@@ -815,7 +689,70 @@ document
             
               <a href="/tags/multimodal/">#multimodal</a>
             
-              <a href="/tags/clip/">#clip</a>
+              <a href="/tags/InterVL/">#InterVL</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/07/10/multimodal/04_M2Encoder/" target="_self">
+          04_M2Encoder
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/07/10/multimodal/04_M2Encoder/" target="_self">
+        <div>
+          M^2（M-Square）Encoder：通过大规模高效预训练来推进双语言图文理解能力。 摘要：虽然以CLIP为代表的VL多模态模型已经发展的很好了，但是由于大规模预训练数据集的相对匮乏导致多语言模型VLM（比如中英）发展相对较缓慢。针对这个问题，团队引入了BM-6B这个双语（中英）数据集，里面有6B多的图文对。这么多的数据训练起来很慢，团队针对这个问题提出了一种叫做分组聚合的对比损失计算方式，可
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-07-10 15:23" pubdate>
+              2024-07-10
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/multimodal/" class="category-chain-item">multimodal</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/multimodal/">#multimodal</a>
+            
+              <a href="/tags/M2Encoder/">#M2Encoder</a>
             
           </div>
         
@@ -942,6 +879,69 @@ document
               <a href="/tags/multimodal/">#multimodal</a>
             
               <a href="/tags/%E5%88%86%E8%AF%8D%E6%96%B9%E6%B3%95/">#分词方法</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/07/10/multimodal/clip/" target="_self">
+          clip
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/07/10/multimodal/clip/" target="_self">
+        <div>
+          CLIP采用对比学习训练检索任务模型。 训练数据CLip：从互联网中收集到的400M图像文本对，ImageNet上的分类能力(zero-shot即不需要事先进行监督训练)比肩ResNet50。 网络结构下面的伪代码很清楚的说明了CLIP的运行方式。 图像和文本表示先各自经过图像编码器和文本编码器（比如ViT和Bert）； 图像编码器输出经过线性映射到指定维度后进行L2正则化; 文本编码器输出经过线
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-07-10 15:23" pubdate>
+              2024-07-10
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/multimodal/" class="category-chain-item">multimodal</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/multimodal/">#multimodal</a>
+            
+              <a href="/tags/clip/">#clip</a>
             
           </div>
         

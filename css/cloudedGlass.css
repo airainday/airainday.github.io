@@ -60,6 +60,11 @@
   font-family: "iconfont";
 }
 
+/* 修改引用字体为斜体 */
+.markdown-body blockquote {
+  font-style: italic;
+}
+
 /* 修改main.css中暗色主题下自定义样式 */
 [data-user-color-scheme='dark'] {
   --link-hover-bg-color: #36415199;

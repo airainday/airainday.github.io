@@ -16,16 +16,16 @@
   <meta name="author" content="AIrainday">
   <meta name="keywords" content="博客 AI 好用工具 个人成长 AIrainday">
   
-    <meta name="description" content="Chinese-CLIP是基于CLIP和Chinese RoBERTa（中文语言模型）开发的中文版本的CLIP模型。 论文首先，总体数据如下  We extract the Chinese data (with the mark “zh”) from the latest LAION-5B (Schuhmann et al., 2021), and collect the data from th">
+    <meta name="description" content="Chinese-CLIP是基于CLIP和Chinese RoBERTa（中文语言模型）开发的中文版本的CLIP模型。 论文训练数据来自LAION-5B中文部分数据共108M、Wukong中文数据共72M、MSCOCO和Visual Genome翻译后的中文数据（没有用测试集）。并且添加了内部高质量数据集约20M，加一起一共是200M图文对中文预训练数据集。 有了数据，如何训练CN-CLIP模型呢？">
 <meta property="og:type" content="article">
-<meta property="og:title" content="cn-clip">
+<meta property="og:title" content="01_CN-CLIP">
 <meta property="og:url" content="http://example.com/2024/07/10/multimodal/01_CN-CLIP/index.html">
 <meta property="og:site_name" content="AIrainday">
-<meta property="og:description" content="Chinese-CLIP是基于CLIP和Chinese RoBERTa（中文语言模型）开发的中文版本的CLIP模型。 论文首先，总体数据如下  We extract the Chinese data (with the mark “zh”) from the latest LAION-5B (Schuhmann et al., 2021), and collect the data from th">
+<meta property="og:description" content="Chinese-CLIP是基于CLIP和Chinese RoBERTa（中文语言模型）开发的中文版本的CLIP模型。 论文训练数据来自LAION-5B中文部分数据共108M、Wukong中文数据共72M、MSCOCO和Visual Genome翻译后的中文数据（没有用测试集）。并且添加了内部高质量数据集约20M，加一起一共是200M图文对中文预训练数据集。 有了数据，如何训练CN-CLIP模型呢？">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240702100928957.png">
 <meta property="article:published_time" content="2024-07-10T07:23:16.000Z">
-<meta property="article:modified_time" content="2024-07-14T14:14:49.884Z">
+<meta property="article:modified_time" content="2024-07-14T22:43:44.990Z">
 <meta property="article:author" content="AIrainday">
 <meta property="article:tag" content="multimodal">
 <meta property="article:tag" content="cn-clip">
@@ -34,7 +34,7 @@
   
   
   
-  <title>cn-clip - AIrainday</title>
+  <title>01_CN-CLIP - AIrainday</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -253,7 +253,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="cn-clip"></span>
+            <span id="subtitle" data-typed-text="01_CN-CLIP"></span>
           
         </div>
 
@@ -276,7 +276,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          778 字
+          699 字
         
       </span>
     
@@ -287,7 +287,7 @@
         
         
         
-          7 分钟
+          6 分钟
         
       </span>
     
@@ -326,7 +326,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="cn-clip"></span>
+            <span id="subtitle" data-typed-text="01_CN-CLIP"></span>
           
         </div>
 
@@ -349,7 +349,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          778 字
+          699 字
         
       </span>
     
@@ -360,7 +360,7 @@
         
         
         
-          7 分钟
+          6 分钟
         
       </span>
     
@@ -461,6 +461,42 @@ document
     
       
       
+        <a href="/2024/07/10/multimodal/01_CN-CLIP/" title="01_CN-CLIP"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">01_CN-CLIP</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2024/07/10/multimodal/02_BEiT3/" title="02_BEiT3"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">02_BEiT3</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2024/07/10/multimodal/03_InterVL/" title="03_InterVL"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">03_InterVL</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2024/07/10/multimodal/04_M2Encoder/" title="04_M2Encoder"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">04_M2Encoder</span>
+        </a>
+      
+    
+      
+      
         <a href="/2024/07/10/multimodal/%E8%AF%84%E4%BB%B7%E6%8C%87%E6%A0%87/" title="多模态评价指标"
            class="list-group-item list-group-item-action
            ">
@@ -497,46 +533,10 @@ document
     
       
       
-        <a href="/2024/07/10/multimodal/beit3/" title="beit3"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">beit3</span>
-        </a>
-      
-    
-      
-      
         <a href="/2024/07/10/multimodal/clip/" title="clip"
            class="list-group-item list-group-item-action
            ">
           <span class="category-post">clip</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2024/07/10/multimodal/01_CN-CLIP/" title="cn-clip"
-           class="list-group-item list-group-item-action
-           active">
-          <span class="category-post">cn-clip</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2024/07/10/multimodal/InterVL/" title="InterVL"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">InterVL</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2024/07/10/multimodal/M2Encoder/" title="M2Encoder"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">M2Encoder</span>
         </a>
       
     
@@ -558,12 +558,12 @@ document
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">cn-clip</h1>
+            <h1 id="seo-header">01_CN-CLIP</h1>
             
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2024年7月14日 晚上
+                    本文最后更新于 2024年7月15日 早上
                   
                 
               </p>
@@ -572,29 +572,11 @@ document
               <div class="markdown-body">
                 
                 <p><a target="_blank" rel="noopener" href="https://github.com/OFA-Sys/Chinese-CLIP">Chinese-CLIP</a>是基于CLIP和Chinese RoBERTa（中文语言模型）开发的中文版本的CLIP模型。</p>
-<h2 id="论文"><a href="#论文" class="headerlink" title="论文"></a>论文</h2><p>首先，总体数据如下</p>
-<blockquote>
-<p>We extract the Chinese data (with the mark “zh”) from the latest LAION-5B (Schuhmann et al., 2021), and collect the data from the Wukong dataset. However, due to the problems of unavailable links, we can only collect around 108 million samples and 72 million samples from LAION-5B and Wukong respectively. We additionally add the translated data from the classic English multimodal datasets, including Visual Genome (Krishna et al., 2017) and MSCOCO (Chen et al., 2015), where test sets are removed. Finally, we construct a dataset for Chinese multimodal pretraining with around 200 million image-text pairs</p>
-</blockquote>
-<p>来自LAION-5B中文部分数据共108M、Wukong中文数据共72M、MSCOCO和Visual Genome翻译后的中文数据（没有用测试集）。<strong>并且添加了内部高质量数据集约20M，加一起一共是200M图文对中文预训练数据集</strong>。</p>
+<h1 id="论文"><a href="#论文" class="headerlink" title="论文"></a>论文</h1><p>训练数据来自LAION-5B中文部分数据共108M、Wukong中文数据共72M、MSCOCO和Visual Genome翻译后的中文数据（没有用测试集）。<strong>并且添加了内部高质量数据集约20M，加一起一共是200M图文对中文预训练数据集</strong>。</p>
 <p>有了数据，如何训练CN-CLIP模型呢？</p>
-<p>作者认为如果随机初始化Image Encoder和Text Encoder参数，模型的效果会受到当前数据质量的影响。因此作者采用了其它已训练好的模型参数来初始化Image Encoder和Text Encoder，具体如下：</p>
-<blockquote>
-<p>To leverage the advantages of existent pretrained models, we initialize the models with weights from the pretrained checkpoints from the official release of CLIP 4 for the image encoder, and RoBERTa-wwm-ext and RBT3 5 for the text encoder.</p>
-</blockquote>
-<p>接下来就是让模型适应我们的数据，让模型在我们的数据上进行微调就可以，损失函数和CLIP是一样的，不过和普通微调不一样的是，作者这里用了两阶段微调（就是完整训练流程里面的2，3部分），因为作者认为只用LiT微调是不够的。</p>
-<blockquote>
-<p>To adapt the model to the introduced pretraining data, it is available to pretrain it with “contrastive tuning”, similar to the way to transfer CLIP to downstream retrieval data. In comparison with contrastive tuning, Locked-image Tuning (LiT) (Zhai et al., 2022) demonstrated improved performance in downstream transfer.</p>
-<p>It is not sufficient to pretrain Chinese CLIP with solely LiT, as the image encoder should learn the information of the images of the Chinese datasets and model the distribution of such data.</p>
-</blockquote>
+<p>作者认为如果随机初始化Image Encoder和Text Encoder参数，模型的效果会受到当前数据质量的影响。因此作者采用了其它已训练好的模型参数来初始化Image Encoder和Text Encoder，分别是CLIP模型和Chinese RoBERTa模型。</p>
+<p>接下来就是让模型适应我们的数据，让模型在我们的数据上进行微调就可以，损失函数和CLIP是一样的，不过和普通微调不一样的是，作者这里用了两阶段微调，因为作者认为只用LiT微调是不够的。</p>
 <p>两阶段训练具体细节：第一阶段训练模型使其在下游任务中没有显著提升时开始第二阶段的训练。</p>
-<blockquote>
-<p>In Stage 1, we “lock” the image encoder by freezing its parameters during pretraining. We only pretrain the text encoder for vision-language alignment, based on the assumption that the vision backbone with pretrained weights is already a powerful vision foundation model (Zhai et al., 2022; Gu et al., 2022). We pretrain it until there is no salient performance improvement in downstream tasks, even if we prolong the pretraining progress. Then we switch to Stage 2, where we “unlock” the image encoder by enabling its optimization. In Stage 2, we continue pretraining without any parameter frozen, so that the image encoder can learn to model the distribution of the image data from Chinese websites.</p>
-</blockquote>
-<p>问题1：两次微调训练是所用数据是一样的吗？</p>
-<p>答：作者这里没有提及两次训练所用数据的差异，应该是一样的</p>
-<p>问题2：为什么cn-CLIP和beit3-retrieval在flickr30k-cn&#x2F;flickr30k上不管是微调还是zero-shot都差距那么大呢？（大约7个点）</p>
-<p><strong>待回答</strong></p>
 <p>CN-CLIP完整的训练流程如下所示</p>
 <ol>
 <li>分别用Chinese RoBERTa和CLIP的Image Encoder初始化CN_CLIP的Text Encoder和Image Encoder的参数</li>
@@ -602,14 +584,18 @@ document
 <li>解冻Image Encoder网络参数，利用对比学习损失调整Image Encoder和Text Encoder的网络参数</li>
 </ol>
 <p><img src="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240702100928957.png" srcset="/img/loading.gif" lazyload alt="image-20240702100928957"></p>
-<h2 id="项目"><a href="#项目" class="headerlink" title="项目"></a>项目</h2><h3 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h3><p>先克隆项目到本地，然后根据官方说明进行配置即可：</p>
+<p>问题1：两次微调训练是所用数据是一样的吗？</p>
+<p>答：作者这里没有提及两次训练所用数据的差异，应该是一样的</p>
+<p>问题2：为什么cn-CLIP和beit3-retrieval在flickr30k-cn&#x2F;flickr30k上不管是微调还是zero-shot都差距那么大呢？（大约7个点）</p>
+<p><strong>待回答</strong></p>
+<h1 id="项目"><a href="#项目" class="headerlink" title="项目"></a>项目</h1><h2 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h2><p>先克隆项目到本地，然后根据官方说明进行配置即可：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">pip install -r requirements.txt<br>cd Chinese-CLIP<br>pip install -e .<br></code></pre></td></tr></table></figure>
 
 <p>执行下面命令测试环境是否配置完成：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> torch <br><span class="hljs-keyword">from</span> PIL <span class="hljs-keyword">import</span> Image<br><br><span class="hljs-keyword">import</span> cn_clip.clip <span class="hljs-keyword">as</span> clip<br><span class="hljs-keyword">from</span> cn_clip.clip <span class="hljs-keyword">import</span> load_from_name, available_models<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Available models:&quot;</span>, available_models())  <br><span class="hljs-comment"># Available models: [&#x27;ViT-B-16&#x27;, &#x27;ViT-L-14&#x27;, &#x27;ViT-L-14-336&#x27;, &#x27;ViT-H-14&#x27;, &#x27;RN50&#x27;]</span><br><br>device = <span class="hljs-string">&quot;cuda&quot;</span> <span class="hljs-keyword">if</span> torch.cuda.is_available() <span class="hljs-keyword">else</span> <span class="hljs-string">&quot;cpu&quot;</span><br>model, preprocess = load_from_name(<span class="hljs-string">&quot;ViT-B-16&quot;</span>, device=device, download_root=<span class="hljs-string">&#x27;./&#x27;</span>)<br>model.<span class="hljs-built_in">eval</span>()<br>image = preprocess(Image.<span class="hljs-built_in">open</span>(<span class="hljs-string">&quot;examples/pokemon.jpeg&quot;</span>)).unsqueeze(<span class="hljs-number">0</span>).to(device)<br>text = clip.tokenize([<span class="hljs-string">&quot;杰尼龟&quot;</span>, <span class="hljs-string">&quot;妙蛙种子&quot;</span>, <span class="hljs-string">&quot;小火龙&quot;</span>, <span class="hljs-string">&quot;皮卡丘&quot;</span>]).to(device)<br><br><span class="hljs-keyword">with</span> torch.no_grad():<br>    image_features = model.encode_image(image)<br>    text_features = model.encode_text(text)<br>    <span class="hljs-comment"># 对特征进行归一化，请使用归一化后的图文特征用于下游任务</span><br>    image_features /= image_features.norm(dim=-<span class="hljs-number">1</span>, keepdim=<span class="hljs-literal">True</span>) <br>    text_features /= text_features.norm(dim=-<span class="hljs-number">1</span>, keepdim=<span class="hljs-literal">True</span>)    <br><br>    logits_per_image, logits_per_text = model.get_similarity(image, text)<br>    probs = logits_per_image.softmax(dim=-<span class="hljs-number">1</span>).cpu().numpy()<br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Label probs:&quot;</span>, probs)  <span class="hljs-comment"># [[1.268734e-03 5.436878e-02 6.795761e-04 9.436829e-01]]</span><br></code></pre></td></tr></table></figure>
 
 <p>会自动下载权重，然后输出图片属于各个text之间的概率。</p>
-<h2 id="源码阅读"><a href="#源码阅读" class="headerlink" title="源码阅读"></a>源码阅读</h2>
+
                 
               </div>
             
@@ -668,9 +654,9 @@ document
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/07/10/multimodal/clip/" title="clip">
+                      <a href="/2024/07/05/AI-env/0-conda&amp;pip%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8/" title="0-conda&amp;pip基础使用">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">clip</span>
+                        <span class="hidden-mobile">0-conda&amp;pip基础使用</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -679,8 +665,8 @@ document
                   <!-- <article class="post-next col-6">
                     
                     
-                      <a href="/2024/07/10/multimodal/InterVL/" title="InterVL">
-                        <span class="hidden-mobile">InterVL</span>
+                      <a href="/2024/07/10/multimodal/02_BEiT3/" title="02_BEiT3">
+                        <span class="hidden-mobile">02_BEiT3</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -689,9 +675,9 @@ document
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/07/10/hexo/fluid-0-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" title="fluid-0-常用命令">
+                      <a href="/2024/07/10/multimodal/02_BEiT3/" title="02_BEiT3">
                         <i class="iconfont icon-arrowright"></i>
-                        <span class="hidden-mobile">fluid-0-常用命令</span>
+                        <span class="hidden-mobile">02_BEiT3</span>
                         <span class="visible-mobile">下一篇</span>
                       </a>
                     
