@@ -13,5 +13,13 @@ injects.footer.file('default', 'source/_inject/layout/_partials/footer.ejs');
 }
 );
 
-// course页面内容
+// 修改文章排序按文件名
+hexo.extend.filter.register('template_locals', function(locals) {
+  locals.site.posts = locals.site.posts.sort((a, b) => {
+    if (a.source < b.source) return -1;
+    if (a.source > b.source) return 1;
+    return 0;
+  });
+  return locals;
+});
 

@@ -1,5 +1,5 @@
 ---
-title: fluid -3- 说说功能
+title: fluid-3-说说功能
 tags: [hexo,fluid]
 categories: [Hexo]
 category_bar: true

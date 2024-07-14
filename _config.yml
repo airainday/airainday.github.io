@@ -96,7 +96,7 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: fluid
+theme: fluid  # 指定主题
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
@@ -104,6 +104,3 @@ deploy:
   type: git
   repo: git@github.com:airainday/airainday.github.io.git
   branch: master
-
-custom_scripts:
-  - source/_inject/courses.ejs  

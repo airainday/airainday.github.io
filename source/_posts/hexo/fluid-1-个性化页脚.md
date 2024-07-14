@@ -1,5 +1,5 @@
 ---
-title: fluid -1- 个性化页脚
+title: fluid-1-个性化页脚
 tags: [hexo,fluid]
 categories: [Hexo]
 category_bar: true

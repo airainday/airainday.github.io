@@ -1,0 +1,15 @@
+<div class="courses">
+    <div>
+        <% theme.courses.content.forEach(function(course) { %>
+          <div><%= course %></div>
+        <% }) %>
+    </div>
+  <ul>
+    <% site.posts.sort('date', -1).each(function(post) { %>
+      <li>
+        <a href="<%= url_for(post.path) %>"><%= post.title %></a>
+        <span><%= post.date.format('YYYY-MM-DD') %></span>
+      </li>
+    <% }) %>
+  </ul>
+</div>

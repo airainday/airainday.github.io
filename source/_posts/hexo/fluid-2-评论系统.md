@@ -1,5 +1,5 @@
 ---
-title: fluid -2- 评论系统
+title: fluid-2-评论系统
 tags: [hexo,fluid]
 categories: [Hexo]
 category_bar: true
