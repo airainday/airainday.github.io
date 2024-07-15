@@ -8,7 +8,7 @@ date: 2024-07-10 15:23:16
 
 # 论文
 
-## 提出问题和方法
+## 概述
 
 文章指出目前视觉和视觉-语言（vison-language）基础模型的发展却滞后于大语言模型（large language models，LLMs）的快速发展；为了将视觉模型和LLMs连接，目前的VLLMs（视觉大语言模型）通常采用“胶水层”，比如QFormer或者线性映射层，他们的目的是对其视觉和语言模型的特征。作者指出这种方式的三个可能的缺陷：
 
@@ -38,12 +38,36 @@ date: 2024-07-10 15:23:16
 
 ## 具体方法细节
 
+### 网络结构
+
 > InternVL is designed with a vision encoder InternViT-6B and a language middleware QLLaMA. InternViT-6B is a vision transformer with 6 billion parameters, customized to achieve a favorable tradeoff between performance and efficiency. QLLaMA is a language middleware with 8 billion parameters, initialized with a multilingual-enhanced LLaMA.
 
 *InternViT-6B*就是普通的ViT模型结构，作者对比了不通参数组合方式，最终确定模型结构如下：
 
 ![image-20240715193734938](https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240715193734938.png)
 
-*QLLaMA* is developed based on the pre-trained multilingual LLaMA , and newly added 96 learnable queries and cross-attention layers (1 billion parameters) that are randomly initialized.
+*QLLaMA* is developed based on the pre-trained multilingual LLaMA , *and newly added 96 learnable queries and cross-attention layers (1 billion parameters) that are randomly initialized.*
+
+作者说他们的模型就行瑞士军刀一样可以变换形态以实现多种功能：下图的a，b可用于contrastive任务；c，d可用于multi-modal dialogue任务；而训练好的ViT-6B可以用于visual perception tasks任务，比如分类和检测。
+
+![image-20240715215445829](https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240715215445829.png)
+
+### 训练策略
+
+训练由三个阶段组成：VL对比训练，VL生成训练，以及监督微调。不同阶段用到了不同的数据，有带噪声的图文对、高质量的caption，VQA以及多模态对话数据。
 
 ![image-20240715192224428](https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240715192224428.png)
+
+**Vision-Language Contrastive Training**：The data are all publicly available and comprise multilingual content, including LAION-en , LAIONmulti , LAION-COCO , COYO , Wukong , etc. We use the combination of these datasets and filter out some extremely low-quality data to train our model. 该阶段的训练可以使模型具备零样本图像分类和图文检索，并且其中的视觉编码器可以用于语义分割任务。这一阶段损失函数和CLIP的symmetric cross-entropy loss一样（ITC）。
+
+第一阶段和第二阶段用到的图文对数据如下，cleaned表示去除匹配度很低的图文对数据。
+
+![image-20240716063752721](https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240716063752721.png)
+
+**Vision-Language Generative Training：**we connect InternViT-6B with QLLaMA and adopt a generative training strategy. Specifically, QLLaMA inherits the weights of LLaMA-7B in the first stage. We keep both InternViT-6B and QLLaMA frozen and only train the newly added learnable queries and cross-attention layers with filtered, high-quality data.
+
+数据如上表所示，也是图文对数据，不过是进一步清洗后的。所采用损失函数和BLIP-2一致：the loss in this stage is computed as the sum of three components: image-text contrastive (ITC) loss, image-text matching (ITM) loss, and image-grounded text generation (ITG) loss.
+
+**Supervised Fine-tuning**：为了证明InternVL在多模态对话系统中的有效性，利用MLP层将InternVL和已训练好的大预言模型解码器，比如Vicuna，InternLM连接起来，并执行监督微调（SFT）。用到的数据是高质量的 instruction data，大约4B，如下表所示。
+
+![image-20240716070839933](https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240716070839933.png)
