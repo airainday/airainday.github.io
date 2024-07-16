@@ -68,6 +68,32 @@ date: 2024-07-10 15:23:16
 
 数据如上表所示，也是图文对数据，不过是进一步清洗后的。所采用损失函数和BLIP-2一致：the loss in this stage is computed as the sum of three components: image-text contrastive (ITC) loss, image-text matching (ITM) loss, and image-grounded text generation (ITG) loss.
 
-**Supervised Fine-tuning**：为了证明InternVL在多模态对话系统中的有效性，利用MLP层将InternVL和已训练好的大预言模型解码器，比如Vicuna，InternLM连接起来，并执行监督微调（SFT）。用到的数据是高质量的 instruction data，大约4B，如下表所示。
+**Supervised Fine-tuning**：为了证明InternVL在多模态对话系统中的有效性，利用MLP层将InternVL和已训练好的大预言模型解码器，比如Vicuna，InternLM连接起来，并执行监督微调（SFT）。用到的数据是高质量的 instruction data，大约4B，如下表所示。微调时仅训练MLP层的参数，或者训练MLP和QLLaMA参数，论文里是这样写的：Owing to the similar feature space of QLLaMA and LLMs, we can achieve robust performance even when freezing the LLM decoder, choosing to train just the MLP layer or both the MLP layer and QLLaMA. *但是训练流程图中好像画错了，是冻住或者训练Vicuna-13B而不是QLLaMA*。
 
 ![image-20240716070839933](https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240716070839933.png)
+
+## 实验
+
+针对这个模型可以执行的任务，作者分别在不同任务上进行对比。分为三个基准测试（Benchmarks），Benchmarks包括一组标准的数据集和评估指标，用于衡量模型在特定任务上的表现。
+
+### Vision Perception Benchmarks
+
+ImageNet1k数据集上评估ViT-6B图像分类能力，下面是冻住Backbone用ImageNet1k训练集微调分类线性层后，在ImageNet1k验证集及ImageNet1k的一些变体数据集上的结果。
+
+![image-20240716092213566](https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240716092213566.png)
+
+以及在ADE20k上评估语义分割能力，具体数据就不放了，可以看原论文。
+
+作者的对比很有意思，只和一些模型进行对比，但其实这些结果在总体榜单上排名并不高。或许是只对比同类或者同种方法的模型吧，其实和这些数据集上的SOTA模型差距还不小。
+
+### Vision-Language Benchmarks
+
+vision-language tasks也包含很多，比如Zero-Shot Image Classification、Zero-Shot Video Classification、Zero-Shot Image-Text Retrieval、Zero-Shot Image Captioning等等。
+
+这里只贴上Image-Text Retrieval的结果：很奇怪的是为什么英文数据集上不和Beit3对比呢？其实是要比Beit3在Flickr30k上的效果要好的。
+
+![image-20240716094340428](https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240716094340428.png)
+
+### Multi-Modal Dialogue Benchmarks
+
+略
