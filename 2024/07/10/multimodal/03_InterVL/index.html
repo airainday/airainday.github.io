@@ -16,19 +16,28 @@
   <meta name="author" content="AIrainday">
   <meta name="keywords" content="博客 AI 好用工具 个人成长 AIrainday">
   
-    <meta name="description" content="论文">
+    <meta name="description" content="论文概述文章指出目前视觉和视觉-语言（vison-language）基础模型的发展却滞后于大语言模型（large language models，LLMs）的快速发展；为了将视觉模型和LLMs连接，目前的VLLMs（视觉大语言模型）通常采用“胶水层”，比如QFormer或者线性映射层，他们的目的是对其视觉和语言模型的特征。作者指出这种方式的三个可能的缺陷： (1) 视觉和语言模型参数之间的差异：目">
 <meta property="og:type" content="article">
 <meta property="og:title" content="03_InterVL">
 <meta property="og:url" content="http://example.com/2024/07/10/multimodal/03_InterVL/index.html">
 <meta property="og:site_name" content="AIrainday">
-<meta property="og:description" content="论文">
+<meta property="og:description" content="论文概述文章指出目前视觉和视觉-语言（vison-language）基础模型的发展却滞后于大语言模型（large language models，LLMs）的快速发展；为了将视觉模型和LLMs连接，目前的VLLMs（视觉大语言模型）通常采用“胶水层”，比如QFormer或者线性映射层，他们的目的是对其视觉和语言模型的特征。作者指出这种方式的三个可能的缺陷： (1) 视觉和语言模型参数之间的差异：目">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240715173257718.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240715193734938.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240715215445829.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240715192224428.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240716063752721.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240716070839933.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240716092213566.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240716094340428.png">
 <meta property="article:published_time" content="2024-07-10T07:23:16.000Z">
-<meta property="article:modified_time" content="2024-07-14T22:45:10.295Z">
+<meta property="article:modified_time" content="2024-07-17T13:44:31.495Z">
 <meta property="article:author" content="AIrainday">
 <meta property="article:tag" content="multimodal">
 <meta property="article:tag" content="InterVL">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240715173257718.png">
   
   
   
@@ -274,7 +283,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2 字
+          1.5k 字
         
       </span>
     
@@ -285,7 +294,7 @@
         
         
         
-          1 分钟
+          13 分钟
         
       </span>
     
@@ -347,7 +356,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2 字
+          1.5k 字
         
       </span>
     
@@ -358,7 +367,7 @@
         
         
         
-          1 分钟
+          13 分钟
         
       </span>
     
@@ -561,7 +570,7 @@ document
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2024年7月15日 早上
+                    本文最后更新于 2024年7月17日 晚上
                   
                 
               </p>
@@ -569,7 +578,45 @@ document
             
               <div class="markdown-body">
                 
-                <h1 id="论文"><a href="#论文" class="headerlink" title="论文"></a>论文</h1>
+                <h1 id="论文"><a href="#论文" class="headerlink" title="论文"></a>论文</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>文章指出目前视觉和视觉-语言（vison-language）基础模型的发展却滞后于大语言模型（large language models，LLMs）的快速发展；为了将视觉模型和LLMs连接，目前的VLLMs（视觉大语言模型）通常采用“胶水层”，比如QFormer或者线性映射层，他们的目的是对其视觉和语言模型的特征。作者指出这种方式的三个可能的缺陷：</p>
+<p>(1) 视觉和语言模型参数之间的差异：目前VLLMs常用的视觉编码器参数通常在1B，但是有些大的LLMs参数已经达到了1000B</p>
+<p>(2) 不一致的特征表示，视觉模型通常是在纯视觉数据上训练或者与BERT系列语言模型对齐，与LLMs的特征表示存在不一致（啥意思，没太懂）</p>
+<p>(3) “胶水层”参数太少，这可能无法捕捉到对多模态理解和生成至关重要的丰富的<em>跨模态交互和依赖关系</em></p>
+<p>问题已经提出，作者给出的解决方案就是提升视觉模型参数使其达到LLMs模型参数规模，并且使两者表示能够更好的融合。</p>
+<p>具体来说，作者引入InternVL模型，有着以下三点关键的设计：</p>
+<p>(1) 视觉和语言模型参数平衡：vision encoder可达6B参数，LLM中间件（将LLM模型看作一个中间件）则有8B参数</p>
+<p>(2) 一致的表示：为了让vision encoder和LLM的特征表示保持一致，用预训练的multilingual LLaMA初始化LLM中间件并与vision encoder对齐</p>
+<p>(3) 渐进式图文对齐：渐进式学习策略——现在大规模含有噪声的数据上进行对比学习，然后在好一些的数据上进行生成学习（generative learning）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240715173257718.png" srcset="/img/loading.gif" lazyload alt="image-20240715173257718"></p>
+<h2 id="相关工作"><a href="#相关工作" class="headerlink" title="相关工作"></a>相关工作</h2><p>作者列举了一些视觉模型和大语言模型的发展进程。视觉模型从AlexNet-&gt;ResnetNet-&gt;ViT及其变体；大预言模型则有GPT-3、GPT-4以及开源的大预言模型：LLaMA series , Vicuna , InternLM, MOSS, ChatGLM , Qwen, Baichuan , Falcon等等。</p>
+<p>最后提到了VLLMs的发展，目前VLLMs（视觉大预言模型）的目的是增强其处理和解释视觉信息的能力，GPT-4, LLaVA series，MiniGPT-4 引入了视觉指令调优技术（通过向模型提供包含视觉和语言信息的指令进行训练，以增强其在处理和理解视觉任务时的能力。这种调优方法旨在提高视觉语言模型对指令的遵循能力）；VisionLLM ，KOSMOS-2和Qwen - VL改进了VLLM，使其具有视觉基础能力，便于区域描述和定位等任务（指的是分割或者检测等基础视觉任务）；PaLM-E 和Embodied GPT代表了将VLLM应用于具身应用（embodied applications，比如机器人，自动驾驶等领域）的先进努力，显著扩展了它们的潜在应用。</p>
+<h2 id="具体方法细节"><a href="#具体方法细节" class="headerlink" title="具体方法细节"></a>具体方法细节</h2><h3 id="网络结构"><a href="#网络结构" class="headerlink" title="网络结构"></a>网络结构</h3><blockquote>
+<p>InternVL is designed with a vision encoder InternViT-6B and a language middleware QLLaMA. InternViT-6B is a vision transformer with 6 billion parameters, customized to achieve a favorable tradeoff between performance and efficiency. QLLaMA is a language middleware with 8 billion parameters, initialized with a multilingual-enhanced LLaMA.</p>
+</blockquote>
+<p><em>InternViT-6B</em>就是普通的ViT模型结构，作者对比了不通参数组合方式，最终确定模型结构如下：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240715193734938.png" srcset="/img/loading.gif" lazyload alt="image-20240715193734938"></p>
+<p><em>QLLaMA</em> is developed based on the pre-trained multilingual LLaMA , <em>and newly added 96 learnable queries and cross-attention layers (1 billion parameters) that are randomly initialized.</em></p>
+<p>作者说他们的模型就行瑞士军刀一样可以变换形态以实现多种功能：下图的a，b可用于contrastive任务；c，d可用于multi-modal dialogue任务；而训练好的ViT-6B可以用于visual perception tasks任务，比如分类和检测。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240715215445829.png" srcset="/img/loading.gif" lazyload alt="image-20240715215445829"></p>
+<h3 id="训练策略"><a href="#训练策略" class="headerlink" title="训练策略"></a>训练策略</h3><p>训练由三个阶段组成：VL对比训练，VL生成训练，以及监督微调。不同阶段用到了不同的数据，有带噪声的图文对、高质量的caption，VQA以及多模态对话数据。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240715192224428.png" srcset="/img/loading.gif" lazyload alt="image-20240715192224428"></p>
+<p><strong>Vision-Language Contrastive Training</strong>：The data are all publicly available and comprise multilingual content, including LAION-en , LAIONmulti , LAION-COCO , COYO , Wukong , etc. We use the combination of these datasets and filter out some extremely low-quality data to train our model. 该阶段的训练可以使模型具备零样本图像分类和图文检索，并且其中的视觉编码器可以用于语义分割任务。这一阶段损失函数和CLIP的symmetric cross-entropy loss一样（ITC）。</p>
+<p>第一阶段和第二阶段用到的图文对数据如下，cleaned表示去除匹配度很低的图文对数据。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240716063752721.png" srcset="/img/loading.gif" lazyload alt="image-20240716063752721"></p>
+<p><strong>Vision-Language Generative Training：</strong>we connect InternViT-6B with QLLaMA and adopt a generative training strategy. Specifically, QLLaMA inherits the weights of LLaMA-7B in the first stage. We keep both InternViT-6B and QLLaMA frozen and only train the newly added learnable queries and cross-attention layers with filtered, high-quality data.</p>
+<p>数据如上表所示，也是图文对数据，不过是进一步清洗后的。所采用损失函数和BLIP-2一致：the loss in this stage is computed as the sum of three components: image-text contrastive (ITC) loss, image-text matching (ITM) loss, and image-grounded text generation (ITG) loss.</p>
+<p><strong>Supervised Fine-tuning</strong>：为了证明InternVL在多模态对话系统中的有效性，利用MLP层将InternVL和已训练好的大预言模型解码器，比如Vicuna，InternLM连接起来，并执行监督微调（SFT）。用到的数据是高质量的 instruction data，大约4B，如下表所示。微调时仅训练MLP层的参数，或者训练MLP和QLLaMA参数，论文里是这样写的：Owing to the similar feature space of QLLaMA and LLMs, we can achieve robust performance even when freezing the LLM decoder, choosing to train just the MLP layer or both the MLP layer and QLLaMA. <em>但是训练流程图中好像画错了，是冻住或者训练Vicuna-13B而不是QLLaMA</em>。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240716070839933.png" srcset="/img/loading.gif" lazyload alt="image-20240716070839933"></p>
+<h2 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h2><p>针对这个模型可以执行的任务，作者分别在不同任务上进行对比。分为三个基准测试（Benchmarks），Benchmarks包括一组标准的数据集和评估指标，用于衡量模型在特定任务上的表现。</p>
+<h3 id="Vision-Perception-Benchmarks"><a href="#Vision-Perception-Benchmarks" class="headerlink" title="Vision Perception Benchmarks"></a>Vision Perception Benchmarks</h3><p>ImageNet1k数据集上评估ViT-6B图像分类能力，下面是冻住Backbone用ImageNet1k训练集微调分类线性层后，在ImageNet1k验证集及ImageNet1k的一些变体数据集上的结果。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240716092213566.png" srcset="/img/loading.gif" lazyload alt="image-20240716092213566"></p>
+<p>以及在ADE20k上评估语义分割能力，具体数据就不放了，可以看原论文。</p>
+<p>作者的对比很有意思，只和一些模型进行对比，但其实这些结果在总体榜单上排名并不高。或许是只对比同类或者同种方法的模型吧，其实和这些数据集上的SOTA模型差距还不小。</p>
+<h3 id="Vision-Language-Benchmarks"><a href="#Vision-Language-Benchmarks" class="headerlink" title="Vision-Language Benchmarks"></a>Vision-Language Benchmarks</h3><p>vision-language tasks也包含很多，比如Zero-Shot Image Classification、Zero-Shot Video Classification、Zero-Shot Image-Text Retrieval、Zero-Shot Image Captioning等等。</p>
+<p>这里只贴上Image-Text Retrieval的结果：很奇怪的是为什么英文数据集上不和Beit3对比呢？其实是要比Beit3在Flickr30k上的效果要好的。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/airainday/blogimage@main/image-20240716094340428.png" srcset="/img/loading.gif" lazyload alt="image-20240716094340428"></p>
+<h3 id="Multi-Modal-Dialogue-Benchmarks"><a href="#Multi-Modal-Dialogue-Benchmarks" class="headerlink" title="Multi-Modal Dialogue Benchmarks"></a>Multi-Modal Dialogue Benchmarks</h3><p>略</p>
+
                 
               </div>
             
